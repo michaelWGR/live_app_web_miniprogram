@@ -1,0 +1,17 @@
+/* pages/unauth/unauth.wxss */
+.unauth{
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.auth-tips{
+  position: absolute;
+  font-size: 32rpx;
+  width: 100%;
+  height: 60rpx;
+  line-height: 60rpx;
+  top: 50%;
+  margin-top: -30rpx;
+  text-align: center;
+}

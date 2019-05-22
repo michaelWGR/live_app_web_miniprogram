@@ -1,0 +1,51 @@
+/* components/audioMsg/audioMsg.wxss */
+.audio-content{
+  box-sizing: border-box;
+  font-size: 24rpx;
+  margin-top: 5rpx;
+  position: relative;
+  border-radius: 4rpx;
+  padding: 12rpx;
+  background-color: #ffb400;
+  border: 1rpx solid #ffb400;
+  color: #ffffff;
+  width: 200rpx;
+  display: flex;
+  align-items: center;
+}
+
+.audio-content .icon{
+  width: 19rpx;
+  height: 30rpx;
+  margin-right: 12rpx;
+}
+
+.audio-content::before{
+  position: absolute;
+  content: '';
+  display: block;
+  font-size: 0;
+  line-height: 0;
+  width: 0;
+  height: 0;
+  border-width: 12rpx;
+  border-style: dashed solid dashed dashed; 
+  border-color: transparent #ffb400 transparent transparent;
+  left: -24rpx;
+  top: 12rpx;
+}
+
+.audio-content::after{
+  position: absolute;
+  content: '';
+  display: block;
+  font-size: 0;
+  line-height: 0;
+  width: 0;
+  height: 0;
+  border-width: 12rpx;
+  border-style: dashed solid dashed dashed; 
+  border-color: transparent #ffb400 transparent transparent;
+  left: -23rpx;
+  top: 13rpx;
+}

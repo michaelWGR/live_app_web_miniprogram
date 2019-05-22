@@ -1,0 +1,6 @@
+<!--components/audioMsg/audioMsg.wxml-->
+<view class='content audio-content' bindtap='handlePlay'>
+  <image wx:if="{{is_play}}" class='icon' src='{{img_baseUrl}}playing.gif'></image>
+  <image wx:else class='icon' src='{{img_baseUrl}}play.png'></image>
+  <text>{{length}}S</text>
+</view>
