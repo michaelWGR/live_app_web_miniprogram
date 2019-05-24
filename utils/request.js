@@ -1,6 +1,6 @@
-const BASE_URL = "https://appminip-test.61draw.com" //测试线地址
-// const BASE_URL = "https://appminip.61draw.com"      //正式线地址
-const app = getApp();
+const util = require('../utils/util.js');
+
+const BASE_URL = util.baseUrl;
 
 //添加finally：参数里面complete方法。
 Promise.prototype.finally = function (callback) {

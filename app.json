@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/homework/homework",
     "pages/unauth/unauth"
   ],
   "window": {
@@ -10,5 +11,7 @@
     "navigationBarTextStyle": "black"
   },
   "sitemapLocation": "sitemap.json",
-  "requiredBackgroundModes": [""]
+  "requiredBackgroundModes": [
+    ""
+  ]
 }

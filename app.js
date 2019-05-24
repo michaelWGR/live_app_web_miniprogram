@@ -40,42 +40,6 @@ App({
               }
             })
           })
-          // wx.request({
-          //   url: 'https://appminip-test.61draw.com/v1/applets/signature',
-          //   method: 'POST',
-          //   header: {
-          //     'content-type': 'application/json' //默认
-          //     },
-          //   data: {
-          //     "code":res.code
-          //     },
-          //   success:function(res){
-          //     console.log(res);
-          //     if(res.data.code == 0){
-          //       //校验成功，存储accessToken
-          //       this.globalData.access_token = res.data.data.accessToken;
-          //       // var access_token = res.data.data.accessToken;
-          //       // wx.setStorage({
-          //       //   key: "access_token",
-          //       //   data: access_token
-          //       // })
-          //     }
-              
-          //   },
-          //   fail:function(err){
-          //     wx.showToast({
-          //       title: '认证失败',
-          //       icon: 'none',
-          //       duration: 2000,
-          //       complete:function(){
-          //         console.log(err);
-          //         wx.redirectTo({
-          //         url: '/pages/unauth/unauth',
-          //       })
-          //       }
-          //     })
-          //   }
-          // })
         }
       }
     })

@@ -1,5 +1,10 @@
+// const BASE_URL = "https://appminip-test.61draw.com" //测试线地址
+const BASE_URL = "https://appminip.61draw.com"         //正式线地址
+
+// const IMG_BASEURL = "https://appdev.61draw.com/dev_test/miniprogram/"  //测试线图片地址
+const IMG_BASEURL = "http://appminip.61draw.com/res/images/"; //正式线图片地址
+
 /**时间格式转换 */
-const IMG_BASEURL = "http://appminip.61draw.com/res/images/";
 const formatTime = timeStamp => {
   var date = new Date(timeStamp);
   const year = date.getFullYear()
@@ -28,6 +33,7 @@ const qs = obj =>{
 }
 
 module.exports = {
+  baseUrl: BASE_URL,
   img_baseUrl: IMG_BASEURL,
   formatTime: formatTime,
   qs: qs
