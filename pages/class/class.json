@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "course-pop": "/components/coursePop/coursePop"
+  }
+}

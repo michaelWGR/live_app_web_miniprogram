@@ -1,0 +1,40 @@
+<!--components/audioPlayer/audioPlayer.wxml-->
+<view class='audio-player'>
+  <view class='dots' wx:if="{{list.length>1}}">
+    <view wx:for="{{list}}" wx:key class="dots-item {{index==audio_index?'active':''}}" 
+          data-index="{{index}}" bindtap='handleIndex'></view>
+  </view>
+  <view class='section-gap'>
+    <view class='current'>{{wxs.secondToMin(current_time)}}</view>
+    <slider min="0" max="{{audio.mediaLength}}" bindchange="timeSliderChanged" step='0.01' 
+            value='{{value}}' disabled='{{audio.id!=current_play}}' backgroundColor='#cccccc'
+            activeColor='#ff7800' block-size='20'></slider>
+    <view class='total'>{{wxs.secondToMin(audio.mediaLength)}}</view>
+  </view>
+  <view class='handle-group'>
+    <button class="handle-item prev {{audio_index==0?'disabled':''}}" 
+            wx:if="{{list.length>1}}" disabled='{{audio_index==0}}' 
+            style="background-image:url({{img_baseUrl}}audio_prev.png)" 
+            data-handle='prev' bindtap='handleSwitch'></button>
+    <button class='handle-item pause' style="background-image:url({{img_baseUrl}}audio_pause.png)" 
+            wx:if="{{audio.id==current_play&&is_play}}" bindtap='handlePlay'></button>
+    <button class='handle-item play' style="background-image:url({{img_baseUrl}}audio_play.png)" 
+            wx:else bindtap='handlePlay'></button>
+    <button class="handle-item next {{audio_index==list.length-1?'disabled':''}}" wx:if="{{list.length>1}}" 
+            disabled='{{audio_index==list.length-1}}' 
+            style="background-image:url({{img_baseUrl}}audio_next.png)" data-handle='next' bindtap='handleSwitch'></button>
+  </view>
+</view>
+
+<wxs module="wxs">
+  var secondToMin = function(s){
+    var m = Math.floor(s / 60);
+    var s = s % 60;
+    m += '';
+    s += '';
+    m = (m.length == 1) ? '0' + m : m;
+    s = (s.length == 1) ? '0' + s : s;
+    return m + ':' + s;
+  }
+  module.exports.secondToMin = secondToMin;
+</wxs>

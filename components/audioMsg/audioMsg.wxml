@@ -1,6 +1,8 @@
 <!--components/audioMsg/audioMsg.wxml-->
-<view class='content audio-content' bindtap='handlePlay'>
-  <image wx:if="{{is_play}}" class='icon' src='{{img_baseUrl}}playing.gif'></image>
+<view class="content audio-content {{(auto_len===true&&audio.mediaLength<=20)?'len-20':''}}"
+      style="width:{{(auto_len===true&&audio.mediaLength>20&&audio.mediaLength<=60)?audio.mediaLength*4.6+184:''}}rpx"
+      bindtap='handlePlay'>
+  <image wx:if="{{current_play==audio.id&&is_play}}" class="icon" src="{{img_baseUrl}}pause.png"></image>
   <image wx:else class='icon' src='{{img_baseUrl}}play.png'></image>
-  <text>{{length}}S</text>
+  <text>{{text}}</text>
 </view>

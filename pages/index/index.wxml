@@ -1,6 +1,6 @@
 <!--pages/index/index.wxml-->
 <view class='loading' wx:if='{{loading}}'>正在加载...</view>
-<view class='container index' wx:else>
+<view class='container index' style="background-image:url({{img_baseUrl}}index_bg.jpg)" wx:else>
   <view class='homework-list'>
     <view wx:for='{{homeworkList}}' wx:key='{{item.commentId}}' data-id="{{item.commentId}}" class='homework-list-item' bindtap='routeToHomework'>
       <view class='homework-wrap'>

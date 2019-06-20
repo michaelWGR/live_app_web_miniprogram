@@ -1,0 +1,62 @@
+<!--pages/class/class.wxml-->
+<course-pop wx:if="{{show_pop}}" bindhandlePopClose="popClose" 
+            bindhandleScheduleSwitch="scheduleSwitch"
+            bindhandleGetCourseList="getCourseList"
+            schedule="{{scheduleList}}" scheduleSelIndex="{{scheduleSelIndex}}"
+            course="{{scheduleCourseList}}" courseId="{{scheduleCourseId}}"
+            groupTableCourseId="{{groupTableCourseInfoId}}"
+            courseName="{{scheduleCourseName}}">
+</course-pop>
+<view class='loading' wx:if='{{loading}}'>正在加载...</view>
+<view class='container class' style="background-image:url({{img_baseUrl}}bg.jpg);" wx:wlse>
+  <view class='header'>
+    <image src='{{img_baseUrl}}class_header.png'></image>
+    <view class='theme'>{{courseData.courseName}}</view>
+  </view>
+  <view class='work-list'>
+    <view class='work-list-title' wx:if="{{courseData.classInfo.className}}">
+      <view class='bar'></view>
+      <view class='text'>{{courseData.classInfo.className}}</view>
+      <view class='bar'></view>
+    </view>
+    <view class='list'>
+      <view class='list-item' wx:for="{{courseData.studentPaints}}" wx:key>
+        <view class='pic' data-id="{{item.homeworkId}}" bindtap='toHomeworkDetail'><image src='{{item.imageUrl}}'></image></view>
+        <view class='desc'>
+          <view class='info'>
+            <view class='info-item author'>
+              <view class='name'>{{item.userName}}</view>
+            </view>
+            <view class='info-item create-time'>{{wxs.formatTime(item.createTime)}}</view>
+          </view>
+          <view class='liked'>
+            <view class='liked-icon'>
+                <image wx:if="{{item.praiseFlag==1}}" src='{{img_baseUrl}}list_liked.png'></image>
+                <image wx:else src='{{img_baseUrl}}list_disliked.png' data-index="{{index}}"
+                       data-id="{{item.homeworkId}}" bindtap='praiseHandle'></image>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='footer'>
+    <button bindtap='popOpen' 
+            class='footer-btn select-btn' style="background-image:url({{img_baseUrl}}btn_select_class.png)">
+    </button>
+  </view>
+</view>
+
+<wxs module="wxs">
+  var formatTime = function(timeStamp){
+    var date = getDate(timeStamp);
+    var year = date.getFullYear();
+    var month = date.getMonth() + 1;
+    var day = date.getDate();
+
+    return year+'年'+month+'月'+day+'日';
+  }
+
+  module.exports.formatTime = formatTime;
+</wxs>
+

@@ -2,12 +2,25 @@
 const api = require('/api/api.js')
 
 App({
-  onLaunch: function () {
+  onLaunch: function (res) {
+    /**判断小程序是否由作品分享及其相关小程序码打开 */
+    if (res.query.showBackIcon == 'false'){
+      this.globalData.fromShare = true;
+    }else{
+      this.globalData.fromShare = false;
+    }
     var _this = this;
 
     //获取启动参数
     var from_msg = wx.getLaunchOptionsSync();
     this.globalData = Object.assign(this.globalData, from_msg);
+
+    //获取屏幕宽度
+    wx.getSystemInfo({
+      success: function(res) {
+        _this.globalData.screenWidth = res.screenWidth
+      },
+    })
 
     
     // 登录
@@ -18,10 +31,7 @@ App({
           api.authorize({"code": res.code}).then(res=>{
             if(res.data.code == 0){
               var access_token = res.data.data.accessToken;
-              wx.setStorage({
-                key: "access_token",
-                data: access_token
-              });
+              this.globalData.access_token = res.data.data.accessToken;
               if(this.tokenCallback){
                 this.tokenCallback(res.data.data.accessToken);
               }
@@ -66,6 +76,7 @@ App({
 
   },
   globalData: {
+    fromShare: false,
     userInfo: null,
     access_token: ''
   }

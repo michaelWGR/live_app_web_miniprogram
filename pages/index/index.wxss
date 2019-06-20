@@ -5,7 +5,6 @@ page{
 .index{
   min-height: 100%;
   height: auto;
-  background-image: url('http://appminip.61draw.com/res/images/index_bg.jpg');
   background-repeat: no-repeat;
   background-color: #fff0b4;
   background-size: 100% auto;
@@ -79,12 +78,18 @@ page{
   font-size: 30rpx;
   text-align: center;
   margin-bottom: 10rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .index .homework-list .homework-list-item .desc .desc-author{
   width: 100%;
   font-size: 24rpx;
-  text-align: center
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .index .footer{

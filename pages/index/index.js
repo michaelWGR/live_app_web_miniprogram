@@ -19,12 +19,23 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-      this.getWorkList();
+    const _this = this;
+    if (app.globalData.access_token && app.globalData.access_token != '') {
+      this.getWorkList(app.globalData.access_token);
+    } else {
+      app.tokenCallback = (token) => {
+        if (token && token != '') {
+          _this.getWorkList(token);
+        }
+
+      }
+    }
+      
   },
 
-  getWorkList: function () {
+  getWorkList: function (token) {
     const _this = this;
-    api.getWorkList({}).then(res => {
+    api.getWorkList({},token).then(res => {
       if (res.data.code == 0) {
         var list = res.data.data;
         _this.setData({
