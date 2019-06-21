@@ -23,7 +23,7 @@ Page({
     homeworkId: null,
     img_baseUrl: util.img_baseUrl,
     desc_expand: false,
-    isLiked: true  //是否点赞该作品
+    page_hide: false
   },
 
   //事件处理函数
@@ -157,6 +157,12 @@ Page({
 
   },
 
+  onShow: function () {
+    if (this.data.page_hide){
+      this.getWorkData(app.globalData.access_token);
+    }
+  },
+
   onLoad: function (options) {
     //获取传入参数
     if (options.homeworkId!=undefined&&options.homeworkId!=''){
@@ -239,7 +245,8 @@ Page({
     backgroundAudioManager.stop();
     this.setData({
       current_play: '',
-      current_time: 0
+      current_time: 0,
+      page_hide: true
     })
   },
   /**

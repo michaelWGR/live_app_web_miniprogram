@@ -159,6 +159,7 @@ Page({
 
   /** 根据阶段获取课程列表 */
   getCourseBySchedule:function(){
+    var _this = this;
     var params = {
       level: this.data.scheduleList[this.data.scheduleSelIndex].level,
       stage: this.data.scheduleList[this.data.scheduleSelIndex].stage,
@@ -166,22 +167,23 @@ Page({
     }
     api.getCourseBySchedule(params, app.globalData.access_token)
       .then(res => {
-        if(res.data.code==0){
-          this.setData({
-            scheduleCourseList: res.data.data,
-            show_pop: true
-          })
-        }else{
-          this.setData({
-            scheduleCourseList: [],
-            show_pop: true
-          })
-          wx.showToast({
-            title: '获取课程失败',
-            icon: 'none',
-            duration: 3000
-          })
-        }
+              if (res.data.code == 0) {
+                _this.setData({
+                  scheduleCourseList: res.data.data,
+                  show_pop: true
+                })
+              } else {
+                _this.setData({
+                  scheduleCourseList: [],
+                  show_pop: true
+                })
+                wx.showToast({
+                  title: '获取课程失败',
+                  icon: 'none',
+                  duration: 3000
+                })
+              }
+        wx.hideLoading();  
       }).catch(error => {
         wx.showToast({
           title: '系统错误',
@@ -199,15 +201,22 @@ Page({
   },
   /** 打开弹窗 */
   popOpen:function(){
-    this.getSchedule().then(resolve=>{
-      this.getCourseBySchedule();
-    }).catch(error=>{
-      console.log(error)
-      wx.showToast({
-        title: '请求错误',
-        icon: 'none',
-        duration: 3000
-      })
+    var _this = this;
+    wx.showLoading({
+      title: '正在加载',
+      mask: true,
+      success:function(){
+        _this.getSchedule().then(resolve => {
+          _this.getCourseBySchedule();
+        }).catch(error => {
+          console.log(error)
+          wx.showToast({
+            title: '请求错误',
+            icon: 'none',
+            duration: 3000
+          })
+        })
+      }
     })
   },
 

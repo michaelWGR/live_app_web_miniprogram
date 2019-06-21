@@ -41,7 +41,7 @@
     </view>
   </view>
   <view class='footer'>
-    <button bindtap='popOpen' 
+    <button bindtap='popOpen' wx:if="{{courseData.classInfo}}"
             class='footer-btn select-btn' style="background-image:url({{img_baseUrl}}btn_select_class.png)">
     </button>
   </view>

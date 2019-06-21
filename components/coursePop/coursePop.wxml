@@ -14,7 +14,8 @@
               data-index="{{index}}" bindtap='switchSchedule'>L{{item.level}}S{{item.stage}}</view>
       </scroll-view>
       <scroll-view class='course-list' scroll-y bindscrolltolower="">
-        <view class='course-item' wx:for="{{course}}" wx:key
+        <view class="course-item {{item.courseInfoId==courseId&&item.groupTableCourseInfoId==groupTableCourseId&&item.courseName==courseName?'active':''}}" 
+              wx:for="{{course}}" wx:key
               data-groupTableCourseId="{{item.groupTableCourseInfoId}}" data-courseId="{{item.courseInfoId}}" 
               data-name="{{item.courseName}}"
               bindtap='selectCourse'>

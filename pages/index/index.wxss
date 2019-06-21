@@ -9,7 +9,7 @@ page{
   background-color: #fff0b4;
   background-size: 100% auto;
   padding-top: 345rpx;
-  padding-bottom: 142rpx;
+  padding-bottom: 162rpx;
 }
 
 .index .homework-list{
@@ -101,7 +101,7 @@ page{
   flex-direction: column;
   align-items: center;
   box-sizing: border-box;
-  padding: 30rpx 0;
+  padding: 30rpx 0 50rpx;
   z-index: 100;
 }
 

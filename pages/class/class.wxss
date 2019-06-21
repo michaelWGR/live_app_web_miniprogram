@@ -3,7 +3,7 @@
   background-repeat: no-repeat;
   background-color: #ffffff;
   background-size: 100% auto;
-  padding-bottom: 152rpx;
+  padding-bottom: 172rpx;
 }
 
 .class .header{
@@ -149,7 +149,7 @@
   flex-direction: column;
   align-items: center;
   box-sizing: border-box;
-  padding: 30rpx 0;
+  padding: 30rpx 0 50rpx;
   z-index: 99;
 } 
 

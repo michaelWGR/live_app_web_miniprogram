@@ -22,7 +22,6 @@
     <view class='desc' wx:if="{{homework.commentStory.description}}">
       <image class='tag' src='{{img_baseUrl}}tag_desc.png'></image>
       <view class='desc-text-wrap'>
-        <view>{{homework.commentStory.description.length}}</view>
         <view class="desc-text {{desc_expand ? '': 'unexpand'}}"
               style='-webkit-line-clamp: {{lineNum}};'>{{homework.commentStory.description}}</view>
         <view class="expand-handle-wrap" wx:if="{{show_expand}}">
