@@ -1,5 +1,5 @@
 <!--pages/unauth/unauth.wxml-->
 <view class='container unauth'>
-  <text class='auth-tips'>404 Not Found</text>
+  <text class='auth-tips'>暂未获取到相关学员作品</text>
 </view>
 

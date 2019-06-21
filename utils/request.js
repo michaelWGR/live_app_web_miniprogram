@@ -1,6 +1,6 @@
-const BASE_URL = "https://appminip-test.61draw.com" //测试线地址
-// const BASE_URL = "https://appminip.61draw.com"      //正式线地址
-const app = getApp();
+const util = require('../utils/util.js');
+
+const BASE_URL = util.baseUrl;
 
 //添加finally：参数里面complete方法。
 Promise.prototype.finally = function (callback) {
@@ -12,7 +12,7 @@ Promise.prototype.finally = function (callback) {
 };
 
 /**封装promise GET方法 */
-const get = (url, data = {}) => {
+const get = (url, data = {}, token) => {
   var promise = new Promise((resolve, reject) => {
     //网络请求
     wx.request({
@@ -20,7 +20,7 @@ const get = (url, data = {}) => {
       data: data,
       header: {
         'content-type': 'application/json',
-        'token': wx.getStorageSync('access_token')
+        'Authorization': token
       },
       success: function (res) {//服务器返回数据
         if (res.statusCode == 200) {
@@ -38,7 +38,7 @@ const get = (url, data = {}) => {
 }
 
 /**封装promise POST方法 */
-const post = (url, data = {}) => {
+const post = (url, data = {}, token) => {
   var promise = new Promise((resolve, reject) => {
     //网络请求
     wx.request({
@@ -47,7 +47,7 @@ const post = (url, data = {}) => {
       method: 'POST',
       header: {
         'content-type': 'application/json',
-        'Authorization': wx.getStorageSync('access_token')
+        'Authorization': token
       },
       success: function (res) {//服务器返回数据
         if (res.statusCode == 200) {

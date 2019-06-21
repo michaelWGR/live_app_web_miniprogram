@@ -1,0 +1,168 @@
+/* pages/class/class.wxss */
+.class{
+  background-repeat: no-repeat;
+  background-color: #ffffff;
+  background-size: 100% auto;
+  padding-bottom: 172rpx;
+}
+
+.class .header{
+  width: 100%;
+  position: relative;
+}
+
+.class .header image{
+  display: block;
+  width: 100%;
+  height: 177rpx;
+}
+
+.class .header .theme{
+  width: 100%;
+  text-align: center;
+  font-size: 30rpx;
+  color: #ffffff;
+  position: absolute;
+  bottom: 38rpx;
+}
+
+.class .work-list{
+  width: 714rpx;
+  margin: 0 auto;
+}
+
+.class .work-list .work-list-title{
+  width: 100%;
+  height: 64rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-bottom: 22rpx;
+}
+
+.class .work-list .work-list-title .text{
+  font-size: 28rpx;
+  color: #ff8a01;
+  margin: 0 28rpx;
+}
+
+.class .work-list .work-list-title .bar{
+  width: 180rpx;
+  height: 2rpx;
+  background-color: #ff8a01;
+}
+
+.class .work-list .list{
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.class .work-list .list .list-item{
+  width: 348rpx;
+  border-radius: 6rpx;
+  background-color: #ffffff;
+  margin-bottom: 20rpx;
+  box-shadow: 0 4rpx 4rpx rgba(255, 108, 0, .25);
+  overflow: hidden;
+}
+
+.class .work-list .list .list-item .pic{
+  width: 100%;
+  height: 224rpx;
+}
+
+.class .work-list .list .list-item .pic image{
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.class .work-list .list .list-item .desc{
+  width: 100%;
+  box-sizing: border-box;
+  padding: 8rpx 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.class .work-list .list .list-item .desc .info{}
+
+.class .work-list .list .list-item .desc .info .info-item{
+  margin-bottom: 6rpx;
+}
+
+.class .work-list .list .list-item .desc .info .info-item.author{
+  display: flex;
+  align-items: center;
+}
+
+.class .work-list .list .list-item .desc .info .info-item.author .avatar{
+  width: 30rpx;
+  height: 30rpx;
+  overflow: hidden;
+  border-radius: 50%;
+  margin-right: 8rpx;
+}
+
+.class .work-list .list .list-item .desc .info .info-item.author .avatar image{
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.class .work-list .list .list-item .desc .info .info-item.author .name{
+  font-size: 20rpx;
+  color: #000000;
+}
+
+.class .work-list .list .list-item .desc .info .info-item.create-time{
+  font-size: 16rpx;
+  color: #676767;
+}
+
+.class .work-list .list .list-item .desc .liked{}
+
+.class .work-list .list .list-item .desc .liked .liked-icon{
+  width: 28rpx;
+  height: 28rpx;
+  margin-right: 8rpx;
+}
+
+.class .work-list .list .list-item .desc .liked .liked-icon image{
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.class .footer{
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 30rpx 0 50rpx;
+  z-index: 99;
+} 
+
+.class .footer .footer-btn{
+  border: none;
+  outline: none;
+  width: 600rpx;
+  height: 92rpx;
+  border-radius: 92rpx;
+  background-repeat: no-repeat;
+  background-color: transparent; 
+  background-size: 100% 100%;
+  text-align: center;
+  color: #ffffff;
+  box-shadow: 0 0 0 transparent;
+}

@@ -1,0 +1,105 @@
+<!--index.wxml-->
+<view class='loading' wx:if='{{loading}}'>正在加载...</view>
+<view class="container homework" wx:else>
+  <view class='header'>
+    <image src='{{img_baseUrl}}homework_header.png'></image>
+  </view>
+  <!-- 作品 -->
+  <view class='work'>
+    <image class='logo' src='{{img_baseUrl}}logo.png'></image>
+    <view wx:if="{{!homework.hasPhotoFrame}}" class='pic-wrap has-frame'>
+      <image lazy-load='true' class='pic' src='{{homework.url}}'></image>
+      <image lazy-load='true' class='frame' src='{{img_baseUrl}}frame_demo.png'></image>
+    </view>
+    <view wx:else class='pic-wrap has-no-frame'>
+      <image lazy-load='true' class='pic' src='{{homework.url}}'></image>
+    </view>
+    <!-- 主题 -->
+    <view class='title'>
+      <text class='title-text'>《{{homework.title}}》</text>
+    </view>
+    <!-- 简介 -->
+    <view class='desc' wx:if="{{homework.commentStory.description}}">
+      <image class='tag' src='{{img_baseUrl}}tag_desc.png'></image>
+      <view class='desc-text-wrap'>
+        <view class="desc-text {{desc_expand ? '': 'unexpand'}}"
+              style='-webkit-line-clamp: {{lineNum}};'>{{homework.commentStory.description}}</view>
+        <view class="expand-handle-wrap" wx:if="{{show_expand}}">
+          <view class='expand-handle' wx:if="{{!desc_expand}}" bindtap='handleDescExpand'>展开全文</view>
+          <view class='expand-handle' wx:else bindtap='handleDescExpand'>收起</view>
+        </view>
+      </view>
+    </view>
+    <!-- 作品故事 -->
+    <view class='story'>
+      <view class='title'>
+        <view class='title-text' wx:if="{{homework.commentStory.audioResources.length>0}}">创作理念</view>
+        <view class='author'>小画家 | {{homework.userName}}</view>
+      </view>
+      <view class='story-wrap' wx:if="{{homework.commentStory.audioResources.length>0}}">
+        <audio-player id="audio-player" list="{{homework.commentStory.audioResources}}" current_play="{{current_play}}" 
+                      current_time="{{current_time}}" mediaLength="{{length}}" bindhandleAudioPlay="audioPlay">
+        </audio-player>
+      </view>
+    </view>
+    <view class='work-bar'>
+      <text class='create-time'>创作时间：{{wxs.formatTime(homework.commitTime,'ymd')}}</text>
+      <!-- 点赞 -->
+      <view class="liked-handle {{homework.praiseFlag == 0?'':'liked'}}">
+        <image wx:if="{{homework.praiseFlag === 1}}" src='{{img_baseUrl}}liked.png'></image>
+        <image wx:else src='{{img_baseUrl}}disliked.png' bindtap='praiseHandle'></image>
+        <text>{{homework.praiseNum}}</text>
+      </view>
+    </view>
+  </view>
+  <!-- 分隔 -->
+  <view class='block'></view>
+  <!-- 老师点评 -->
+  <view class='comment'>
+    <view class='title'>老师点评</view>
+    <view class='comment-wrap'>
+      <view class='info'>
+        <view class='avatar'>
+          <image wx:if='{{!homework.teacherComment.teacherAvatar}}' src='{{img_baseUrl}}avatar_teacher.jpg'></image>
+          <image wx:else src='{{homework.teacherComment.teacherAvatar}}'></image>
+        </view>
+        <view>
+          <view class='name'>{{homework.teacherComment.teacherName}}老师</view>
+          <view class='date'>{{wxs.formatTime(homework.commentTime,'md')}}</view>
+        </view>
+      </view>
+      <view wx:for="{{homework.teacherComment.audios}}" wx:key class='comment-item'>
+        <audio-msg id="audio-msg-{{item.id}}" auto_len="true"
+                   audio="{{item}}"
+                   text="听点评" 
+                   bindhandleAudioPlay="audioPlay" 
+                   current_play="{{current_play}}">
+        </audio-msg>
+        <view class='length'>{{item.audioLength}}″</view>
+      </view>
+    </view>
+  </view>
+  <view class='btn-group'>
+    <button class='btn' style="background-image:url({{img_baseUrl}}btn_share.png)" open-type="share"></button>
+    <button class='btn' style="background-image:url({{img_baseUrl}}btn_class.png)" bindtap="toClass"></button>
+  </view>
+</view>
+
+<wxs module="wxs">
+  var formatTime = function(timeStamp,type){
+    var date = getDate(timeStamp);
+    var year = date.getFullYear()+'';
+    var month = (date.getMonth() + 1)+'';
+    var day = date.getDate()+'';
+    
+    if(type == 'ymd'){
+      return year+'年'+month+'月'+day+'日';
+    }else if(type == 'md'){
+      month = (month.length == 1) ? '0' + month : month;
+      day = (day.length == 1) ? '0' + day : day;
+      return month+'-'+day;
+    }
+  }
+
+  module.exports.formatTime = formatTime;
+</wxs>

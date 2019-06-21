@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "audio-msg": "/components/audioMsg/audioMsg",
+    "audio-player": "/components/audioPlayer/audioPlayer"
+  }
+}

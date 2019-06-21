@@ -1,80 +1,19 @@
-<!--index.wxml-->
+<!--pages/index/index.wxml-->
 <view class='loading' wx:if='{{loading}}'>正在加载...</view>
-<view class="container index" wx:else>
-  <!-- 作品 -->
-  <view class='work'>
-    <image class='logo' src='{{img_baseUrl}}logo.png'></image>
-    <view wx:if="{{!homework.hasPhotoFrame}}" class='pic-wrap has-frame'>
-      <image lazy-load='true' class='pic' src='{{homework.url}}'></image>
-      <image lazy-load='true' class='frame' src='{{img_baseUrl}}frame_demo.png'></image>
-    </view>
-    <view wx:else class='pic-wrap has-no-frame'>
-      <image lazy-load='true' class='pic' src='{{homework.url}}'></image>
-    </view>
-    <!-- 主题 -->
-    <view class='title'>
-        <text class='title-text'>《{{homework.title}}》</text>
-    </view>
-    <view class='info'>
-      <view class='info-item auth'>小画家：{{homework.userName}}</view>
-      <view class='info-item time'>创作时间：{{homework.commitTime}}</view>
-    </view>
-   
-    <!-- 评论 -->
-    <view class='comment'>
-      <view class='switch'>
-        <view data-status="0" class="switch-item {{comment_status === '0' ? 'active' : ''}}" 
-              bindtap='commentSwitch' style="{{comment_status === '0' ? '' : homeworkStoryNormalStyle}}">
-              {{homework.teacherComment.teacherName}}老师寄语</view>
-        <view data-status="1" class="switch-item {{comment_status === '1' ? 'active' : ''}}" 
-              bindtap='commentSwitch' style="{{comment_status === '1' ? '' : teacherCommentNormalStyle}}">
-              作品故事</view>
+<view class='container index' style="background-image:url({{img_baseUrl}}index_bg.jpg)" wx:else>
+  <view class='homework-list'>
+    <view wx:for='{{homeworkList}}' wx:key='{{item.commentId}}' data-id="{{item.commentId}}" class='homework-list-item' bindtap='routeToHomework'>
+      <view class='homework-wrap'>
+        <image lazy-load='true' class="homework-pic {{item.hasPhotoFrame?'homework-pic-frame':''}}" src='{{item.url}}'></image>
+        <image wx:if="{{!item.hasPhotoFrame}}" lazy-load='true' class='homework-frame' src='{{img_baseUrl}}frame_normal.png'></image>
       </view>
-      <view wx:if="{{comment_status === '0'}}" class='comment-box' 
-            style='border-top-left-radius:{{top_left_radius}};border-top-right-radius:{{top_right_radius}}'>
-        <view class='comment-item' wx:for="{{homework.teacherComment.audios}}" wx:key="{{item.sort}}">
-          <view class='avatar'>
-            <image wx:if='{{!homework.teacherComment.teacherAvatar}}' src='{{img_baseUrl}}avatar.jpg'></image>
-            <image wx:else src='{{homework.teacherComment.teacherAvatar}}'></image>
-          </view>
-          <audio-msg path="{{item.urlHost+item.urlPath}}" 
-                    title="{{item.urlHost+item.urlPath}}" 
-                    audio_id="{{item.id}}"
-                    length="{{item.audioLength}}" 
-                    bindhandleAudioPlay="audioPlay" 
-                    current_play="{{current_play}}">
-          </audio-msg>
-        </view>
-        <view wx:if="{{homework.teacherComment.summary}}" class='comment-item'>
-          <view class='avatar'><image src='{{homework.teacherComment.teacherAvatar}}'></image></view>
-          <view class='content text-content'><text>{{homework.teacherComment.summary}}</text></view> 
-        </view>
-      </view>
-      <view wx:if="{{comment_status === '1'}}" class='comment-box'
-            style='border-top-left-radius:{{top_left_radius}};border-top-right-radius:{{top_right_radius}}'>
-        <view class='comment-item' wx:for="{{homework.commentStory.audioResources}}" wx:key="{{item.sort}}">
-          <view class='avatar'>
-            <image wx:if='{{!homework.commentStory.studentAvatar}}' src='{{img_baseUrl}}avatar.jpg'></image>
-            <image wx:else src='{{homework.commentStory.studentAvatar}}'></image>
-          </view>
-          <audio-msg path="{{item.urlHost+item.urlPath}}" 
-                    title="{{item.urlHost+item.urlPath}}" 
-                    audio_id="{{item.id}}"
-                    length="{{item.mediaLength}}" 
-                    bindhandleAudioPlay="audioPlay" 
-                    current_play="{{current_play}}">
-          </audio-msg>
-        </view>
-        <view wx:if="{{homework.commentStory.description}}" class='comment-item'>
-          <view class='avatar'>
-            <image wx:if='{{!homework.commentStory.studentAvatar}}' src='{{img_baseUrl}}avatar.jpg'></image>
-            <image wx:else src='{{homework.commentStory.studentAvatar}}'></image>
-          </view>
-          <view class='content text-content'><text>{{homework.commentStory.description}}</text></view> 
-        </view>
+      <view class='desc'>
+        <view class='desc-title'>《{{item.title}}》</view>
+        <view class='desc-author'>小画家：{{item.userName}}</view>
       </view>
     </view>
   </view>
-
-  <button class='share' open-type="share">分享给朋友/微信群</button>
+  <view class='footer'>
+    <button class='footer-btn' open-type="share">分享给朋友/微信群</button>
+  </view>
 </view>

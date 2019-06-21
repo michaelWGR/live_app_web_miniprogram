@@ -1,0 +1,30 @@
+<!--components/coursePop/coursePop.wxml-->
+<view class='curtain'>
+  <view class='pop' style="background-image:url({{img_baseUrl}}bg.jpg)">
+    <view class='close' bindtap='closePop' ><image src='{{img_baseUrl}}pop_close.png'></image></view>
+    <view class='title'>
+      <view class='bar'><image src='{{img_baseUrl}}circle.png'></image></view>
+      <view class='text'>选择课程</view>
+      <view class='bar'><image src='{{img_baseUrl}}circle.png'></image></view>
+    </view>
+    <view class='wrap'>
+      <scroll-view class='series' scroll-x>
+        <view wx:for="{{schedule}}" wx:key
+              class="series-item {{index == scheduleSelIndex?'active':''}}"
+              data-index="{{index}}" bindtap='switchSchedule'>L{{item.level}}S{{item.stage}}</view>
+      </scroll-view>
+      <scroll-view class='course-list' scroll-y bindscrolltolower="">
+        <view class="course-item {{item.courseInfoId==courseId&&item.groupTableCourseInfoId==groupTableCourseId&&item.courseName==courseName?'active':''}}" 
+              wx:for="{{course}}" wx:key
+              data-groupTableCourseId="{{item.groupTableCourseInfoId}}" data-courseId="{{item.courseInfoId}}" 
+              data-name="{{item.courseName}}"
+              bindtap='selectCourse'>
+              <text>{{item.courseName}}</text>
+              <image wx:if="{{item.courseInfoId==courseId&&item.groupTableCourseInfoId==groupTableCourseId&&item.courseName==courseName}}" 
+                     class='active' src='{{img_baseUrl}}course_selected.png'></image>
+        </view>
+      </scroll-view>
+    </view>
+    <button bindtap='getCourseListDispatch' class='btn' style="background-image:url({{img_baseUrl}}btn_pop.png)"></button>
+  </view>
+</view>

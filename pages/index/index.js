@@ -1,64 +1,45 @@
-//index.js
-//获取应用实例
-const app = getApp();
+// pages/index/index.js
+
 const util = require('../../utils/util.js');
-const backgroundAudioManager = wx.getBackgroundAudioManager();
-const api = require('../../api/api.js');
+const api = require('../../api/api.js')
+const app = getApp();
 
 Page({
+
+  /**
+   * 页面的初始数据
+   */
   data: {
     loading: true,
-    comment_status: '0',
-    is_playing: false,
-    homework: {},
-    current_play: '',
-    currentTime: 0,
-    homeworkId: null,
     img_baseUrl: util.img_baseUrl,
-    top_left_radius: '0',
-    top_right_radius: '18rpx',
-    teacherCommentNormalStyle: 'border-top-left-radius:0;border-left: 0;box-shadow: 2rpx 0 6rpx rgb(236, 206, 135) inset;',
-    homeworkStoryNormalStyle: 'border-top-right-radius:0;border-right: 0;box-shadow: -2rpx 0 6rpx rgb(236, 206, 135) inset;'
-  },
-  //事件处理函数
-  audioPlay:function(e){
-    if(e.detail.is_play){
-      if (e.detail.audio_id === this.data.current_play){
-        //重新播放
-        backgroundAudioManager.startTime = this.data.currentTime;
-        backgroundAudioManager.title = e.detail.title;
-        // backgroundAudioManager.play();
-      }else{
-        //播放新音频
-        this.setData({
-          currentTime: 0
-        })
-        backgroundAudioManager.title = e.detail.title;
-        backgroundAudioManager.src = e.detail.path;
-        backgroundAudioManager.startTime = 0;
-        // backgroundAudioManager.play();
-        //TODO 处理正在播放的音频
-        this.setData({
-          current_play: e.detail.audio_id
-        })
-      }
-  
-    }else{
-      //暂停
-      backgroundAudioManager.pause();
-    }
-    
+    homeworkList: []
   },
 
-  /**作品数据请求函数 */
-  getWorkData:function(){
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
     const _this = this;
-    api.getWorkDetail({ "homeworkId": this.data.homeworkId }).then(res => {
+    if (app.globalData.access_token && app.globalData.access_token != '') {
+      this.getWorkList(app.globalData.access_token);
+    } else {
+      app.tokenCallback = (token) => {
+        if (token && token != '') {
+          _this.getWorkList(token);
+        }
+
+      }
+    }
+      
+  },
+
+  getWorkList: function (token) {
+    const _this = this;
+    api.getWorkList({},token).then(res => {
       if (res.data.code == 0) {
-        var data = Object.assign({}, res.data.data);
-        data.commitTime = util.formatTime(data.commitTime);
+        var list = res.data.data;
         _this.setData({
-          homework: data,
+          homeworkList: list,
           loading: false
         })
       } else {
@@ -87,108 +68,62 @@ Page({
     })
   },
 
-  onLoad: function (options) {
-    //获取传入参数
-    if (options.homeworkId!=undefined&&options.homeworkId!=''){
-      this.setData({ homeworkId: options.homeworkId})
-    }else{
-      this.setData({ homeworkId: null });
-      wx.redirectTo({
-        url: '/pages/unauth/unauth',
-      });
-      return;
-    }
-    const _this = this;
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
 
-    //请求数据
-    if (wx.getStorageSync('access_token') && wx.getStorageSync('access_token') != ''){
-      this.getWorkData()
-    }else{
-      app.tokenCallback = (token) => {
-        if(token&&token != ''){
-          this.getWorkData();
-        }
-
-      }
-    }
-
-    //音频监听
-    backgroundAudioManager.onWaiting(function(){
-      console.log("------音频加载中------")
-      wx.showLoading({
-        title: '正在加载',
-        mask: true
-      })
-    });
-    backgroundAudioManager.onCanplay(function(){
-      console.log("------开始播放------");
-      wx.hideLoading({
-        success:function(){
-          backgroundAudioManager.play();
-        }
-      })  
-    });
-    backgroundAudioManager.onStop(function () {
-      console.log("------停止播放------");
-    })
-    backgroundAudioManager.onPause(function(){
-      //记录音频当前节点
-      console.log("------暂停播放------");
-      var currentTime = backgroundAudioManager.currentTime;
-      _this.setData({
-        currentTime: currentTime
-      })
-    })
-    /**音频自身播放完毕 */
-    backgroundAudioManager.onEnded(function(){
-      console.log("------结束播放------");
-      _this.setData({
-        current_play: ''
-      })
-    })
   },
 
-  onHide(){
-    backgroundAudioManager.stop();
-    this.setData({
-      current_play: '',
-      currentTime: 0
-    })
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+
   },
 
-  /**分享 */
-  onShareAppMessage(res) {
-    //res: from,target,webViewUrl
-    const pages = getCurrentPages();
-    const currentPage = pages[pages.length - 1];
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
     return {
-      title: "画啦啦精品直播课",
-      path: currentPage.route + util.qs(currentPage.options),
+      title: "画啦啦学员作品中心",
       imageUrl: ""
     }
   },
-
-  /**切换老师寄语、作品故事模块 */
-  commentSwitch: function(e){
-    var status = e.currentTarget.dataset.status;
-    if(this.data.comment_status === status) return;
-    if(this.data.comment_status === '0'){
-      this.setData({
-        comment_status: '1',
-        top_left_radius: '18rpx',
-        top_right_radius: '0'
-        });
-    }else{
-      this.setData({ 
-        comment_status: '0',
-        top_left_radius: '0',
-        top_right_radius: '18rpx' 
-        });
-    }
-    backgroundAudioManager.stop();
-    this.setData({
-      current_play: '',
-      currentTime: 0
+  /**查看学员作品 */
+  routeToHomework: function(e){
+    var homeworkId = e.currentTarget.dataset.id ? e.currentTarget.dataset.id : null;
+    wx.navigateTo({
+      url: '/pages/homework/homework?homeworkId=' + homeworkId,
     })
   }
 })

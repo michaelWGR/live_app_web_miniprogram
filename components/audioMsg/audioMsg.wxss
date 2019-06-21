@@ -1,21 +1,25 @@
 /* components/audioMsg/audioMsg.wxss */
 .audio-content{
   box-sizing: border-box;
+  padding: 0 30rpx;
   font-size: 24rpx;
-  margin-top: 5rpx;
+  margin-right: 20rpx;
   position: relative;
-  border-radius: 4rpx;
-  padding: 12rpx;
-  background-color: #ffb400;
-  border: 1rpx solid #ffb400;
+  border-radius: 8rpx;
+  background-color: #66cc66;
   color: #ffffff;
-  width: 200rpx;
+  width: 460rpx;
+  height: 76rpx;
   display: flex;
   align-items: center;
 }
 
+.audio-content.len-20{
+  width: 276rpx;
+}
+
 .audio-content .icon{
-  width: 19rpx;
+  width: 25rpx;
   height: 30rpx;
   margin-right: 12rpx;
 }
@@ -30,22 +34,7 @@
   height: 0;
   border-width: 12rpx;
   border-style: dashed solid dashed dashed; 
-  border-color: transparent #ffb400 transparent transparent;
-  left: -24rpx;
-  top: 12rpx;
-}
-
-.audio-content::after{
-  position: absolute;
-  content: '';
-  display: block;
-  font-size: 0;
-  line-height: 0;
-  width: 0;
-  height: 0;
-  border-width: 12rpx;
-  border-style: dashed solid dashed dashed; 
-  border-color: transparent #ffb400 transparent transparent;
-  left: -23rpx;
-  top: 13rpx;
+  border-color: transparent #66cc66 transparent transparent;
+  left: -22rpx;
+  top: 24rpx;
 }
