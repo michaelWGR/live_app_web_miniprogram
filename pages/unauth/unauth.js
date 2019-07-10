@@ -17,16 +17,6 @@ Page({
 
   },
 
-  /** 获取用户信息 */
-  getUserInfo(e){
-    if (e.detail.userInfo) {
-      app.globalData.userInfo = e.detail.userInfo
-      wx.redirectTo({
-        url: '/pages/index/index'
-      })
-    }
-  },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

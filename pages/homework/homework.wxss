@@ -77,7 +77,7 @@
 
 .homework .work .title{
   width: 680rpx;
-  /* text-align: center; */
+  text-align: center;
   margin: 0 auto 18rpx
 }
 
