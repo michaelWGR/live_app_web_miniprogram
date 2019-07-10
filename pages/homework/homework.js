@@ -234,6 +234,7 @@ Page({
             current_time: 0
           });
           clearTimeout(timeout)
+          console.log('清除定时')
         },30)
       }else if(_this.data.audio_type == 2){
         _this.selectComponent("#audio-msg-"+_this.data.current_play).setPlayStatus(false);
