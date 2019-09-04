@@ -1,10 +1,10 @@
 {
   "pages": [
+    "pages/collections/collections",
     "pages/index/index",
     "pages/homework/homework",
     "pages/unauth/unauth",
     "pages/class/class"
-    
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -13,5 +13,7 @@
     "navigationBarTextStyle": "black"
   },
   "sitemapLocation": "sitemap.json",
-  "requiredBackgroundModes": ["audio"]
+  "requiredBackgroundModes": [
+    "audio"
+  ]
 }

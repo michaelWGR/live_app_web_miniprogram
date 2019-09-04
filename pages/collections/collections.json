@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "painting": "/components/painting/painting"
+  },
+  "backgroundTextStyle": "light",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTitleText": "画啦啦艺术报告",
+  "navigationBarTextStyle": "black"
+}

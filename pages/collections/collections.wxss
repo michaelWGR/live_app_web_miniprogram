@@ -1,0 +1,57 @@
+/* pages/collections/collections.wxss */
+.collection-root{
+  width: 750rpx;
+  background: url('http://10.10.117.177:3000/images/collection-background.png') 0 0 no-repeat;
+  background-size: 100%;
+  position: relative;
+}
+.page-title{
+  height: 150rpx;
+  line-height: 150rpx;
+  text-align: center;
+  font-size: 72rpx;
+  color: #fa522e;
+  font-weight: bold;
+  text-shadow: 3rpx 3rpx 5rpx #fa522e;
+}
+.paintings-wrapper{
+  width: 750rpx;
+}
+.share-btn{
+  width: 382rpx;
+  height: 80rpx;
+  background: url('http://10.10.117.177:3000/images/share-btn-2.png') 0 0 no-repeat;
+  background-size: 100%;
+  position: fixed;
+  bottom: 56rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  border-radius: 2em 2em;
+  box-shadow: 0 5rpx 20rpx #0aa900;
+}
+.share-text{
+  position: absolute;
+  line-height: 80rpx;
+  top: 50%;
+  left: 50%;
+  transform: translate(-10%, -50%);
+}
+.left-bottom-grass{
+  width: 70rpx;
+  height: 59rpx;
+  background: url('http://10.10.117.177:3000/images/left-bottom-grass.png') 0 0 no-repeat;
+  background-size: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+.right-bottom-grass{
+  width: 70rpx;
+  height: 59rpx;
+  background: url('http://10.10.117.177:3000/images/right-bottom-grass.png') 0 0 no-repeat;
+  background-size: 100%;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
