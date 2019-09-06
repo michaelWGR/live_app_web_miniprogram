@@ -1,19 +1,44 @@
 /* pages/collections/collections.wxss */
 .collection-root{
   width: 750rpx;
-  background: url('http://10.10.117.177:3000/images/collection-background.png') 0 0 no-repeat;
+  background: url('http://10.10.117.177:3000/images/collection-background-2.png') 0 0 repeat-y;
   background-size: 100%;
   position: relative;
+  padding-bottom: 150rpx;
 }
 .page-title{
-  height: 150rpx;
-  line-height: 150rpx;
+  height: 168rpx;
+  line-height: 168rpx;
   text-align: center;
   font-size: 72rpx;
   color: #fa522e;
   font-weight: bold;
-  text-shadow: 3rpx 3rpx 5rpx #fa522e;
+  text-shadow: 0 5rpx 5rpx #fa522e;
+  background: url('http://10.10.117.177:3000/images/collection-top-background.png') 0 0 no-repeat;
+  background-size: 100%;
+  position: relative;
 }
+.page-title::before{
+  content: '';
+  width: 71rpx;
+  height: 58rpx;
+  background: url('http://10.10.117.177:3000/images/background-paper.png') 0 0 no-repeat;
+  background-size: 100%;
+  position: absolute;
+  left: 140rpx;
+  bottom: 0;
+}
+.page-title::after{
+  content: '';
+  width: 40rpx;
+  height: 136rpx;
+  background: url('http://10.10.117.177:3000/images/background-cloud.png') 0 0 no-repeat;
+  background-size: 100%;
+  position: absolute;
+  right: 0;
+  bottom: -136rpx;
+}
+
 .paintings-wrapper{
   width: 750rpx;
 }
