@@ -1,0 +1,40 @@
+<!--components/painting/painting.wxml-->
+<view class="banner-root">
+  <view class="course-name">《神奇的线条》</view>
+  <view class="course-level">
+    <text>Level 1 state 1-第一节课</text>
+  </view>
+  <view class="submit-date">创作时间：<text>2019.08.05</text></view>
+  <view class="banner-box">
+    <swiper previous-margin="{{previousMargin}}" 
+      next-margin="{{nextMargin}}" 
+      duration="300"
+      bindchange="onSwiperSlide" 
+      style="width:100%;height:100%;">
+      <block wx:for="{{mockData}}" wx:key="{{index}}">
+        <swiper-item>
+          <view class="{{currIndex === index ? 'painting-frame active-painting-frame' : 'painting-frame'}}">
+            <image src="{{item.img}}" class="banner-img"></image>
+          </view>
+        </swiper-item>
+      </block>
+    </swiper>
+    <view class="indicator-dots">
+      <block wx:for="{{mockData}}" wx:key="{{index}}">
+        <view class="{{currIndex === index ? 'dots-item active-dots-item' : 'dots-item'}}" ></view>
+      </block>
+    </view>
+  </view>
+  <view class="homework-description">
+    <block wx:for="{{descriptions}}" wx:key="{{index}}">
+      <view class="description-item">
+        <view class="audio-wrapper">
+          <view class="play-btn"></view>
+          <view class="audio-wave"></view>
+          <view class="audio-duration">120</view>
+        </view>
+        <view class="student-avatar"></view>
+      </view>
+    </block>
+  </view>
+</view>
