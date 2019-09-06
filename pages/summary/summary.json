@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "studentInfo": "./components/studentInfo/info"
+  },
+  "navigationBarTitleText": "阶段学习报告" 
+}

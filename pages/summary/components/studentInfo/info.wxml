@@ -1,0 +1,33 @@
+<view class="info">
+  <image class="banner" mode="widthFix" src="{{imageUrl.banner}}"></image>
+  <view class="title">
+    <arcsText text="Level{{level}}stage{{stage}}" angle="8" heightPrecent="2.5"></arcsText>
+  </view>
+  <view class="content">
+    <image class="headImage" mode="widthFix" src="{{headImage}}"></image>
+    <view class="name">{{name}}宝贝</view>
+    <view class="wrap">
+      <view class="works">
+        <view class="work-num">
+          <text class="total">{{worksTotal}}</text>
+          <view class="add">
+            新增<text class="num">{{worksAdd}}</text>幅
+            <image class="arrow" src="{{imageUrl.arrow}}"></image>
+          </view>
+        </view>
+        <view class="works-title">创作作品数目</view>
+      </view>
+      <view class="time">
+        <view class="time-num">
+          <text class="total">{{timeTotal}}</text>
+          <view class="add">
+            新增<text class="num">{{timeAdd}}</text>分钟
+            <image class="arrow" src="{{imageUrl.arrow}}"></image>
+          </view>
+        </view>
+        <view class="time-title">听课累计时间(分钟)</view>
+      </view>
+    </view>
+  </view>
+</view>
+

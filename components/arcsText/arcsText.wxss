@@ -1,0 +1,8 @@
+.arcsText {
+  display: inline-block;
+}
+.arcsText .text {
+  display: inline-block;
+  transform-origin: center bottom;
+  vertical-align: bottom;
+}
