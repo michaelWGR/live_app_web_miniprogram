@@ -1,0 +1,129 @@
+/* components/painting/painting.wxss */
+.banner-root{
+  text-align: center;
+}
+.course-name{
+  color: #ff6c00;
+  font-size: 32rpx;
+  height: 64rpx;
+  line-height: 64rpx;
+  font-weight: bold;
+}
+.course-level{
+  font-size: 26rpx;
+  height: 29rpx;
+  line-height: 29rpx;
+}
+.submit-date{
+  font-size: 24rpx;
+  height: 61rpx;
+  line-height: 61rpx;
+  color: #666;
+}
+.banner-box{
+  width: 100%;
+  height: 594rpx;
+}
+.painting-frame{
+  width: 543rpx;
+  height: 563rpx;
+  background: url('http://10.10.117.177:3000/images/paintings-frame.png') 0 0 no-repeat;
+  background-size: 100%;
+  position: relative;
+  transform: scale(0.88);
+  transition: transform 0.3s linear;
+  -webkit-transition: transform 0.3s linear;
+}
+.active-painting-frame{
+  transform: scale(1);
+}
+.banner-img{
+  width: 396rpx;
+  height: 396rpx;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -47.5%);
+}
+.indicator-dots{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.dots-item{
+  width: 10rpx;
+  height: 10rpx;
+  background: #e0dfde;
+  border-radius: 50% 50%;
+  margin: 0 6rpx;
+  transition: transform 0.3s linear;
+  -webkit-transition: transform 0.3s linear;
+}
+.active-dots-item{
+  transform: scale(1.5);
+  background: #ffc548;
+}
+.homework-description{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 50rpx;
+}
+.description-item{
+  width: 560rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 48rpx;
+}
+.audio-wrapper{
+  width: 382rpx;
+  height: 78rpx;
+  /* border: solid 1px #e3e3e3; */
+  border-radius: 2em 2em;
+  background: #fff;
+  box-shadow: 0 5rpx 10rpx #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 33rpx;
+}
+.play-btn{
+  width: 48rpx;
+  height: 48rpx;
+  background: url('http://10.10.117.177:3000/images/audio-play-btn.png') 0 0 no-repeat;
+  background-size: 100%;
+}
+.pause-btn{
+  width: 48rpx;
+  height: 48rpx;
+  background: url('http://10.10.117.177:3000/images/audio-pause-btn.png') 0 0 no-repeat;
+  background-size: 100%;
+}
+.audio-duration{
+  color: #4cc1ff;
+  font-size: 24rpx;
+  position: relative;
+  padding-right: 15rpx;
+}
+.audio-wave{
+  width: 233rpx;
+  height: 28rpx;
+  background: url('http://10.10.117.177:3000/images/collections/audio-wave.png') 0 0 no-repeat;
+  background-size: 100%;
+}
+.audio-duration::after{
+  content: '‘’';
+  position: absolute;
+  color: #4cc1ff;
+  font-size: 24rpx;
+  top: 0;
+  right: -18rpx;
+}
+.student-avatar{
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50% 50%;
+  background: #fff;
+}
