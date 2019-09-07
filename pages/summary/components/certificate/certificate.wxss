@@ -1,0 +1,21 @@
+/* pages/summary/components/certificate/certificate.wxss */
+.certificate-root{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.certificate-title{
+  width: 447rpx;
+  height: 100rpx;
+  background: url('http://10.10.117.177:3000/images/summary/certificate-title-background.png') 0 0 no-repeat;
+  background-size: 100%;
+  position: relative;
+}
+.certificate-title .certificate-titlt-text{
+  color: #fffa69;
+  font-size: 32rpx;
+  position: absolute;
+  left: 110rpx;
+  top: 18rpx;
+}

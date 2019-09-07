@@ -1,6 +1,7 @@
 {
   "usingComponents": {
-    "studentInfo": "./components/studentInfo/info"
+    "studentInfo": "./components/studentInfo/info",
+    "certificate": "./components/certificate/certificate"
   },
   "navigationBarTitleText": "阶段学习报告" 
 }

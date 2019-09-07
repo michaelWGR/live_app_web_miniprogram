@@ -110,7 +110,7 @@
 .audio-wave{
   width: 233rpx;
   height: 28rpx;
-  background: url('http://10.10.117.177:3000/images/audio-wave.png') 0 0 no-repeat;
+  background: url('http://10.10.117.177:3000/images/collections/audio-wave.png') 0 0 no-repeat;
   background-size: 100%;
 }
 .audio-duration::after{

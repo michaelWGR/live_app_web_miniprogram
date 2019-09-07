@@ -1,0 +1,5 @@
+<!--pages/summary/components/certificate/certificate.wxml-->
+<import src="../../templates/index.wxml" />
+<view class="certificate-root">
+  <view class="certificate-title"><text class="certificate-titlt-text">宝贝的奖状</text></view>
+</view>
