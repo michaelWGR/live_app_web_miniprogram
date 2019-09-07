@@ -1,6 +1,6 @@
 .info {
   width: 100%;
-  padding-bottom: 78rpx;
+  padding-bottom: 60rpx;
 }
 
 .info .banner {

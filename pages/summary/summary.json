@@ -1,6 +1,8 @@
 {
   "usingComponents": {
-    "studentInfo": "./components/studentInfo/info"
+    "studentInfo": "./components/studentInfo/info",
+    "stage": "./components/stage/stage",
+    "promote": "./components/promote/promote"
   },
   "navigationBarTitleText": "阶段学习报告" 
 }

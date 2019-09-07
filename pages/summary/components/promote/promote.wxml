@@ -1,0 +1,18 @@
+<view class="promote">
+  <view class="title">
+    <image class="background" mode="widthFix" src="{{image.title}}"></image>
+    <text class="text">能力提升</text>
+  </view>
+  <view class="content">
+    <view class="info">
+      <view class="add-wrap">
+        <view class="add">
+          新增<text class="num">{{worksAdd}}</text>个能力点
+          <image class="arrow" src="{{imageUrl.arrow}}"></image>
+        </view>
+        <text class="total">{{worksTotal}}</text>
+      </view>
+      <view>已提升能力点</view>
+    </view>
+  </view>
+</view>

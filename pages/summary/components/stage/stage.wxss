@@ -1,0 +1,105 @@
+.stage {
+  width: 100%;
+  padding-bottom: 25rpx;
+}
+
+.stage .title {
+  position: relative;
+  margin: 0 auto;
+}
+
+.stage .title .background {
+  display: block;
+  width: 509rpx;
+  margin: 0 auto;
+}
+
+.stage .title .text {
+  position: absolute;
+  top: 16rpx;
+  left: 40%;
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #FFFA69;
+  text-shadow: 0px 3rpx 5rpx rgba(63,164,92,0.52);
+}
+
+.stage .title .text .num {
+  padding: 0 8rpx;
+}
+
+.stage .content {
+  width: 744rpx;
+  padding-top: 20rpx;
+  height: 400rpx;
+  background: no-repeat url('http://10.10.117.199:3000/images/summary-stage-bg.png');
+  background-size: 100% 100%;
+  text-align: center;
+  margin-top: -30rpx;
+}
+
+.stage .content .item {
+  display: inline-block;
+  width: 150rpx;
+  margin: 0 5rpx;
+  vertical-align: bottom;
+}
+
+.stage .content .item .crown {
+  width: 42rpx;
+  transform: translateY(30%);
+  opacity: 0;
+}
+
+.stage .content .item .currentStage {
+  opacity: 1;
+}
+
+.stage .content .item .num {
+  font-size: 24rpx;
+  color: #666666;
+  padding-bottom: 9rpx;
+}
+
+.stage .content .finish .num {
+  color: #FF7313;
+}
+
+.stage .content .item .text {
+  width: 100%;
+  height: 207rpx;
+  font-size: 26rpx;
+  font-weight: bold;
+  line-height: 207rpx;
+  color: #FF7110;
+  background: rgba(255,240,205,1);
+  box-shadow: 0rpx 1rpx 15rpx 1rpx rgba(255, 255, 255, 0.53);
+  border-radius: 10rpx;
+}
+
+.stage .content .item .text-0 {
+  height: 65rpx;
+  line-height: 65rpx;
+}
+
+.stage .content .item .text-1 {
+  height: 100rpx;
+  line-height: 100rpx;
+}
+
+.stage .content .item .text-2 {
+  height: 151rpx;
+  line-height: 151rpx;
+}
+
+.stage .content .finish .text {
+  background:rgba(255, 106, 6, 1);
+  box-shadow: 0rpx 1rpx 28rpx 4rpx rgba(255, 252, 215, 0.4);
+  color: #FEFEFE;
+}
+
+.stage .content .tips {
+  font-size: 24rpx;
+  color: #666;
+  padding-top: 15rpx;
+}

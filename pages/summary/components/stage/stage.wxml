@@ -1,0 +1,15 @@
+<view class="stage">
+  <view class="title">
+    <image class="background" mode="widthFix" src="{{image.title}}"></image>
+    <text class="text">Level<text class="num">{{level}}</text>stage{{stage}}</text>
+  </view>
+  <view class="content">
+    <view class="item {{stage > index ? 'finish' : ''}}" wx:for="{{stageList}}">
+      <image class="crown  {{stage === index + 1 ? 'currentStage' : ''}}" mode="widthFix" src="{{image.crown}}"></image>
+      <view class="num">stage{{index+1}}</view>
+      <view class="text text-{{index}}">{{item}}</view>
+    </view>
+    <view class="tips">(点击卡片可知道各阶段学什么)</view>
+  </view>
+</view>
+
