@@ -1,0 +1,10 @@
+<!--pages/summary/components/audioDescription/audioDescription.wxml-->
+
+<view class="description-item">
+  <view class="audio-wrapper">
+    <view class="{{isPlaying ? 'pause-btn' : 'play-btn'}}" bindtap="changeAudioState"></view>
+    <view class="audio-wave"></view>
+    <view class="audio-duration">120</view>
+  </view>
+  <view class="student-avatar"></view>
+</view>

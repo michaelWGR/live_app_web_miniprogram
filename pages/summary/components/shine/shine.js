@@ -13,6 +13,8 @@ Component({
    */
   data: {
     currIndex: 0,
+    isShowLikeModal: false,
+    isShowCloseAnimation: false,
     mockData: [{
         img: util.img_baseUrl + 'summary/card-background.png'
     }, {
@@ -30,6 +32,24 @@ Component({
       this.setData({
         currIndex: e.detail.current
       })
+    },
+    onClickLike: function () {
+      this.setData({
+        isShowLikeModal: true
+      })
+      // 1.7s后执行动画，动画时长0.3s
+      setTimeout(() => {
+        this.setData({
+          isShowCloseAnimation: true
+        })
+      }, 1700)
+      // 动画执行完销毁节点
+      setTimeout(() => {
+        this.setData({
+          isShowLikeModal: false,
+          isShowCloseAnimation: false
+        })
+      }, 2000)
     }
   }
 })

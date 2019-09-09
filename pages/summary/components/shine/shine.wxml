@@ -35,9 +35,21 @@
           <view class="{{currIndex === index ? 'dots-item active-dots-item' : 'dots-item'}}" ></view>
         </block>
       </view>
-      <view class="shine-like-btn">给孩子点个赞</view>
+      <view class="shine-like-btn" bindtap="onClickLike">给孩子点个赞</view>
     </view>
   </gridBox>
+  <view wx:if="{{isShowLikeModal}}" class="like-modal {{isShowCloseAnimation ? 'bounceOut' : ''}}">
+    <!-- <view wx:if="{{isShowLikeModal}}" class="like-image"></view> -->
+    <image src="{{getImg.getImgUrl()}}" class="like-image"></image>
+  </view>
   <view class="grass-1"></view>
   <view class="grass-2"></view>
 </view>
+<wxs module="getImg">
+  var getImgUrl = function(){
+    var random = Math.random()
+    var imgUrl =  'http://10.10.117.177:3000/images/summary/praise.gif?random=' + random
+    return imgUrl
+  }
+  module.exports.getImgUrl = getImgUrl;
+</wxs>

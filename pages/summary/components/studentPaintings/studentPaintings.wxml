@@ -16,7 +16,7 @@
     </view>
     <view class="student-painting-like-btn" bindtap="onClickLike">给孩子点个赞</view>
   </gridBox>
-  <view wx:if="{{isShowLikeModal}}" class="like-modal">
+  <view wx:if="{{isShowLikeModal}}" class="like-modal {{isShowCloseAnimation ? 'bounceOut' : ''}}">
     <!-- <view wx:if="{{isShowLikeModal}}" class="like-image"></view> -->
     <image src="{{getImg.getImgUrl()}}" class="like-image"></image>
   </view>

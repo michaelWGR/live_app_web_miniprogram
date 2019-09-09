@@ -11,7 +11,8 @@ Component({
    * 组件的初始数据
    */
   data: {
-    isShowLikeModal: false
+    isShowLikeModal: false,
+    isShowCloseAnimation: false
   },
 
   ready() {
@@ -31,16 +32,19 @@ Component({
       this.setData({
         isShowLikeModal: true
       })
+      // 1.7s后执行动画，动画时长0.3s
       setTimeout(() => {
         this.setData({
-          isShowLikeModal: false
+          isShowCloseAnimation: true
+        })
+      }, 1700)
+      // 动画执行完销毁节点
+      setTimeout(() => {
+        this.setData({
+          isShowLikeModal: false,
+          isShowCloseAnimation: false
         })
       }, 2000)
-    },
-    closeModal: function() {
-      this.setData({
-        isShowLikeModal: false
-      })
     }
   }
 })

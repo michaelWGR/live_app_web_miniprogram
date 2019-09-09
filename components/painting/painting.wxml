@@ -28,14 +28,7 @@
   </view>
   <view class="homework-description">
     <block wx:for="{{descriptions}}" wx:key="{{index}}">
-      <view class="description-item">
-        <view class="audio-wrapper">
-          <view class="play-btn"></view>
-          <view class="audio-wave"></view>
-          <view class="audio-duration">120</view>
-        </view>
-        <view class="student-avatar"></view>
-      </view>
+      <audioDescription />
     </block>
   </view>
 </view>

@@ -58,11 +58,18 @@
   animation: fadeIn 0.3s ease-in-out;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  padding-top: 209rpx;
 }
 .like-image{
   width: 639rpx;
   height: 539rpx;
+}
+.bounceOut{
+  animation: fadeOut 0.3s ease-in-out;
+}
+.bounceOut .like-image{
+  animation: bounceOut 0.3s ease-in-out;
 }
 
 
@@ -92,5 +99,21 @@
   }
   to {
     opacity: 1;
+  }
+}
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@keyframes bounceOut {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(0);
   }
 }
