@@ -1,0 +1,96 @@
+/* pages/summary/components/studentPaintings/studentPaintings.wxss */
+.student-painting-root{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 80rpx;
+  position: relative; 
+}
+.student-painting-title{
+  width: 447rpx;
+  height: 100rpx;
+  background: url('http://10.10.117.177:3000/images/summary/student-painting-title.png') 0 0 no-repeat;
+  background-size: 100%;
+  position: relative;
+}
+.student-painting-title .student-painting-title-text{
+  color: #fffa69;
+  font-size: 32rpx;
+  position: absolute;
+  left: 110rpx;
+  top: 18rpx;
+  font-weight: bold;
+}
+.find-more-paintings{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.find-more-paintings .find-more-paintings-text{
+  width: 215rpx;
+  height: 39rpx;
+  font-size: 26rpx;
+  color: #ff6c00;
+  border-bottom: 1px sold #ff6c00;
+}
+.student-painting-like-btn{
+  width: 382rpx;
+  height: 80rpx;
+  color: #fff;
+  text-align: center;
+  line-height: 80rpx;
+  font-size: 30rpx;
+  background: url('http://10.10.117.177:3000/images/summary/like-btn.png') 0 0 no-repeat;
+  background-size: 100%;
+  margin: 0 auto;
+}
+.like-modal{
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 100;
+  animation: fadeIn 0.3s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.like-image{
+  width: 639rpx;
+  height: 539rpx;
+}
+
+
+.grass-1{
+  width: 102rpx;
+  height: 75rpx;
+  background: url('http://10.10.117.177:3000/images/summary/grass-1.png') 0 0 no-repeat;
+  background-size: 100%;
+  position: absolute;
+  bottom: 70rpx;
+  left: 6rpx;
+}
+.grass-2{
+  width: 75rpx;
+  height: 80rpx;
+  background: url('http://10.10.117.177:3000/images/summary/grass-2.png') 0 0 no-repeat;
+  background-size: 100%;
+  transform: rotateY(180deg);
+  position: absolute;
+  bottom: 70rpx;
+  right:  18rpx;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0
+  }
+  to {
+    opacity: 1;
+  }
+}

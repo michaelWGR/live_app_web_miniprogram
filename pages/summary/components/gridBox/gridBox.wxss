@@ -1,3 +1,9 @@
+/* pages/summary/components/grid-box/gridBox.wxss */
+.grid-box{
+  box-shadow: 0 0 20rpx #ffa42a;
+  border-radius: 30rpx 30rpx;
+  position: relative;
+}
 .box-top{
   width: 690rpx;
   height: 30rpx;
@@ -15,3 +21,4 @@
   background: url('http://10.10.117.177:3000/images/summary/box-background-bottom.png') 0 0 no-repeat;
   background-size: 100%;
 }
+  

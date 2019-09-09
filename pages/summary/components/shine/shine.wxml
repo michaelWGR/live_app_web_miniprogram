@@ -1,0 +1,43 @@
+<!--pages/summary/components/shine/shine.wxml-->
+<view class="shine-root">
+  <view class="shine-title"><text class="shine-titlt-text">宝贝本阶段的闪光点</text></view>
+  <gridBox>
+    <view class="shine-content">
+      <view class="shine-top">
+        <text class="shine-top-red">孔维浩</text>宝贝，课堂上积极表达自己的ideas，共获得<text class="shine-top-red">28</text>个奖杯！
+      </view>
+      <view class="shine-middle">
+        <view class="trophy"></view>
+        <view class="shine-middle-text">28</view>
+      </view>
+      <view class="shine-swiper">
+        <swiper previous-margin="30rpx" 
+          next-margin="100rpx" 
+          duration="300"
+          bindchange="onSwiperSlide" 
+          style="width:100%;height:100%;">
+          <block wx:for="{{mockData}}" wx:key="{{index}}">
+            <swiper-item>
+              <view class="{{currIndex === index ? 'shine-record-paper active-shine-record-paper' : 'shine-record-paper'}}">
+                <view class="shine-record">
+                  <view><text class="red-font">2019年08月09日</text>是个特殊的日子</view>
+                  <view>宝贝在<text class="red-font">《神奇的线条》</text>的课堂</view>
+                  <view>获得最多奖杯<text class="red-font">（7个）</text></view>
+                  <view>兴趣是最好的老师</view>
+                </view>
+              </view>
+            </swiper-item>
+          </block>
+        </swiper>
+      </view>
+      <view class="indicator-dots">
+        <block wx:for="{{mockData}}" wx:key="{{index}}">
+          <view class="{{currIndex === index ? 'dots-item active-dots-item' : 'dots-item'}}" ></view>
+        </block>
+      </view>
+      <view class="shine-like-btn">给孩子点个赞</view>
+    </view>
+  </gridBox>
+  <view class="grass-1"></view>
+  <view class="grass-2"></view>
+</view>
