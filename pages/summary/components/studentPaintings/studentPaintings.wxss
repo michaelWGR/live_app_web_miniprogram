@@ -22,10 +22,30 @@
   top: 18rpx;
   font-weight: bold;
 }
+
+.paiting-wrapper{
+  position: relative;
+}
+.paiting-wrapper-not-last::after{
+  content: '';
+  width: 618rpx;
+  height: 2rpx;
+  background: url('http://10.10.117.177:3000/images/summary/dashed-line.png') center center no-repeat;
+  background-size: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.paiting-wrapper-not-first{
+  padding-top: 25rpx;
+}
+
 .find-more-paintings{
   width: 100%;
   display: flex;
   justify-content: center;
+  margin: 14rpx 0 50rpx 0;
 }
 .find-more-paintings .find-more-paintings-text{
   width: 215rpx;
@@ -33,6 +53,17 @@
   font-size: 26rpx;
   color: #ff6c00;
   border-bottom: 1px sold #ff6c00;
+  position: relative;
+  letter-spacing: 1rpx;
+}
+.find-more-paintings .find-more-paintings-text::after{
+  content: '';
+  width: 100%;
+  height: 1rpx;
+  background: #ff6c00;
+  position: absolute;
+  bottom: -2rpx;
+  left: -2rpx;
 }
 .student-painting-like-btn{
   width: 382rpx;
@@ -44,6 +75,10 @@
   background: url('http://10.10.117.177:3000/images/summary/like-btn.png') 0 0 no-repeat;
   background-size: 100%;
   margin: 0 auto;
+}
+.position-block{
+  width: 100%;
+  height: 50rpx;
 }
 .like-modal{
   width: 100vw;
@@ -66,10 +101,10 @@
   height: 539rpx;
 }
 .bounceOut{
-  animation: fadeOut 0.3s ease-in-out;
+  animation: fadeOut 0.4s ease-in-out forwards;
 }
 .bounceOut .like-image{
-  animation: bounceOut 0.3s ease-in-out;
+  animation: paintingBounceOut 0.4s ease-in-out forwards;
 }
 
 
@@ -109,11 +144,11 @@
     opacity: 0;
   }
 }
-@keyframes bounceOut {
+@keyframes paintingBounceOut {
   from {
-    transform: scale(1);
+    transform: translateY(0) scale(1);
   }
   to {
-    transform: scale(0);
+    transform: translateY(100%) scale(0);
   }
 }

@@ -2,7 +2,8 @@
 <view class="collection-root">
   <view class="page-title">作品集</view>
   <view class="paintings-wrapper">
-    <painting previous-margin="105rpx" next-margin="110rpx"/>
+    <view class="paiting-wrapper paiting-wrapper-not-last"><painting previous-margin="70rpx" next-margin="90rpx"/></view>
+    <view class="paiting-wrapper paiting-wrapper-not-first"><painting previous-margin="70rpx" next-margin="90rpx"/></view>
   </view>
   <view class="left-bottom-grass"></view>
   <view class="right-bottom-grass"></view>

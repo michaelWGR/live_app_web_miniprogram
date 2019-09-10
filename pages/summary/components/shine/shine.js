@@ -37,12 +37,12 @@ Component({
       this.setData({
         isShowLikeModal: true
       })
-      // 1.7s后执行动画，动画时长0.3s
+      // 1.6s后执行动画，动画时长0.4s
       setTimeout(() => {
         this.setData({
           isShowCloseAnimation: true
         })
-      }, 1700)
+      }, 1600)
       // 动画执行完销毁节点
       setTimeout(() => {
         this.setData({

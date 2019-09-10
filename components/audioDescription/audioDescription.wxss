@@ -44,12 +44,12 @@
   background-size: 100%;
 }
 .audio-duration::after{
-  content: '‘’';
+  content: '\'\'';
   position: absolute;
   color: #4cc1ff;
   font-size: 24rpx;
   top: 0;
-  right: -18rpx;
+  right: -2rpx;
 }
 .student-avatar{
   width: 80rpx;

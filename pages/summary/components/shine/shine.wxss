@@ -147,10 +147,10 @@
   height: 539rpx;
 }
 .bounceOut{
-  animation: fadeOut 0.3s ease-in-out;
+  animation: fadeOut 0.4s ease-in-out forwards;
 }
 .bounceOut .like-image{
-  animation: bounceOut 0.3s ease-in-out;
+  animation: bounceOut 0.4s ease-in-out forwards;
 }
 .grass-1{
   width: 75rpx;
@@ -188,9 +188,9 @@
 }
 @keyframes bounceOut {
   from {
-    transform: scale(1);
+    transform: translateY(0) scale(1);
   }
   to {
-    transform: scale(0);
+    transform: translateY(100%) scale(0) ;
   }
 }
