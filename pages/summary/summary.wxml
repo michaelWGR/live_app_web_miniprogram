@@ -1,5 +1,6 @@
 <view class="summary">
   <studentInfo></studentInfo>
+  <submitHomework></submitHomework>
   <studentPaintings></studentPaintings>
   <shine></shine>
   <certificate></certificate>

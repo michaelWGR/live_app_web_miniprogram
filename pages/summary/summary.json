@@ -3,7 +3,8 @@
     "studentInfo": "./components/studentInfo/info",
     "certificate": "./components/certificate/certificate",
     "shine": "./components/shine/shine",
-    "studentPaintings": "./components/studentPaintings/studentPaintings"
+    "studentPaintings": "./components/studentPaintings/studentPaintings",
+    "submitHomework": "./components/submitHomework/submitHomework"
   },
   "navigationBarTitleText": "阶段学习报告" 
 }
