@@ -11,8 +11,20 @@
   bottom: 0;
   right: 0;
   background: rgba(0, 0, 0, 0.8);
+  z-index: 996;
+  animation: welcomePopOut .5s ease-in-out;
+  animation-delay: 1s;
 }
 
 .welcome-pop-wrap .welcome-pop {
   width: 100%
+}
+
+@keyframes welcomePopOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }

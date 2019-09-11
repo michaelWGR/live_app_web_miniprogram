@@ -8,7 +8,7 @@
   <studentPaintings></studentPaintings>
   <shine></shine>
   <certificate></certificate>
-  <view class="welcome-pop-wrap" wx:if="{{isShowWelcome}}">
+  <view class="welcome-pop-wrap" wx:if="{{isShowWelcome}}" catchtouchmove='true'>
     <image class="welcome-pop" mode="widthFix" src="{{imageUrl.welcome}}"></image>
   </view>
 </view>

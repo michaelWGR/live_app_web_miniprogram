@@ -32,7 +32,7 @@ Page({
       _this.setData({
         isShowWelcome: false
       })
-    }, 2000)
+    }, 1500)
   },
 
   /**
