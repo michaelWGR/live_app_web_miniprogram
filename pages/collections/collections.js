@@ -1,4 +1,5 @@
 // pages/collections/collections.js
+const util = require('../../utils/util.js');
 Page({
 
   /**
@@ -12,7 +13,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    console.log(options)
   },
 
   /**
@@ -26,7 +27,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    
   },
 
   /**
@@ -62,9 +63,9 @@ Page({
    */
   onShareAppMessage: function () {
     return {
-      title: '',// 韩**《Level 1 stage 2》在画啦啦的创想作品集
-      path: '',
-      imageUrl: ''// 截取页面中第一幅画作的内容
+      title: '孔维浩《Level 1 stage 2》在画啦啦的创想作品集',// 韩**《Level 1 stage 2》在画啦啦的创想作品集
+      path: '/pages/collections/collections?id=123',
+      imageUrl: util.img_baseUrl + 'painting.png'// 截取页面中第一幅画作的内容
     }
   }
 })

@@ -25,7 +25,7 @@ Component({
   methods: {
     goToCollections: function() {
       wx.navigateTo({
-        url: '../../pages/collections/collections',
+        url: '../../pages/collections/collections?id=123',
       })
     },
     onClickLike: function() {

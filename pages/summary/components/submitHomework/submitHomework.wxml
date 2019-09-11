@@ -4,7 +4,7 @@
   <gridBox>
     <view class="submit-homework-content">
       <view class="ratio">9 / 11</view>
-      <view class="ratio-text">提交画作数/未提交画作数</view>
+      <view class="ratio-text">提交画作数/本阶段作业总数</view>
 
       <view class="legend">
         <view class="tiaoke">跳课</view>
@@ -14,9 +14,9 @@
       </view>
 
       <view class="homework-list">
-        <block wx:for="{{homeworkList}}">
-          <view class="homework-item" wx:key="{{index}}">
-            <view class="painting-name">《{{item.name}}》</view>
+        <block wx:for="{{homeworkList}}" wx:key="{{index}}">
+          <view class="homework-item">
+            <view class="painting-name">《<view>{{item.name}}</view>》</view>
             <view class="painting-status">
               <view wx:if="{{item.status === 0}}" class="tiaoke-icon"></view>
               <view wx:elif="{{item.status === 1}}" class="non-submit-icon"></view>

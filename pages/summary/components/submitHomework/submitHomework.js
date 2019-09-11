@@ -14,7 +14,7 @@ Component({
     rate: 0.7,
     homeworkList: [
       {
-        name: '波兰剪纸',
+        name: '波兰剪纸啊',
         status: 0
       },
       {
@@ -36,6 +36,14 @@ Component({
       {
         name: '波兰剪纸',
         status: 1
+      },
+      {
+        name: '波兰剪纸',
+        status: 3
+      },
+      {
+        name: '波兰剪纸',
+        status: 3
       },
     ]
   },
