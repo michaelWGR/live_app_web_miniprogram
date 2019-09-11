@@ -1,0 +1,4 @@
+<view class="pop-wrap {{popWrapClass}}" catchtouchmove='true' wx:if="{{visibilityData}}" bindtap="closePop"></view>
+<view class="pop {{popClass}}" wx:if="{{visibilityData}}">
+    <slot></slot>
+</view>

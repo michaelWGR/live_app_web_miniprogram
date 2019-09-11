@@ -3,6 +3,8 @@
     "studentInfo": "./components/studentInfo/info",
     "stage": "./components/stage/stage",
     "promote": "./components/promote/promote",
+    "assess": "./components/assess/assess",
+    "comment": "./components/comment/comment",
     "certificate": "./components/certificate/certificate"
   },
   "navigationBarTitleText": "阶段学习报告" 

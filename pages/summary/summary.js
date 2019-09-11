@@ -1,11 +1,19 @@
 // pages/summary/summary.js
+const app = getApp();
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    imageUrl: {
+      welcome: 'http://10.10.117.199:3000/images/summary-welcome.gif'
+    },
+    name: '孔维浩',
+    level: 1,
+    stage: 1,
+    isShowWelcome: true
   },
 
   /**
@@ -19,14 +27,29 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    const _this = this
+    setTimeout(function(){
+      _this.setData({
+        isShowWelcome: false
+      })
+    }, 2000)
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    const _this = this;
+    //请求数据
+    if (app.globalData.access_token && app.globalData.access_token != '') {
+      console.log('token: ' + app.globalData.access_token)
+    } else {
+      app.tokenCallback = (token) => {
+        if (token && token != '') {
+          console.log('token: ' + token)
+        }
+      }
+    }
   },
 
   /**
@@ -61,6 +84,8 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    return {
+      title: this.data.name + '《Level ' + this.data.level + ' stage ' + this.data.stage + '》的画啦啦艺术成长报告'
+    }
   }
 })

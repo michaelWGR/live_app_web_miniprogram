@@ -18,13 +18,32 @@ Component({
     },
     level: 1,
     stage: 2,
-    stageList: ['线条刻画', '图形装饰', '色彩搭配', '构图意识']
+    stageList: ['线条刻画', '图形装饰', '色彩搭配', '构图意识'],
+    isShowCardPop: false,
+    showCardIndex: '',
+    cardList: [
+      ['从艺术知识、', '自然文化出发,', '结合平面基础,', '发散图形联想,'],
+      ['从艺术知识、', '自然文化出发,', '结合平面基础,', '发散图形联想,'],
+      ['从艺术知识、', '自然文化出发,', '结合平面基础,', '发散图形联想,'],
+      ['从艺术知识、', '自然文化出发,', '结合平面基础,', '发散图形联想,']
+    ]
   },
 
   /**
    * 组件的方法列表
    */
   methods: {
+    showCardPop(event) {
+      this.setData({
+        showCardIndex: event.currentTarget.dataset.text,
+        isShowCardPop: true
+      })
+    },
 
+    hidePop() {
+      this.setData({
+        isShowCardPop: false
+      })
+    }
   }
 })

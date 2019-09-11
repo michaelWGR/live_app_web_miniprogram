@@ -103,3 +103,40 @@
   color: #666;
   padding-top: 15rpx;
 }
+
+.stage .card-pop {
+  position: relative;
+  width:484rpx;
+  height: 565rpx;
+  border-radius: 20rpx;
+  background: no-repeat url('http://10.10.117.199:3000/images/summary-promote-card-yellow-pop.png');
+  background-size: 100% 100%;
+  text-align: center;
+  color: #fff;
+}
+
+.stage .card-pop .close {
+  position: absolute;
+  padding: 15rpx;
+  top: 15rpx;
+  right: 35rpx;
+  font-size: 30rpx;
+  opacity: 0.8;
+}
+
+.stage .card-pop .title {
+  font-size: 60rpx;
+  font-weight: bold;
+  padding-top: 60rpx;
+}
+
+.stage .card-pop .card-content {
+  font-size: 36rpx;
+  padding-top: 50rpx;
+}
+
+.stage .card-pop .card-content .card-item {
+  display: block;
+  padding-top: 8rpx;
+  text-align: center;
+}

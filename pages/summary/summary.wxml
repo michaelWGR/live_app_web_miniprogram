@@ -2,5 +2,10 @@
   <studentInfo></studentInfo>
   <stage></stage>
   <promote></promote>
+  <assess></assess>
+  <comment></comment>
   <certificate></certificate>
+  <view class="welcome-pop-wrap" wx:if="{{isShowWelcome}}">
+    <image class="welcome-pop" mode="widthFix" src="{{imageUrl.welcome}}"></image>
+  </view>
 </view>

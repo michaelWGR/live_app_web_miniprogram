@@ -4,12 +4,21 @@
     <text class="text">Level<text class="num">{{level}}</text>stage{{stage}}</text>
   </view>
   <view class="content">
-    <view class="item {{stage > index ? 'finish' : ''}}" wx:for="{{stageList}}">
+    <view class="item {{stage > index ? 'finish' : ''}}" wx:for="{{stageList}}" wx:key bindtap="showCardPop" data-text="{{index}}">
       <image class="crown  {{stage === index + 1 ? 'currentStage' : ''}}" mode="widthFix" src="{{image.crown}}"></image>
       <view class="num">stage{{index+1}}</view>
       <view class="text text-{{index}}">{{item}}</view>
     </view>
     <view class="tips">(点击卡片可知道各阶段学什么)</view>
   </view>
+  <pop visibility="{{isShowCardPop}}" bind:hidePop="hidePop">
+    <view class="card-pop">
+      <view class="title">{{stageList[showCardIndex]}}</view>
+      <view class="card-content">
+        <text class="card-item" wx:for="{{cardList[showCardIndex]}}" wx:key>{{item}}</text>
+      </view>
+      <view class="close" bindtap="hidePop">X</view>
+    </view>
+  </pop>
 </view>
 

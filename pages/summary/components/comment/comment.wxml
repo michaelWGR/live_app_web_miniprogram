@@ -1,0 +1,17 @@
+<view class="comment">
+  <view class="title">
+    <image class="background" mode="widthFix" src="{{imageUrl.title}}"></image>
+    <text class="text">老师评语</text>
+  </view>
+  <view class="content">
+    <image class="headImage" src="{{imageUrl.headImage}}"></image>
+    <view class="name">{{name}}老师</view>
+    <view class="text-container">
+      <view class="text-wrap">
+        <view class="text">{{content}}</view>
+      </view>
+      <view class="shadow"></view>
+    </view>
+    <image class="like" mode="widthFix" src="{{imageUrl.like}}" bindtap="thankTeacher"></image>
+  </view>
+</view>

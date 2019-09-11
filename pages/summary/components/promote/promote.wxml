@@ -1,18 +1,45 @@
 <view class="promote">
   <view class="title">
-    <image class="background" mode="widthFix" src="{{image.title}}"></image>
+    <image class="background" mode="widthFix" src="{{imageUrl.title}}"></image>
     <text class="text">能力提升</text>
   </view>
   <view class="content">
     <view class="info">
       <view class="add-wrap">
         <view class="add">
-          新增<text class="num">{{worksAdd}}</text>个能力点
+          新增<text class="num">{{add}}</text>个能力点
           <image class="arrow" src="{{imageUrl.arrow}}"></image>
         </view>
-        <text class="total">{{worksTotal}}</text>
+        <text class="total">{{accumulate}}/{{total}}</text>
       </view>
-      <view>已提升能力点</view>
+      <view class="tips">已提升能力点数/课程能力点总数</view>
+    </view>
+    <view class="card">
+      <swiper 
+        previous-margin="195rpx" 
+        next-margin="155rpx"
+        autoplay="true"
+        duration="300"
+        bindchange="onSwiperSlide"
+        class="swiper-card"
+      >
+        <block wx:for="{{cardList}}" wx:key>
+          <swiper-item class="card-item">
+            <view class="card-frame {{currIndex === index ? ' active-card-frame' : ''}} {{'card-frame-' + index%3}}">
+              <view class="title">{{item.title}}</view>
+              <view class="card-content">
+                <view class="desc" wx:for="{{item.content}}" wx:for-index="idx" wx:for-item="desc" wx:key>{{desc}}</view>
+              </view>
+              <view class="index">{{index + 1}}</view>
+            </view>
+          </swiper-item>
+        </block>
+      </swiper>
+      <view class="card-dots">
+        <block wx:for="{{cardList}}" wx:key="{{index}}">
+          <view class="card-dots-item {{currIndex === index ? 'active-card-dots-item' : ''}}" ></view>
+        </block>
+      </view>
     </view>
   </view>
 </view>
