@@ -1,6 +1,21 @@
 .summary {
   background: #ffca32;
   overflow-x: hidden;
+  padding-bottom: 237rpx;
+  position: relative;
+}
+.bottom-text{
+  width: 100%;
+  color: #9e5600;
+  font-size: 30rpx;
+  text-align: center;
+  position: absolute;
+  bottom: 81rpx;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.bottom-text > view:nth-child(1){
+  padding-bottom: 20rpx;
 }
 
 .welcome-pop-wrap {
