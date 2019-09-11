@@ -1,0 +1,61 @@
+<!--pages/summary/components/submitHomework/submitHomework.wxml-->
+<view class="submit-homework">
+  <view class="submit-homework-title"><text class="submit-homework-title-text">Level 1 state 2 画作提交</text></view>
+  <gridBox>
+    <view class="submit-homework-content">
+      <view class="ratio">9 / 11</view>
+      <view class="ratio-text">提交画作数/未提交画作数</view>
+
+      <view class="legend">
+        <view class="tiaoke">跳课</view>
+        <view class="non-submit">未提交</view>
+        <view class="half-submit">有画作无描述</view>
+        <view class="perfect-submit">有画作有描述</view>
+      </view>
+
+      <view class="homework-list">
+        <block wx:for="{{homeworkList}}">
+          <view class="homework-item" wx:key="{{index}}">
+            <view class="painting-name">《{{item.name}}》</view>
+            <view class="painting-status">
+              <view wx:if="{{item.status === 0}}" class="tiaoke-icon"></view>
+              <view wx:elif="{{item.status === 1}}" class="non-submit-icon"></view>
+              <view wx:elif="{{item.status === 2}}" class="half-submit-icon"></view>
+              <view wx:else="{{item.status === 3}}" class="perfect-submit-icon"></view>
+            </view>
+          </view>
+        </block>
+      </view>
+
+      <view class="homework-bottom">
+        <view class="teacher-comment">{{paintings.getText(rate)}}</view>
+        <image src="" class="homework-teacher-avatar"></image>
+      </view>
+    </view>
+  </gridBox>
+  <view class="grass-1"></view>
+  <view class="grass-2"></view>
+</view>
+<wxs module="paintings">
+  var talkContent = [
+    '不是每一幅画作都能完美，但是你能做到完美地提交每一幅画作。',
+    '80%的创意+20%的坚持=100%的成长，期待你下一个阶段做好这20%~',
+    '每一幅没提交的画作，都是你隐藏起来的奇思妙想，天不知，地不知，爸妈不知，老师不知，只有你的小脑袋知道~下一阶段可以不再隐藏起来吗？',
+    '你画过的画作，都比珠宝宝贵，但是我很贪心，想看看你全部的画作。拉钩，答应我，下一阶段跟我分享你全部画作，好吗？',
+    '只要今天的你超过昨天就好!'
+  ]
+  function getText(rate) {
+    if(rate >= 1) {
+      return talkContent[0]
+    }else if(rate >= 0.8 && rate < 1) {
+      return talkContent[1]
+    }else if(rate >= 0.6 && rate < 0.8) {
+      return talkContent[2]
+    }else if(rate >= 0.4 && rate < 0.6){
+      return talkContent[3]
+    }else{
+      return talkContent[4]
+    }
+  }
+  module.exports.getText = getText;
+</wxs>

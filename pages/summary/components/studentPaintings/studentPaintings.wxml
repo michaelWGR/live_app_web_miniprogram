@@ -1,0 +1,27 @@
+<!--pages/summary/components/studentPaintings/studentPaintings.wxml-->
+<wxs module="getImg">
+  var getImgUrl = function(){
+    var random = Math.random()
+    var imgUrl =  'http://10.10.117.177:3000/images/summary/praise.gif?random=' + random
+    return imgUrl
+  }
+  module.exports.getImgUrl = getImgUrl;
+</wxs>
+<view class="student-painting-root">
+  <view class="student-painting-title"><text class="student-painting-title-text">宝贝画作展示</text></view>
+  <gridBox>
+    <view class="paiting-wrapper paiting-wrapper-not-last"><painting previous-margin="70rpx" next-margin="90rpx"/></view>
+    <view class="paiting-wrapper paiting-wrapper-not-first"><painting previous-margin="70rpx" next-margin="90rpx"/></view>
+    <view class="find-more-paintings">
+      <text class="find-more-paintings-text" bindtap="goToCollections">查看宝贝更多画作</text>
+    </view>
+    <view class="student-painting-like-btn" bindtap="onClickLike">给孩子点个赞</view>
+    <view class="position-block"></view>
+  </gridBox>
+  <view wx:if="{{isShowLikeModal}}" class="like-modal {{isShowCloseAnimation ? 'bounceOut' : ''}}">
+    <!-- <view wx:if="{{isShowLikeModal}}" class="like-image"></view> -->
+    <image src="{{getImg.getImgUrl()}}" class="like-image"></image>
+  </view>
+  <view class="grass-1"></view>
+  <view class="grass-2"></view>
+</view>

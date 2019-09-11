@@ -8,6 +8,7 @@
   <view class="banner-box">
     <swiper previous-margin="{{previousMargin}}" 
       next-margin="{{nextMargin}}" 
+      current="0" 
       duration="300"
       bindchange="onSwiperSlide" 
       style="width:100%;height:100%;">
@@ -27,14 +28,7 @@
   </view>
   <view class="homework-description">
     <block wx:for="{{descriptions}}" wx:key="{{index}}">
-      <view class="description-item">
-        <view class="audio-wrapper">
-          <view class="play-btn"></view>
-          <view class="audio-wave"></view>
-          <view class="audio-duration">120</view>
-        </view>
-        <view class="student-avatar"></view>
-      </view>
+      <audioDescription />
     </block>
   </view>
 </view>

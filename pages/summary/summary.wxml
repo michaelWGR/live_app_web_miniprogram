@@ -4,6 +4,9 @@
   <promote></promote>
   <assess></assess>
   <comment></comment>
+  <submitHomework></submitHomework>
+  <studentPaintings></studentPaintings>
+  <shine></shine>
   <certificate></certificate>
   <view class="welcome-pop-wrap" wx:if="{{isShowWelcome}}">
     <image class="welcome-pop" mode="widthFix" src="{{imageUrl.welcome}}"></image>

@@ -80,3 +80,21 @@
   right: 0;
   bottom: 0;
 }
+
+.paiting-wrapper{
+  position: relative;
+}
+.paiting-wrapper-not-last::after{
+  content: '';
+  width: 618rpx;
+  height: 2rpx;
+  background: url('http://10.10.117.177:3000/images/summary/dashed-line.png') center center no-repeat;
+  background-size: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.paiting-wrapper-not-first{
+  padding-top: 25rpx;
+}
