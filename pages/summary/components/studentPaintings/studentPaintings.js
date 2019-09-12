@@ -1,4 +1,5 @@
 // pages/summary/components/studentPaintings/studentPaintings.js
+const util = require('../../../../utils/util.js')
 Component({
   /**
    * 组件的属性列表
@@ -12,7 +13,8 @@ Component({
    */
   data: {
     isShowLikeModal: false,
-    isShowCloseAnimation: false
+    isShowCloseAnimation: false,
+    praiseImg: util.img_baseUrl + '/summary/praise.gif'
   },
 
   ready() {
@@ -32,19 +34,19 @@ Component({
       this.setData({
         isShowLikeModal: true
       })
-      // 1.6s后执行动画，动画时长0.4s
+      // 1s后执行动画，动画时长0.4s
       setTimeout(() => {
         this.setData({
           isShowCloseAnimation: true
         })
-      }, 1600)
+      }, 1000)
       // 动画执行完销毁节点
       setTimeout(() => {
         this.setData({
           isShowLikeModal: false,
           isShowCloseAnimation: false
         })
-      }, 2000)
+      }, 1400)
     }
   }
 })

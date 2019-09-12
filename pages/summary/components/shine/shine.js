@@ -15,6 +15,7 @@ Component({
     currIndex: 0,
     isShowLikeModal: false,
     isShowCloseAnimation: false,
+    praiseImg: util.img_baseUrl + '/summary/praise.gif',
     mockData: [{
         img: util.img_baseUrl + 'summary/card-background.png'
     }, {
@@ -37,19 +38,19 @@ Component({
       this.setData({
         isShowLikeModal: true
       })
-      // 1.6s后执行动画，动画时长0.4s
+      // 1s后执行动画，动画时长0.4s
       setTimeout(() => {
         this.setData({
           isShowCloseAnimation: true
         })
-      }, 1600)
+      }, 1000)
       // 动画执行完销毁节点
       setTimeout(() => {
         this.setData({
           isShowLikeModal: false,
           isShowCloseAnimation: false
         })
-      }, 2000)
+      }, 1400)
     }
   }
 })
