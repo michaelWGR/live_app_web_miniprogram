@@ -9,9 +9,9 @@
       <view class="item" wx:for="{{assessList}}" wx:key>
         <text class="name">{{item.name}}</text>
         <view class="graph">
-          <image class="left" src="http://10.10.117.199:3000/images/summary-assess-score-left.png"></image>
-          <image class="middle" style="width: {{item.value * 64}}rpx" src="http://10.10.117.199:3000/images/summary-assess-score-middle.png"></image>
-          <image class="right" src="http://10.10.117.199:3000/images/summary-assess-score-right.png"></image>
+          <image class="left" src="{{imageUrl.scoreLeft}}"></image>
+          <image class="middle" style="width: {{item.value * 64}}rpx" src="{{imageUrl.scoreMiddle}}"></image>
+          <image class="right" src="{{imageUrl.scoreRight}}"></image>
         </view>
         <text class="num">{{item.value}}</text>
       </view>

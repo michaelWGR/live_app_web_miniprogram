@@ -4,11 +4,11 @@
     <text class="text">老师评语</text>
   </view>
   <view class="content">
-    <image class="headImage" src="{{imageUrl.headImage}}"></image>
-    <view class="name">{{name}}老师</view>
+    <image class="headImage" src="{{comment.headUrl}}"></image>
+    <view class="name">{{comment.artName}}老师</view>
     <view class="text-container">
       <view class="text-wrap">
-        <view class="text">{{content}}</view>
+        <view class="text">{{comment.comment}}</view>
       </view>
       <view class="shadow"></view>
     </view>

@@ -1,8 +1,8 @@
 <view class="summary">
-  <studentInfo></studentInfo>
-  <stage></stage>
-  <promote></promote>
-  <assess></assess>
+  <studentInfo userInfo="{{userInfo}}" levelStage="{{levelStage}}" userId="{{userId}}"></studentInfo>
+  <stage levelStage="{{levelStage}}" userId="{{userId}}"></stage>
+  <promote levelStage="{{levelStage}}" userId="{{userId}}"></promote>
+  <assess levelStage="{{levelStage}}" userId="{{userId}}"></assess>
   <comment></comment>
   <submitHomework></submitHomework>
   <studentPaintings></studentPaintings>

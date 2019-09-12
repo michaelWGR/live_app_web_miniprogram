@@ -1,9 +1,9 @@
-// const BASE_URL = "http://10.71.1.9:8998"  //本地测试地址
-// const BASE_URL = "https://appminip-test.61draw.com" //测试线地址
-const BASE_URL = "https://appminip.61draw.com"         //正式线地址
+const BASE_URL = "http://10.60.7.252:8998"  //本地测试地址
+//const BASE_URL = "https://appminip-test.61draw.com" //测试线地址
+// const BASE_URL = "https://appminip.61draw.com"         //正式线地址
 
-const IMG_BASEURL = "http://10.10.117.177:3000/images/"; //本地图片地址
-// const IMG_BASEURL = "https://appdev.61draw.com/dev_test/miniprogram/"  //测试线图片地址
+// const IMG_BASEURL = "http://10.10.117.177:3000/images/"; //本地图片地址
+const IMG_BASEURL = "https://appdev.61draw.com/dev_test/miniprogram/"  //测试线图片地址
 // const IMG_BASEURL = "http://appminip.61draw.com/res/images/"; //正式线图片地址
 
 /**时间格式转换 */

@@ -1,10 +1,26 @@
 // pages/summary/components/comment/comment.js
+const app = getApp();
+const util = require('./../../../../utils/util.js');
+const summaryApi = require('../../../../api/summary.js');
+
 Component({
   /**
    * 组件的属性列表
    */
   properties: {
-
+    userId: {
+      type: String,
+      value: ''
+    },
+    levelStage: {
+      type: Object,
+      value: { level: '-', stage: '-' },
+      observer: function (newVal, oldVal) {
+        if (newVal.level !== oldVal.level) {
+          this.getTeacherComment(newVal)
+        }
+      }
+    }
   },
 
   /**
@@ -12,12 +28,14 @@ Component({
    */
   data: {
     imageUrl: {
-      title: 'http://10.10.117.199:3000/images/summary-comment-title.png',
-      headImage: 'http://10.10.117.199:3000/images/summary-comment-head.png',
-      like: 'http://10.10.117.199:3000/images/summary-comment-like-before.png'
+      title: util.img_baseUrl + 'summary-comment-title.png',
+      like: util.img_baseUrl + 'summary-comment-like-before.png'
     },
-      name: '小卷',
-      content: '维浩宝贝开始时画作的物体都是常见的物品形状和使用方式；现在，宝贝的会根据自己的感受表达，如月亮是很冷的，太冷就会把人冻得发紫。宝贝在色彩与沟通的排列运用上，还可以提高，建议再学习《手账的绘画》这节课。',
+    comment: {
+      artName: '---',
+      headUrl: '',
+      comment: ''
+    }
   },
 
   /**
@@ -31,6 +49,45 @@ Component({
       this.setData({
         imageUrl: imageUrl
       })
+    },
+
+    getTeacherComment(option) {
+      const _this = this
+      const data = {
+        userId: this.properties.userId,
+        level: option.level,
+        stage: option.stage
+      }
+      summaryApi.getTeacherComment(data, app.globalData.access_token)
+      .then(res => {
+        if (res.data.code == 0) {
+          _this.setData({
+            comment: res.data.data
+          })
+        } else {
+          wx.showToast({
+            title: '服务器错误',
+            icon: 'none',
+            duration: 3000,
+            complete: function () {
+              console.log(res.data.msg);
+            }
+          })
+        }
+      }).catch(error => {
+        wx.showToast({
+          title: '网络错误',
+          icon: 'none',
+          duration: 3000,
+          complete: function () {
+            console.log(error)
+          }
+        })
+      })
+    },
+
+    teacherPraise() {
+      
     }
   }
 })

@@ -1,10 +1,26 @@
 // pages/summary/components/promote/promote.js
+const app = getApp();
+const util = require('./../../../../utils/util.js');
+const summaryApi = require('../../../../api/summary.js');
+
 Component({
   /**
    * 组件的属性列表
    */
   properties: {
-
+    userId: {
+      type: String,
+      value: ''
+    },
+    levelStage: {
+      type: Object,
+      value: { level: '-', stage: '-' },
+      observer: function (newVal, oldVal) {
+        if (newVal.level !== oldVal.level) {
+          this.getAbilityPromotion(newVal)
+        }
+      }
+    }
   },
 
   /**
@@ -12,31 +28,14 @@ Component({
    */
   data: {
     imageUrl: {
-      title: 'http://10.10.117.199:3000/images/summary-promote-title.png',
-      arrow: 'http://10.10.117.199:3000/images/summary-info-arrow.png'
+      title: util.img_baseUrl + 'summary-promote-title.png',
+      arrow: util.img_baseUrl + 'summary-info-arrow.png'
     },
-    add: 8,
-    accumulate: 15,
-    total: 24,
+    newAbilityNum: '-',
+    allAbilityNum: '-',
+    stageAlreadyAbilityNum: '-',
     currIndex: 0,
-    cardList: [
-      {
-        title: '色彩搭配',
-        content: ['色彩敏锐度', '色彩对比运用']
-      },
-      {
-        title: '绘画技发',
-        content: ['厚涂水粉', '油水分离', '拼贴手法', '创意技法']
-      },
-      {
-        title: '物体排列',
-        content: ['大小变化', '透视关系']
-      },
-      {
-        title: '测试测试',
-        content: ['第四页', '的卡片的详情', '测试滚动']
-      }
-    ]
+    levelStageSkillDTO: []
   },
 
   /**
@@ -47,6 +46,41 @@ Component({
       this.setData({
         currIndex: e.detail.current
       })
+    },
+
+    getAbilityPromotion(option) {
+      const _this = this
+      const data = {
+        level: option.level,
+        stage: option.stage
+      }
+      summaryApi.getAbilityPromotion(data, app.globalData.access_token)
+        .then(res => {
+          if (res.data.code == 0) {
+            _this.setData({
+              stageReportSchedule: res.data.data,
+              isShowName: isShowName
+            })
+          } else {
+            wx.showToast({
+              title: '服务器错误',
+              icon: 'none',
+              duration: 3000,
+              complete: function () {
+                console.log(res.data.msg);
+              }
+            })
+          }
+        }).catch(error => {
+          wx.showToast({
+            title: '网络错误',
+            icon: 'none',
+            duration: 3000,
+            complete: function () {
+              console.log(error)
+            }
+          })
+        })
     }
   }
 })

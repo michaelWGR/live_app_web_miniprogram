@@ -29,7 +29,7 @@
   height: 550rpx;
   padding-top: 70rpx;
   margin-top: -40rpx;
-  background: no-repeat url('http://10.10.117.199:3000/images/summary-promote-bg.png');
+  background: no-repeat url('https://appdev.61draw.com/dev_test/miniprogram/summary-promote-bg.png');
   background-size: 100% 100%;
   text-align: center;
 }
@@ -116,17 +116,17 @@
 }
 
 .promote .content .card .card-frame-0 {
-  background: no-repeat url('http://10.10.117.199:3000/images/summary-promote-card-yellow.png');
+  background: no-repeat url('https://appdev.61draw.com/dev_test/miniprogram/summary-promote-card-yellow.png');
   background-size: 100% 100%;
 }
 
 .promote .content .card .card-frame-1 {
-  background: no-repeat url('http://10.10.117.199:3000/images/summary-promote-card-red.png');
+  background: no-repeat url('https://appdev.61draw.com/dev_test/miniprogram/summary-promote-card-red.png');
   background-size: 100% 100%;
 }
 
 .promote .content .card .card-frame-2 {
-  background: no-repeat url('http://10.10.117.199:3000/images/summary-promote-card-blue.png');
+  background: no-repeat url('https://appdev.61draw.com/dev_test/miniprogram/summary-promote-card-blue.png');
   background-size: 100% 100%;
 }
 

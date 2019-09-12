@@ -32,7 +32,7 @@
   width: 744rpx;
   padding-top: 20rpx;
   height: 400rpx;
-  background: no-repeat url('http://10.10.117.199:3000/images/summary-stage-bg.png');
+  background: no-repeat url('https://appdev.61draw.com/dev_test/miniprogram/summary-stage-bg.png');
   background-size: 100% 100%;
   text-align: center;
   margin-top: -30rpx;
@@ -109,7 +109,7 @@
   width:484rpx;
   height: 565rpx;
   border-radius: 20rpx;
-  background: no-repeat url('http://10.10.117.199:3000/images/summary-promote-card-yellow-pop.png');
+  background: no-repeat url('https://appdev.61draw.com/dev_test/miniprogram/summary-promote-card-yellow-pop.png');
   background-size: 100% 100%;
   text-align: center;
   color: #fff;

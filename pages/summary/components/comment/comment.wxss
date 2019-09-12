@@ -28,7 +28,7 @@
   height: 770rpx;
   padding-top: 100rpx;
   margin-top: -45rpx;
-  background: no-repeat url('http://10.10.117.199:3000/images/summary-comment-bg.png');
+  background: no-repeat url('https://appdev.61draw.com/dev_test/miniprogram/summary-comment-bg.png');
   background-size: 100% 100%;
 }
 
@@ -61,7 +61,7 @@
   color: #743F00;
   text-indent: 52rpx;
   letter-spacing: 3rpx;
-  background: url('http://10.10.117.199:3000/images/summary-comment-text.png') 0 0 repeat-y;
+  background: url('https://appdev.61draw.com/dev_test/miniprogram/summary-comment-text.png') 0 0 repeat-y;
   background-size: 100%;
 }
 

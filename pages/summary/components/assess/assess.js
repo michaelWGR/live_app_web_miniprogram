@@ -1,4 +1,6 @@
 // pages/summary/components/assess/assess.js
+const util = require('./../../../../utils/util.js');
+
 Component({
   /**
    * 组件的属性列表
@@ -12,17 +14,17 @@ Component({
    */
   data: {
     imageUrl: {
-      title: 'http://10.10.117.199:3000/images/summary-assess-title.png',
-      background0: 'http://10.10.117.199:3000/images/summary-assess-bg0.png',
-      background1: 'http://10.10.117.199:3000/images/summary-assess-bg1.png',
-      background2: 'http://10.10.117.199:3000/images/summary-assess-bg2.png',
-      scoreLeft: 'http://10.10.117.199:3000/images/summary-assess-score-left.png',
-      scoreMiddle: 'http://10.10.117.199:3000/images/summary-assess-score-middle.png',
-      scoreRight: 'http://10.10.117.199:3000/images/summary-assess-score-right.png',
-      backgroundLeft: 'http://10.10.117.199:3000/images/summary-assess-left.png',
-      backgroundRight: 'http://10.10.117.199:3000/images/summary-assess-right.png',
-      backgroundCloud: 'http://10.10.117.199:3000/images/summary-assess-cloud.png',
-      backgroundCloudLeft: 'http://10.10.117.199:3000/images/summary-assess-cloud-left.png'
+      title: util.img_baseUrl + 'summary-assess-title.png',
+      background0: util.img_baseUrl + 'summary-assess-bg0.png',
+      background1: util.img_baseUrl + 'summary-assess-bg1.png',
+      background2: util.img_baseUrl + 'summary-assess-bg2.png',
+      scoreLeft: util.img_baseUrl + 'summary-assess-score-left.png',
+      scoreMiddle: util.img_baseUrl + 'summary-assess-score-middle.png',
+      scoreRight: util.img_baseUrl + 'summary-assess-score-right.png',
+      backgroundLeft: util.img_baseUrl + 'summary-assess-left.png',
+      backgroundRight: util.img_baseUrl + 'summary-assess-right.png',
+      backgroundCloud: util.img_baseUrl + 'summary-assess-cloud.png',
+      backgroundCloudLeft: util.img_baseUrl + 'summary-assess-cloud-left.png'
     },
     assessList: [
       {

@@ -1,10 +1,26 @@
 // pages/summary/components/stage/stage.js
+const app = getApp();
+const util = require('./../../../../utils/util.js');
+const summaryApi = require('../../../../api/summary.js');
+
 Component({
   /**
    * 组件的属性列表
    */
   properties: {
-
+    userId: {
+      type: String,
+      value: ''
+    },
+    levelStage: {
+      type: Object,
+      value: { level: '-', stage: '-' },
+      observer: function (newVal, oldVal) {
+        if (newVal.level !== oldVal.level) {
+          this.getStageReportSchedule(newVal)
+        }
+      }
+    }
   },
 
   /**
@@ -12,21 +28,14 @@ Component({
    */
   data: {
     image: {
-      title: 'http://10.10.117.199:3000/images/summary-stage-title.png',
-      crown: 'http://10.10.117.199:3000/images/summary-stage-crown.png',
-      cloud: 'http://10.10.117.199:3000/images/summary-stage-cloud.png'
+      title: util.img_baseUrl + 'summary-stage-title.png',
+      crown: util.img_baseUrl + 'summary-stage-crown.png',
+      cloud: util.img_baseUrl + 'summary-stage-cloud.png'
     },
-    level: 1,
-    stage: 2,
-    stageList: ['线条刻画', '图形装饰', '色彩搭配', '构图意识'],
     isShowCardPop: false,
     showCardIndex: '',
-    cardList: [
-      ['从艺术知识、', '自然文化出发,', '结合平面基础,', '发散图形联想,'],
-      ['从艺术知识、', '自然文化出发,', '结合平面基础,', '发散图形联想,'],
-      ['从艺术知识、', '自然文化出发,', '结合平面基础,', '发散图形联想,'],
-      ['从艺术知识、', '自然文化出发,', '结合平面基础,', '发散图形联想,']
-    ]
+    stageReportSchedule: [],
+    isShowName: true
   },
 
   /**
@@ -34,16 +43,59 @@ Component({
    */
   methods: {
     showCardPop(event) {
-      this.setData({
-        showCardIndex: event.currentTarget.dataset.text,
-        isShowCardPop: true
-      })
+      if (this.data.isShowName) {
+        this.setData({
+          showCardIndex: event.currentTarget.dataset.text,
+          isShowCardPop: true
+        })
+      }
     },
 
     hidePop() {
       this.setData({
         isShowCardPop: false
       })
+    },
+
+    getStageReportSchedule(option) {
+      const _this = this
+      const data = {
+        level: option.level,
+        stage: option.stage
+      }
+      summaryApi.getStageReportSchedule(data, app.globalData.access_token)
+        .then(res => {
+          if (res.data.code == 0) {
+            var stageReportSchedule = res.data.data
+            var isShowName = true
+            if (stageReportSchedule.length < 4) {
+              stageReportSchedule.push({})
+              var isShowName = false
+            }
+            _this.setData({
+              stageReportSchedule: res.data.data,
+              isShowName: isShowName
+            })
+          } else {
+            wx.showToast({
+              title: '服务器错误',
+              icon: 'none',
+              duration: 3000,
+              complete: function () {
+                console.log(res.data.msg);
+              }
+            })
+          }
+        }).catch(error => {
+          wx.showToast({
+            title: '网络错误',
+            icon: 'none',
+            duration: 3000,
+            complete: function () {
+              console.log(error)
+            }
+          })
+        })
     }
   }
 })

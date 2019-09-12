@@ -45,7 +45,7 @@
 
 .assess .content .score {
   width: 100%;
-  background: url('http://10.10.117.199:3000/images/summary-assess-bg1.png') 0 0 repeat-y;
+  background: url('https://appdev.61draw.com/dev_test/miniprogram/summary-assess-bg1.png') 0 0 repeat-y;
   background-size: 100%;
 }
 

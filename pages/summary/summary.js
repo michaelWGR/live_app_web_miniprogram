@@ -1,5 +1,7 @@
 // pages/summary/summary.js
 const app = getApp();
+const util = require('./../../utils/util.js');
+const summaryApi = require('../../api/summary.js');
 
 Page({
 
@@ -8,76 +10,35 @@ Page({
    */
   data: {
     imageUrl: {
-      welcome: 'http://10.10.117.199:3000/images/summary-welcome.gif'
+      welcome: util.img_baseUrl + 'summary-welcome.gif'
     },
-    name: '孔维浩',
-    level: 1,
-    stage: 1,
-    isShowWelcome: true
+    userInfo: {
+      nickname: '---'
+    },
+    levelStage: {
+      level: '-',
+      stage: '-'
+    },
+    isShowWelcome: true,
+    userId: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    const userId = { userId: options.userId ? options.userId : '' }
+    this.setData({
+      userId: userId.userId
+    })
+    this.initToken(userId)
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    const _this = this
-    setTimeout(function(){
-      _this.setData({
-        isShowWelcome: false
-      })
-    }, 1500)
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-    const _this = this;
-    //请求数据
-    if (app.globalData.access_token && app.globalData.access_token != '') {
-      console.log('token: ' + app.globalData.access_token)
-    } else {
-      app.tokenCallback = (token) => {
-        if (token && token != '') {
-          console.log('token: ' + token)
-        }
-      }
-    }
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
+    this.initWelcome()
   },
 
   /**
@@ -85,7 +46,97 @@ Page({
    */
   onShareAppMessage: function () {
     return {
-      title: this.data.name + '《Level ' + this.data.level + ' stage ' + this.data.stage + '》的画啦啦艺术成长报告'
+      title: this.data.userInfo.nickname + '《Level ' + this.data.levelStage.level + ' stage ' + this.data.levelStage.stage + '》的画啦啦艺术成长报告'
     }
+  },
+
+  // 判断是否存在token
+  initToken(userId) {
+    const _this = this;
+    if (app.globalData.access_token && app.globalData.access_token != '') {
+      console.log('token: ' + app.globalData.access_token)
+      _this.getUserInfo(userId, app.globalData.access_token)
+      _this.getLevelStage(userId, app.globalData.access_token)
+    } else {
+      app.tokenCallback = (token) => {
+        if (token && token != '') {
+          console.log('token: ' + token)
+          _this.getUserInfo(userId, token)
+          _this.getLevelStage(userId, token)
+        }
+      }
+    }
+  },
+
+  // 展示欢迎动画
+  initWelcome() {
+    const _this = this
+    setTimeout(function() {
+      _this.setData({
+        isShowWelcome: false
+      })
+    }, 1800)
+  },
+
+  // 获取用户信息 
+  getUserInfo(userId, token) {
+    const _this = this
+    summaryApi.getUserInfo(userId, token)
+      .then(res => {
+        if (res.data.code == 0) {
+          _this.setData({
+            userInfo: res.data.data
+          })
+        } else {
+          wx.showToast({
+            title: '服务器错误',
+            icon: 'none',
+            duration: 3000,
+            complete: function () {
+              console.log(res.data.msg);
+            }
+          })
+        }
+      }).catch(error => {
+        wx.showToast({
+          title: '网络错误',
+          icon: 'none',
+          duration: 3000,
+          complete: function () {
+            console.log(error)
+          }
+        })
+      })
+  },
+
+  // 获取课程阶段
+  getLevelStage(userId, token) {
+    const _this = this
+    summaryApi.getLevelStage(userId, token)
+      .then(res => {
+        if (res.data.code == 0) {
+          _this.setData({
+            levelStage: res.data.data
+          })
+        } else {
+          wx.showToast({
+            title: '服务器错误',
+            icon: 'none',
+            duration: 3000,
+            complete: function () {
+              console.log(res.data.msg);
+            }
+          })
+        }
+      }).catch(error => {
+        wx.showToast({
+          title: '网络错误',
+          icon: 'none',
+          duration: 3000,
+          complete: function () {
+            console.log(error)
+          }
+        })
+      })
   }
 })
