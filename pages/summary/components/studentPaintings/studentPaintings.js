@@ -1,11 +1,24 @@
 // pages/summary/components/studentPaintings/studentPaintings.js
 const util = require('../../../../utils/util.js')
+const app = getApp();
+const request = require('../../../../utils/request')
 Component({
   /**
    * 组件的属性列表
    */
   properties: {
-
+    userId: {
+      type: String,
+      value: ''
+    },
+    level: {
+      type: String,
+      value: ''
+    },
+    stage: {
+      type: String,
+      value: ''
+    }
   },
 
   /**
@@ -14,7 +27,7 @@ Component({
   data: {
     isShowLikeModal: false,
     isShowCloseAnimation: false,
-    praiseImg: util.img_baseUrl + '/summary/praise.gif'
+    praiseImg: util.img_baseUrl + 'praise.gif'
   },
 
   ready() {
@@ -47,6 +60,13 @@ Component({
           isShowCloseAnimation: false
         })
       }, 1400)
+      const token = app.globalData.access_token
+      const data = {
+        userId: Number(this.properties.userId),
+        level: Number(this.properties.level),
+        stage: Number(this.properties.stage)
+      }
+      request.post('/v1/report/reportPraise', data, token)
     }
   }
 })

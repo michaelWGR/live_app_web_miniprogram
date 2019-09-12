@@ -1,6 +1,7 @@
 // pages/collections/collections.js
 const request = require('../../utils/request.js');
 const util = require('./../../utils/util');
+const app = getApp();
 Page({
 
   /**
@@ -11,21 +12,7 @@ Page({
     level: 0,
     stage: 0,
     studentName: '',
-    homeworkList: [{
-      courseName: '周末去哪儿',
-      level: 2,
-      stage: 3,
-      imgUrl: '',
-      audioDescriptions: [],
-      submitTime: '2019-9-12'
-    },{
-      courseName: '小心有刺',
-      level: 1,
-      stage: 2,
-      imgUrl: '',
-      audioDescriptions: [],
-      submitTime: '2019-9-12'
-    }]
+    homeworkList: []
   },
 
   /**
@@ -91,7 +78,7 @@ Page({
 
   getHomeworkList: function(userId, level, stage) {
     const params = {userId, level, stage}
-    return request.get('/v1/report/getHomeworks', params)
+    return request.get('/v1/report/getHomeworks', params, app.globalData.access_token)
   },
 
   getDeriveHomeworkList(data, level, stage) {

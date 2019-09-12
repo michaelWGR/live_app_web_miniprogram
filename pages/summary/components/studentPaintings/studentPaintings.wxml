@@ -2,8 +2,8 @@
 <view class="student-painting-root">
   <view class="student-painting-title"><text class="student-painting-title-text">宝贝画作展示</text></view>
   <gridBox>
-    <view class="paiting-wrapper paiting-wrapper-not-last"><painting previous-margin="70rpx" next-margin="90rpx"/></view>
-    <view class="paiting-wrapper paiting-wrapper-not-first"><painting previous-margin="70rpx" next-margin="90rpx"/></view>
+    <view class="paiting-wrapper paiting-wrapper-not-last"><painting /></view>
+    <view class="paiting-wrapper paiting-wrapper-not-first"><painting /></view>
     <view class="find-more-paintings">
       <text class="find-more-paintings-text" bindtap="goToCollections">查看宝贝更多画作</text>
     </view>

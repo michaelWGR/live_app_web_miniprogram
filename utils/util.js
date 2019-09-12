@@ -2,8 +2,8 @@
 // const BASE_URL = "https://appminip-test.61draw.com" //开发测试接口域名
 const BASE_URL = "https://appminip.61draw.com"         //正式服接口域名
 
-const IMG_BASEURL = "http://10.10.117.177:3000/dev_test/miniprogram/"; //本地图片地址
-// const IMG_BASEURL = "https://appdev.61draw.com/dev_test/miniprogram/"  //开发测试图片地址
+// const IMG_BASEURL = "http://10.10.117.177:3000/dev_test/miniprogram/"; //本地图片地址
+const IMG_BASEURL = "https://appdev.61draw.com/dev_test/miniprogram/"  //开发测试图片地址
 // const IMG_BASEURL = "http://appminip.61draw.com/res/images/"; //正式服图片地址
 
 /**
@@ -12,7 +12,7 @@ const IMG_BASEURL = "http://10.10.117.177:3000/dev_test/miniprogram/"; //本地�
  * zeroize: 是否补零
  *  */
 const formatTime = (timeStamp, flag='ch', zeroize=false) => {
-  var date = new Date(timeStamp);
+  var date = new Date(Number(timeStamp));
   const year = date.getFullYear();
   let month = date.getMonth() + 1;
   let day = date.getDate();

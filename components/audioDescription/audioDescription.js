@@ -70,7 +70,7 @@ Component({
     }
   },
 
-  attached() {
+  attached: function() {
     innerAudioContext = wx.createInnerAudioContext()
     innerAudioContext.src = this.properties.audioData
     this.setData({
@@ -79,7 +79,7 @@ Component({
     this.bindAudioEvent()
   },
 
-  detached() {
+  detached: function() {
     innerAudioContext.offPlay()
     innerAudioContext.offTimeUpdate()
     innerAudioContext.offWaiting()
