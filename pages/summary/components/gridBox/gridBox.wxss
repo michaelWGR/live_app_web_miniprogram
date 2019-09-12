@@ -7,18 +7,18 @@
 .box-top{
   width: 690rpx;
   height: 30rpx;
-  background: url('http://10.10.117.177:3000/images/summary/box-background-top.png') 0 0 no-repeat;
+  background: url('https://appdev.61draw.com/dev_test/miniprogram/summary/box-background-top.png') 0 0 no-repeat;
   background-size: 100%;
 }
 .box-middle{
   width: 690rpx;
-  background: url('http://10.10.117.177:3000/images/summary/box-background-middle.png') 0 0 repeat-y;
+  background: url('https://appdev.61draw.com/dev_test/miniprogram/summary/box-background-middle.png') 0 0 repeat-y;
   background-size: 100%;
 }
 .box-bottom{
   width: 690rpx;
   height: 23rpx;
-  background: url('http://10.10.117.177:3000/images/summary/box-background-bottom.png') 0 0 no-repeat;
+  background: url('https://appdev.61draw.com/dev_test/miniprogram/summary/box-background-bottom.png') 0 0 no-repeat;
   background-size: 100%;
 }
   

@@ -1,7 +1,7 @@
 /* pages/collections/collections.wxss */
 .collection-root{
   width: 750rpx;
-  background: url('http://10.10.117.177:3000/images/collections/collection-background.png') 0 0 repeat-y;
+  background: url('https://appdev.61draw.com/dev_test/miniprogram/collections/collection-background.png') 0 0 repeat-y;
   background-size: 100%;
   position: relative;
   padding-bottom: 150rpx;
@@ -14,7 +14,7 @@
   color: #fa522e;
   font-weight: bold;
   text-shadow: 0 5rpx 5rpx #fa522e;
-  background: url('http://10.10.117.177:3000/images/collections/collection-top-background.png') 0 0 no-repeat;
+  background: url('https://appdev.61draw.com/dev_test/miniprogram/collections/collection-top-background.png') 0 0 no-repeat;
   background-size: 100%;
   position: relative;
 }
@@ -22,7 +22,7 @@
   content: '';
   width: 71rpx;
   height: 58rpx;
-  background: url('http://10.10.117.177:3000/images/collections/background-paper.png') 0 0 no-repeat;
+  background: url('https://appdev.61draw.com/dev_test/miniprogram/collections/background-paper.png') 0 0 no-repeat;
   background-size: 100%;
   position: absolute;
   left: 140rpx;
@@ -32,7 +32,7 @@
   content: '';
   width: 40rpx;
   height: 136rpx;
-  background: url('http://10.10.117.177:3000/images/collections/background-cloud.png') 0 0 no-repeat;
+  background: url('https://appdev.61draw.com/dev_test/miniprogram/collections/background-cloud.png') 0 0 no-repeat;
   background-size: 100%;
   position: absolute;
   right: 0;
@@ -45,7 +45,7 @@
 .share-btn{
   width: 382rpx;
   height: 80rpx;
-  background: url('http://10.10.117.177:3000/images/collections/share-btn.png') 0 0 no-repeat;
+  background: url('https://appdev.61draw.com/dev_test/miniprogram/collections/share-btn.png') 0 0 no-repeat;
   background-size: 100%;
   position: fixed;
   bottom: 56rpx;
@@ -65,7 +65,7 @@
 .left-bottom-grass{
   width: 70rpx;
   height: 59rpx;
-  background: url('http://10.10.117.177:3000/images/collections/left-bottom-grass.png') 0 0 no-repeat;
+  background: url('https://appdev.61draw.com/dev_test/miniprogram/collections/left-bottom-grass.png') 0 0 no-repeat;
   background-size: 100%;
   position: absolute;
   left: 0;
@@ -74,7 +74,7 @@
 .right-bottom-grass{
   width: 70rpx;
   height: 59rpx;
-  background: url('http://10.10.117.177:3000/images/collections/right-bottom-grass.png') 0 0 no-repeat;
+  background: url('https://appdev.61draw.com/dev_test/miniprogram/collections/right-bottom-grass.png') 0 0 no-repeat;
   background-size: 100%;
   position: absolute;
   right: 0;
@@ -88,7 +88,7 @@
   content: '';
   width: 618rpx;
   height: 2rpx;
-  background: url('http://10.10.117.177:3000/images/summary/dashed-line.png') center center no-repeat;
+  background: url('https://appdev.61draw.com/dev_test/miniprogram/summary/dashed-line.png') center center no-repeat;
   background-size: 100%;
   position: absolute;
   bottom: 0;
