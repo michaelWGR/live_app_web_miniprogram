@@ -10,7 +10,7 @@
 .submit-homework-title{
   width: 609rpx;
   height: 103rpx;
-  background: url('http://10.10.117.177:3000/images/summary/submit-homework-title.png') 0 0 no-repeat;
+  background: url('https://appdev.61draw.com/dev_test/miniprogram/submit-homework-title.png') 0 0 no-repeat;
   background-size: 100%;
   position: relative;
 }
@@ -54,7 +54,7 @@
   content: '';
   width: 34rpx;
   height: 8rpx;
-  background: url('http://10.10.117.177:3000/images/summary/tiaoke.png') 0 0 no-repeat;
+  background: url('https://appdev.61draw.com/dev_test/miniprogram/tiaoke.png') 0 0 no-repeat;
   background-size: 100%;
   position: absolute;
   left: -2rpx;
@@ -65,7 +65,7 @@
   content: '';
   width: 32rpx;
   height: 29rpx;
-  background: url('http://10.10.117.177:3000/images/summary/non-submit.png') 0 0 no-repeat;
+  background: url('https://appdev.61draw.com/dev_test/miniprogram/non-submit.png') 0 0 no-repeat;
   background-size: 100%;
   position: absolute;
   left: -2rpx;
@@ -76,7 +76,7 @@
   content: '';
   width: 32rpx;
   height: 29rpx;
-  background: url('http://10.10.117.177:3000/images/summary/half-submit.png') right center no-repeat;
+  background: url('https://appdev.61draw.com/dev_test/miniprogram/half-submit.png') right center no-repeat;
   background-size: contain;
   position: absolute;
   left: -2rpx;
@@ -87,7 +87,7 @@
   content: '';
   width: 32rpx;
   height: 29rpx;
-  background: url('http://10.10.117.177:3000/images/summary/perfect-submit.png') 0 0 no-repeat;
+  background: url('https://appdev.61draw.com/dev_test/miniprogram/perfect-submit.png') 0 0 no-repeat;
   background-size: 100%;
   position: absolute;
   left: -2rpx;
@@ -122,6 +122,12 @@
   justify-content: center;
   align-items: center;
 }
+.painting-name > view{
+  width: 68%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 .homework-item .painting-status{
   width: 100%;
   height: 50%;
@@ -132,25 +138,25 @@
 .tiaoke-icon{
   width: 34rpx;
   height: 8rpx;
-  background: url('http://10.10.117.177:3000/images/summary/tiaoke.png') 0 0 no-repeat;
+  background: url('https://appdev.61draw.com/dev_test/miniprogram/tiaoke.png') 0 0 no-repeat;
   background-size: 100%;
 }
 .non-submit-icon{
   width: 32rpx;
   height: 29rpx;
-  background: url('http://10.10.117.177:3000/images/summary/non-submit.png') 0 0 no-repeat;
+  background: url('https://appdev.61draw.com/dev_test/miniprogram/non-submit.png') 0 0 no-repeat;
   background-size: 100%;
 }
 .half-submit-icon{
   width: 32rpx;
   height: 29rpx;
-  background: url('http://10.10.117.177:3000/images/summary/half-submit.png') center center no-repeat;
+  background: url('https://appdev.61draw.com/dev_test/miniprogram/half-submit.png') center center no-repeat;
   background-size: contain;
 }
 .perfect-submit-icon{
   width: 32rpx;
   height: 29rpx;
-  background: url('http://10.10.117.177:3000/images/summary/perfect-submit.png') 0 0 no-repeat;
+  background: url('https://appdev.61draw.com/dev_test/miniprogram/perfect-submit.png') 0 0 no-repeat;
   background-size: 100%;
 }
 .homework-bottom{
@@ -169,13 +175,14 @@
   padding: 20rpx 20rpx;
   border-radius: 20rpx 20rpx;
   position: relative;
+  box-shadow: 0 0 20rpx rgba(255, 164 , 42, 0.2) inset;
 }
 .teacher-comment::after{
   content: '';
   width: 0;
   height: 0;
   border: 15rpx solid transparent;
-  border-left: 15rpx solid #fff0cd;
+  border-left: 15rpx solid rgba(255, 164 , 42, 0.2);
   position: absolute;
   top: 30rpx;
   right: -28rpx;
@@ -191,7 +198,7 @@
 .grass-1{
   width: 75rpx;
   height: 80rpx;
-  background: url('http://10.10.117.177:3000/images/summary/grass-2.png') 0 0 no-repeat;
+  background: url('https://appdev.61draw.com/dev_test/miniprogram/grass-2.png') 0 0 no-repeat;
   background-size: 100%;
   position: absolute;
   bottom: 70rpx;
@@ -200,7 +207,7 @@
 .grass-2{
   width: 102rpx;
   height: 75rpx;
-  background: url('http://10.10.117.177:3000/images/summary/grass-1.png') 0 0 no-repeat;
+  background: url('https://appdev.61draw.com/dev_test/miniprogram/summary-assess-left.png') 0 0 no-repeat;
   background-size: 100%;
   position: absolute;
   bottom: 65rpx;

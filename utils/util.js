@@ -6,17 +6,32 @@ const BASE_URL = "http://10.60.7.252:8998"  //本地测试地址
 const IMG_BASEURL = "https://appdev.61draw.com/dev_test/miniprogram/"  //测试线图片地址
 // const IMG_BASEURL = "http://appminip.61draw.com/res/images/"; //正式线图片地址
 
-/**时间格式转换 */
-const formatTime = timeStamp => {
-  var date = new Date(timeStamp);
+/**
+ * 时间格式转换
+ * flat:分隔字符串，默认以中文分隔
+ * zeroize: 是否补零
+ *  */
+const formatTime = (timeStamp, flag='ch', zeroize=false) => {
+  var date = new Date(Number(timeStamp));
   const year = date.getFullYear();
-  const month = date.getMonth() + 1;
-  const day = date.getDate();
-  const hour = date.getHours();
-  const minute = date.getMinutes();
-  const second = date.getSeconds();
+  let month = date.getMonth() + 1;
+  let day = date.getDate();
+  let hour = date.getHours();
+  let minute = date.getMinutes();
+  let second = date.getSeconds();
+  if(zeroize){
+    month = month < 10 ? month + 1 : month
+    day = day < 10 ? day + 1 : day
+    hour = hour < 10 ? hour + 1 : hour
+    minute = minute < 10 ? minute + 1 : minute
+    minute = minute < 10 ? minute + 1 : minute
+  }
+  if(flag === 'ch') {
+    return `${year}年${month}月${day}日`;
+  }else{
+    return year + flag + month + flag + day
+  }
   
-  return `${year}年${month}月${day}日`;
 
   //精确到秒
   // return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')

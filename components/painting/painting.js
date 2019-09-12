@@ -5,13 +5,9 @@ Component({
    * 组件的属性列表
    */
   properties: {
-    previousMargin: {
-      type: String,
-      value: ''
-    },
-    nextMargin: {
-      type: String,
-      value: ''
+    homeworkData: {
+      type: Object,
+      value: {}
     }
   },
 
@@ -21,10 +17,6 @@ Component({
   data: {
     currIndex: 0,
     mockData: [{
-        img: util.img_baseUrl + 'painting.png'
-    },{
-        img: util.img_baseUrl + 'painting.png'
-    },{
         img: util.img_baseUrl + 'painting.png'
     }],
     descriptions: [1, 2]

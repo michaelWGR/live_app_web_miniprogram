@@ -5,9 +5,13 @@
   <assess levelStage="{{levelStage}}" userId="{{userId}}"></assess>
   <comment></comment>
   <submitHomework></submitHomework>
-  <studentPaintings></studentPaintings>
-  <shine></shine>
+  <studentPaintings user-id="111" level="222" stage="333"></studentPaintings>
+  <shine user-id="111" level="222" stage="333"></shine>
   <certificate></certificate>
+  <view class="bottom-text">
+    <view>让每个孩子都有一双发现美的眼睛</view>
+    <view>Let each child have the ability to feel beauty</view>
+  </view>
   <view class="welcome-pop-wrap" wx:if="{{isShowWelcome}}" catchtouchmove='true'>
     <image class="welcome-pop" mode="widthFix" src="{{imageUrl.welcome}}"></image>
   </view>

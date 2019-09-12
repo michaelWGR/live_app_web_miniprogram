@@ -10,7 +10,7 @@
 .student-painting-title{
   width: 447rpx;
   height: 100rpx;
-  background: url('http://10.10.117.177:3000/images/summary/student-painting-title.png') 0 0 no-repeat;
+  background: url('https://appdev.61draw.com/dev_test/miniprogram/student-painting-title.png') 0 0 no-repeat;
   background-size: 100%;
   position: relative;
 }
@@ -30,7 +30,7 @@
   content: '';
   width: 618rpx;
   height: 2rpx;
-  background: url('http://10.10.117.177:3000/images/summary/dashed-line.png') center center no-repeat;
+  background: url('https://appdev.61draw.com/dev_test/miniprogram/dashed-line.png') center center no-repeat;
   background-size: 100%;
   position: absolute;
   bottom: 0;
@@ -72,7 +72,7 @@
   text-align: center;
   line-height: 80rpx;
   font-size: 30rpx;
-  background: url('http://10.10.117.177:3000/images/summary/like-btn.png') 0 0 no-repeat;
+  background: url('https://appdev.61draw.com/dev_test/miniprogram/like-btn.png') 0 0 no-repeat;
   background-size: 100%;
   margin: 0 auto;
 }
@@ -111,7 +111,7 @@
 .grass-1{
   width: 102rpx;
   height: 75rpx;
-  background: url('http://10.10.117.177:3000/images/summary/grass-1.png') 0 0 no-repeat;
+  background: url('https://appdev.61draw.com/dev_test/miniprogram/summary-assess-left.png') 0 0 no-repeat;
   background-size: 100%;
   position: absolute;
   bottom: 70rpx;
@@ -120,7 +120,7 @@
 .grass-2{
   width: 75rpx;
   height: 80rpx;
-  background: url('http://10.10.117.177:3000/images/summary/grass-2.png') 0 0 no-repeat;
+  background: url('https://appdev.61draw.com/dev_test/miniprogram/grass-2.png') 0 0 no-repeat;
   background-size: 100%;
   transform: rotateY(180deg);
   position: absolute;
