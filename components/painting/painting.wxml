@@ -1,19 +1,27 @@
 <!--components/painting/painting.wxml-->
 <view class="banner-root">
-  <view class="course-name">《神奇的线条》</view>
+  <view class="course-name">《{{homeworkData.courseName}}》</view>
   <view class="course-level">
-    <text>Level 1 state 1-第一节课</text>
+    <text>Level {{homeworkData.level}} stage {{homeworkData.stage}}-第一节课</text>
   </view>
-  <view class="submit-date">创作时间：<text>2019.08.05</text></view>
+  <view class="submit-date">创作时间：<text>{{homeworkData.submitTime}}</text></view>
   <view class="banner-box">
-    <swiper previous-margin="{{previousMargin}}" 
+    <view style="width:100%;height:100%;">
+      <view style="display:flex;justify-content:center;align-items:center;width:100%;height:100%;">
+        <view class="painting-frame active-painting-frame">
+          <image src="{{homeworkData.imgUrl}}" class="banner-img"></image>
+        </view>
+      </view>
+    </view>
+
+    <!-- <swiper previous-margin="{{previousMargin}}" 
       next-margin="{{nextMargin}}" 
       current="0" 
       duration="300"
       bindchange="onSwiperSlide" 
       style="width:100%;height:100%;">
       <block wx:for="{{mockData}}" wx:key="{{index}}">
-        <swiper-item>
+        <swiper-item style="display:flex;justify-content:center;align-items:center">
           <view class="{{currIndex === index ? 'painting-frame active-painting-frame' : 'painting-frame'}}">
             <image src="{{item.img}}" class="banner-img"></image>
           </view>
@@ -24,11 +32,11 @@
       <block wx:for="{{mockData}}" wx:key="{{index}}">
         <view class="{{currIndex === index ? 'dots-item active-dots-item' : 'dots-item'}}" ></view>
       </block>
-    </view>
+    </view> -->
   </view>
   <view class="homework-description">
-    <block wx:for="{{descriptions}}" wx:key="{{index}}">
-      <audioDescription />
+    <block wx:for="{{homeworkData.audioDescriptions}}" wx:key="{{index}}">
+      <audioDescription audioData="{{item}}"/>
     </block>
   </view>
 </view>

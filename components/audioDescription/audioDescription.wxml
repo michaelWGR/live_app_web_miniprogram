@@ -4,7 +4,7 @@
   <view class="audio-wrapper">
     <view class="{{isPlaying ? 'pause-btn' : 'play-btn'}}" bindtap="changeAudioState"></view>
     <view class="audio-wave"></view>
-    <view class="audio-duration">120</view>
+    <view class="audio-duration">{{duration}}</view>
   </view>
   <view class="student-avatar"></view>
 </view>

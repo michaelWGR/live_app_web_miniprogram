@@ -5,13 +5,9 @@ Component({
    * 组件的属性列表
    */
   properties: {
-    previousMargin: {
-      type: String,
-      value: ''
-    },
-    nextMargin: {
-      type: String,
-      value: ''
+    homeworkData: {
+      type: Object,
+      value: {}
     }
   },
 
