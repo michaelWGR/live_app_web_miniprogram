@@ -27,7 +27,6 @@ Page({
     })
     console.log(userId, level, stage)
     this.getHomeworkList(userId, level, stage).then(res => {
-      console.log(res)
       if(res.data.code === 200){
         const data = {...res.data.data}
         this.setData({

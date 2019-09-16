@@ -27,11 +27,21 @@ Component({
   data: {
     isShowLikeModal: false,
     isShowCloseAnimation: false,
-    praiseImg: util.img_baseUrl + 'praise.gif'
+    praiseImg: util.img_baseUrl + 'praise.gif',
+    homeworkList: []
   },
 
-  ready() {
-    
+  attached() {
+    this.getHomeworkList().then(res => {
+      if(res.data.code === 200) {
+        const data = {...res.data.data}
+        const level = Number(this.properties.level)
+        const stage = Number(this.properties.stage)
+        this.setData({
+          homeworkList: this.getDeriveHomeworkList(data, level, stage)
+        })
+      }
+    })
   },
 
   /**
@@ -67,6 +77,30 @@ Component({
         stage: Number(this.properties.stage)
       }
       request.post('/v1/report/reportPraise', data, token)
+    },
+
+    getHomeworkList: function() {
+      const params = {
+        userId: Number(this.properties.userId),
+        level: Number(this.properties.level),
+        stage: Number(this.properties.stage)
+      }
+      return request.get('/v1/report/getHomeworks', params, app.globalData.access_token)
+    },
+
+    getDeriveHomeworkList(data, level, stage) {
+      let homeworkList = data.map(item => {
+        return {
+          courseName: item.homework.courseName,
+          level: level,
+          stage: stage,
+          imgUrl: item.comment.beautifiedImage.urlHost + item.comment.beautifiedImage.urlPath,
+          audioDescriptions: item.homework.audioResources.map(audio => (audio.urlHost + audio.urlPath)),
+          submitTime: util.formatTime(item.homework.submitTime, '.', true)
+        }
+      })
+      // 最多显示2个作业
+      return homeworkList.length > 2 ? homeworkList.slice(0, 2) : homeworkList
     }
   }
 })

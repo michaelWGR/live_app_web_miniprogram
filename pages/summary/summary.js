@@ -16,8 +16,8 @@ Page({
       nickname: '---'
     },
     levelStage: {
-      level: '-',
-      stage: '-'
+      level: '',
+      stage: ''
     },
     isShowWelcome: true,
     userId: '',
@@ -58,12 +58,14 @@ Page({
       console.log('token: ' + app.globalData.access_token)
       _this.getUserInfo(userId, app.globalData.access_token)
       _this.getLevelStage(userId, app.globalData.access_token)
+      _this.getTrophyNum(app.globalData.access_token)
     } else {
       app.tokenCallback = (token) => {
         if (token && token != '') {
           console.log('token: ' + token)
           _this.getUserInfo(userId, token)
           _this.getLevelStage(userId, token)
+          _this.getTrophyNum(token)
         }
       }
     }
@@ -142,8 +144,8 @@ Page({
   },
 
   //获取奖杯总数
-  getTrophyNum() {
-    summaryApi.getTrophyNum(app.globalData.access_token).then(res => {
+  getTrophyNum(token) {
+    summaryApi.getTrophyNum(token).then(res => {
       if(res.data.code === 200) {
         this.setData({
           trophyNum: data

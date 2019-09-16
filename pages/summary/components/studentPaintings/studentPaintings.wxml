@@ -2,8 +2,11 @@
 <view class="student-painting-root">
   <view class="student-painting-title"><text class="student-painting-title-text">宝贝画作展示</text></view>
   <gridBox>
-    <view class="paiting-wrapper paiting-wrapper-not-last"><painting /></view>
-    <view class="paiting-wrapper paiting-wrapper-not-first"><painting /></view>
+    <block wx:for="{{homeworkList}}" wx:key="{{index}}">
+      <view class="{{index < homeworkList.length-1 ? 'paiting-wrapper paiting-wrapper-not-last' : 'paiting-wrapper paiting-wrapper-not-first'}}">
+        <painting homeworkData="{{item}}"/>
+      </view>
+    </block>
     <view class="find-more-paintings">
       <text class="find-more-paintings-text" bindtap="goToCollections">查看宝贝更多画作</text>
     </view>
