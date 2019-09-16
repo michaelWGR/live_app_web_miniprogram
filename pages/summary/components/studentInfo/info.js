@@ -18,13 +18,7 @@ Component({
     },
     levelStage: {
       type: Object,
-      value: { level: '-', stage: '-' },
-      observer: function (newVal, oldVal) {
-        if (newVal.level !== oldVal.level) {
-          this.getCommitClassTime(newVal)
-          this.getAccumulativeTime(newVal)
-        }
-      }
+      value: { level: '-', stage: '-' }
     }
   },
 
@@ -46,6 +40,11 @@ Component({
     }
   },
 
+  attached: function () {
+    this.getCommitClassTime()
+    this.getAccumulativeTime()
+  },
+
   /**
    * 组件的方法列表
    */
@@ -55,8 +54,8 @@ Component({
       const _this = this
       const data = {
         userId: this.properties.userId,
-        level: option.level,
-        stage: option.stage
+        level: this.properties.levelStage.level,
+        stage: this.properties.levelStage.stage
       }
       summaryApi.getCommitClassTime(data, app.globalData.access_token)
         .then(res => {
