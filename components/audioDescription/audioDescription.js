@@ -1,12 +1,12 @@
 // pages/summary/components/audioDescription/audioDescription.js
-let innerAudioContext = null
+// let innerAudioContext = null
 Component({
   /**
    * 组件的属性列表
    */
   properties: {
     audioData: {
-      type: String,
+      type: Object,
       value: {}
     }
   },
@@ -16,7 +16,8 @@ Component({
    */
   data: {
     isPlaying: false,
-    duration: 0
+    duration: 0,
+    innerAudioContext: null
   },
 
   /**
@@ -38,20 +39,26 @@ Component({
       }
     },
 
-    bindAudioEvent() {
+    bindAudioEvent(innerAudioContext) {
       innerAudioContext.onPlay(() => {
         console.log('开始播放')
       })
 
       innerAudioContext.onTimeUpdate(e => {
-        console.log('播放进度更新',e)
+        console.log('播放进度更新', innerAudioContext.currentTime)
+        audioInterval = setInterval(() => {
+          this.setData({
+            duration: Math.ceil(innerAudioContext.currentTime)
+          })
+        }, 1000)
       })
 
       innerAudioContext.onEnded(() => {
         innerAudioContext.stop()
+        clearInterval(audioInterval)
         this.setData({
           isPlaying: false,
-          duration: innerAudioContext.duration
+          duration: this.properties.audioData.duration
         })
       })
 
@@ -71,18 +78,20 @@ Component({
   },
 
   attached: function() {
-    innerAudioContext = wx.createInnerAudioContext()
-    innerAudioContext.src = this.properties.audioData
+    const innerAudioContext = wx.createInnerAudioContext()
+    innerAudioContext.src = this.properties.audioData.url
     this.setData({
-      duration: innerAudioContext.duration
+      innerAudioContext,
+      duration: this.properties.audioData.duration
+    }, () => {
+      this.bindAudioEvent(this.data.innerAudioContext)
     })
-    this.bindAudioEvent()
   },
 
   detached: function() {
-    innerAudioContext.offPlay()
-    innerAudioContext.offTimeUpdate()
-    innerAudioContext.offWaiting()
-    innerAudioContext.offCanplay()
+    this.data.innerAudioContext.offPlay()
+    this.data.innerAudioContext.offTimeUpdate()
+    this.data.innerAudioContext.offWaiting()
+    this.data.innerAudioContext.offCanplay()
   },
 })

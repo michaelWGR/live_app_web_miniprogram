@@ -30,4 +30,8 @@ Component({
     }
   },
 
+  attached: function() {
+    console.log('painting', this.properties.homeworkData)
+  }
+
 })

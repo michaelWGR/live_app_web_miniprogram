@@ -8,15 +8,15 @@ Component({
    */
   properties: {
     userId: {
-      type: String,
+      type: Number,
       value: ''
     },
     level: {
-      type: String,
+      type: Number,
       value: ''
     },
     stage: {
-      type: String,
+      type: Number,
       value: ''
     },
     trophyNum: {
@@ -76,7 +76,12 @@ Component({
     },
     getEventData: function() {
       const token = app.globalData.access_token
-      return request.get('/v1/report/getSpecialEvent', {}, token)
+      const params = {
+        userId: this.properties.userId,
+        level: this.properties.level,
+        stage: this.properties.stage
+      }
+      return request.get('/v1/report/getSpecialEvent', params, token)
     },
     getDeriveEventData: function(data) {
       const keys = Object.keys(data)
