@@ -2,7 +2,7 @@
 <view class="banner-root">
   <view class="course-name">《{{homeworkData.courseName}}》</view>
   <view class="course-level">
-    <text>Level {{homeworkData.level}} stage {{homeworkData.stage}}-第一节课</text>
+    <text>Level {{homeworkData.level}} stage {{homeworkData.stage}}-第{{homeworkData.courseOrder}}节课</text>
   </view>
   <view class="submit-date">创作时间：<text>{{homeworkData.submitTime}}</text></view>
   <view class="banner-box">

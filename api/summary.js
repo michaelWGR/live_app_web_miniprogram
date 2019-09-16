@@ -42,8 +42,8 @@ const teacherPraise = (params, token) => {
 }
 
 /** 获取奖杯总数*/
-const getTrophyNum = token => {
-  return request.get('/v1/report/getTrophyNum', token);
+const getTrophyNum = (params, token) => {
+  return request.get('/v1/report/getTrophyNum', params, token);
 }
 
 module.exports = {

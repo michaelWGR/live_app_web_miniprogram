@@ -2,7 +2,7 @@
 const app = getApp();
 const util = require('./../../utils/util.js');
 const summaryApi = require('../../api/summary.js');
-
+let scrollRatio = 0
 Page({
 
   /**
@@ -13,7 +13,7 @@ Page({
       welcome: util.img_baseUrl + 'summary-welcome.gif'
     },
     userInfo: {
-      nickname: '---'
+      nickname: ''
     },
     levelStage: {
       level: '',
@@ -21,25 +21,52 @@ Page({
     },
     isShowWelcome: true,
     userId: '',
-    trophyNum: 100
+    trophyNum: 100,
+    pageHeight: 0,
+    hasGetToken: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    const userId = { userId: options.userId ? options.userId : '' }
+    // const userId =  options.userId
+    // const levelStage = {
+    //   level: options.level,
+    //   stage: options.stage
+    // }
+    const userId = 306990
+    const levelStage = {
+      level: 1,
+      stage: 1
+    }
     this.setData({
-      userId: userId.userId
+      userId,
+      levelStage
     })
-    this.initToken(userId)
+    this.initToken(userId, levelStage)
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
+    util.getPageHeight({id: '#summary', page: this}).then(res => {
+      this.setData({
+        pageHeight: res 
+      })
+    })
     this.initWelcome()
+  },
+
+  onHide: function() {
+    // 滑动距离埋点
+    console.log(scrollRatio)
+  },
+
+  onUnload: function() {
+    // 滑动距离埋点
+    console.log(scrollRatio)
   },
 
   /**
@@ -51,21 +78,38 @@ Page({
     }
   },
 
+  /**
+   * 页面滚动的处理函数
+   */
+  onPageScroll: function(e) {
+    scrollRatio = Math.ceil((e.scrollTop / this.data.pageHeight)*100)
+    // console.log(Math.ceil((e.scrollTop / this.data.pageHeight)*100))
+  },
+
   // 判断是否存在token
-  initToken(userId) {
+  initToken(userId, levelStage) {
     const _this = this;
+    const params = {
+      userId: userId,
+      level: levelStage.level,
+      stage: levelStage.stage
+    }
     if (app.globalData.access_token && app.globalData.access_token != '') {
       console.log('token: ' + app.globalData.access_token)
       _this.getUserInfo(userId, app.globalData.access_token)
-      _this.getLevelStage(userId, app.globalData.access_token)
-      _this.getTrophyNum(app.globalData.access_token)
+      _this.getTrophyNum(params, app.globalData.access_token)
+      _this.setData({
+        hasGetToken: true
+      })
     } else {
       app.tokenCallback = (token) => {
         if (token && token != '') {
           console.log('token: ' + token)
           _this.getUserInfo(userId, token)
-          _this.getLevelStage(userId, token)
-          _this.getTrophyNum(token)
+          _this.getTrophyNum(params, token)
+          _this.setData({
+            hasGetToken: true
+          })
         }
       }
     }
@@ -84,7 +128,7 @@ Page({
   // 获取用户信息 
   getUserInfo(userId, token) {
     const _this = this
-    summaryApi.getUserInfo(userId, token)
+    summaryApi.getUserInfo({userId: userId}, token)
       .then(res => {
         if (res.data.code == 0) {
           _this.setData({
@@ -112,43 +156,12 @@ Page({
       })
   },
 
-  // 获取课程阶段
-  getLevelStage(userId, token) {
-    const _this = this
-    summaryApi.getLevelStage(userId, token)
-      .then(res => {
-        if (res.data.code == 0) {
-          _this.setData({
-            levelStage: res.data.data
-          })
-        } else {
-          wx.showToast({
-            title: '服务器错误',
-            icon: 'none',
-            duration: 3000,
-            complete: function () {
-              console.log(res.data.msg);
-            }
-          })
-        }
-      }).catch(error => {
-        wx.showToast({
-          title: '网络错误',
-          icon: 'none',
-          duration: 3000,
-          complete: function () {
-            console.log(error)
-          }
-        })
-      })
-  },
-
   //获取奖杯总数
-  getTrophyNum(token) {
-    summaryApi.getTrophyNum(token).then(res => {
+  getTrophyNum(params, token) {
+    summaryApi.getTrophyNum(params, token).then(res => {
       if(res.data.code === 200) {
         this.setData({
-          trophyNum: data
+          trophyNum: res.data.data
         })
       }
     })

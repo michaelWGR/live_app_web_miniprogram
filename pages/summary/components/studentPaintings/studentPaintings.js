@@ -31,10 +31,10 @@ Component({
     homeworkList: []
   },
 
-  attached() {
+  attached: function() {
     this.getHomeworkList().then(res => {
       if(res.data.code === 200) {
-        const data = {...res.data.data}
+        const data = res.data.data
         const level = Number(this.properties.level)
         const stage = Number(this.properties.stage)
         this.setData({
@@ -91,12 +91,13 @@ Component({
     getDeriveHomeworkList(data, level, stage) {
       let homeworkList = data.map(item => {
         return {
-          courseName: item.homework.courseName,
+          courseName: item.homeworkCommentForShareDTO.homework.courseName,
           level: level,
           stage: stage,
-          imgUrl: item.comment.beautifiedImage.urlHost + item.comment.beautifiedImage.urlPath,
-          audioDescriptions: item.homework.audioResources.map(audio => (audio.urlHost + audio.urlPath)),
-          submitTime: util.formatTime(item.homework.submitTime, '.', true)
+          imgUrl: item.homeworkCommentForShareDTO.comment.beautifiedImage.urlHost + item.homeworkCommentForShareDTO.comment.beautifiedImage.urlPath,
+          audioDescriptions: item.homeworkCommentForShareDTO.homework.audioResources.map(audio => ({url: audio.urlHost + audio.urlPath, duration: audio.mediaLength})),
+          submitTime: util.formatTime(item.homeworkCommentForShareDTO.homework.submitTime, '.', true),
+          courseOrder: item.sortCourse
         }
       })
       // 最多显示2个作业

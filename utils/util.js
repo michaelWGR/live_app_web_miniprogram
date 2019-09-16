@@ -84,6 +84,26 @@ export const getIntersection = (arr1, arr2) => {
   return res;
 }
 
+/**
+ * @description 获取页面高度
+ * @param id {String} 页面id
+ * @param this {Object} 页面this
+ * @returns {Array}
+ */
+
+ const getPageHeight = ({id, page}) => {
+   return new Promise((resolve, reject) => {
+    let systemInfo = wx.getSystemInfoSync();
+    const query =  page.createSelectorQuery()
+    query.select(id).boundingClientRect()
+    query.exec(res => {
+      console.log(systemInfo,res[0].top,res[0].bottom)
+      resolve(res[0].height - systemInfo.windowHeight)
+    })
+   })
+  
+ }
+
 
 
 module.exports = {
@@ -91,6 +111,7 @@ module.exports = {
   img_baseUrl: IMG_BASEURL,
   formatTime: formatTime,
   secondToMin: secondToMin,
-  qs: qs
+  qs: qs,
+  getPageHeight: getPageHeight
 }
 
