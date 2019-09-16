@@ -99,12 +99,13 @@ Page({
   getDeriveHomeworkList(data, level, stage) {
     let homeworkList = data.map(item => {
       return {
-        courseName: item.homework.courseName,
+        courseName: item.homeworkCommentForShareDTO.homework.courseName,
         level: level,
         stage: stage,
-        imgUrl: item.comment.beautifiedImage.urlHost + item.comment.beautifiedImage.urlPath,
-        audioDescriptions: item.homework.audioResources.map(audio => (audio.urlHost + audio.urlPath)),
-        submitTime: util.formatTime(item.homework.submitTime, '.', true)
+        imgUrl: item.homeworkCommentForShareDTO.comment.beautifiedImage.urlHost + item.homeworkCommentForShareDTO.comment.beautifiedImage.urlPath,
+        audioDescriptions: item.homeworkCommentForShareDTO.homework.audioResources.map(audio => (audio.urlHost + audio.urlPath)),
+        submitTime: util.formatTime(item.homeworkCommentForShareDTO.homework.submitTime, '.', true),
+        courseOrder: item.sortCourse
       }
     })
     return homeworkList
