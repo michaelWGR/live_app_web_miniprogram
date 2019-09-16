@@ -1,5 +1,5 @@
 <!--pages/collections/collections.wxml-->
-<view class="collection-root">
+<view class="collection-root" id="collections">
   <view class="page-title">作品集</view>
   <view class="paintings-wrapper">
     <block wx:for="{{homeworkList}}" wx:key="{{index}}">

@@ -16,9 +16,6 @@ Component({
    */
   data: {
     currIndex: 0,
-    mockData: [{
-        img: util.img_baseUrl + 'painting.png'
-    }],
     descriptions: [1, 2]
   },
 

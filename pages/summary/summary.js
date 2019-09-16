@@ -2,7 +2,7 @@
 const app = getApp();
 const util = require('./../../utils/util.js');
 const summaryApi = require('../../api/summary.js');
-
+let scrollRatio = 0
 Page({
 
   /**
@@ -21,7 +21,8 @@ Page({
     },
     isShowWelcome: true,
     userId: '',
-    trophyNum: 100
+    trophyNum: 100,
+    pageHeight: 0
   },
 
   /**
@@ -39,7 +40,22 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
+    util.getPageHeight({id: '#summary', page: this}).then(res => {
+      this.setData({
+        pageHeight: res 
+      })
+    })
     this.initWelcome()
+  },
+
+  onHide: function() {
+    // 滑动距离埋点
+    console.log(scrollRatio)
+  },
+
+  onUnload: function() {
+    // 滑动距离埋点
+    console.log(scrollRatio)
   },
 
   /**
@@ -49,6 +65,14 @@ Page({
     return {
       title: this.data.userInfo.nickname + '《Level ' + this.data.levelStage.level + ' stage ' + this.data.levelStage.stage + '》的画啦啦艺术成长报告'
     }
+  },
+
+  /**
+   * 页面滚动的处理函数
+   */
+  onPageScroll: function(e) {
+    scrollRatio = Math.ceil((e.scrollTop / this.data.pageHeight)*100)
+    // console.log(Math.ceil((e.scrollTop / this.data.pageHeight)*100))
   },
 
   // 判断是否存在token

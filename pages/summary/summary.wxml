@@ -1,4 +1,4 @@
-<view class="summary">
+<view class="summary" id="summary">
   <studentInfo userInfo="{{userInfo}}" levelStage="{{levelStage}}" userId="{{userId}}"></studentInfo>
   <stage levelStage="{{levelStage}}" userId="{{userId}}"></stage>
   <promote levelStage="{{levelStage}}" userId="{{userId}}"></promote>

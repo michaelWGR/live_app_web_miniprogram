@@ -2,6 +2,7 @@
 const request = require('../../utils/request.js');
 const util = require('./../../utils/util');
 const app = getApp();
+let collectionScrollRatio = 0
 Page({
 
   /**
@@ -12,7 +13,8 @@ Page({
     level: 0,
     stage: 0,
     studentName: '',
-    homeworkList: []
+    homeworkList: [],
+    pageHeight: 0
   },
 
   /**
@@ -53,14 +55,28 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    util.getPageHeight({id: '#collections', page: this}).then(res => {
+      this.setData({
+        pageHeight: res 
+      })
+    })
   },
 
   /**
-   * 页面上拉触底事件的处理函数
+   * 页面滚动的处理函数
    */
-  onReachBottom: function () {
+  onPageScroll: function(e) {
+    collectionScrollRatio = Math.ceil((e.scrollTop / this.data.pageHeight)*100)
+  },
 
+  onHide: function() {
+    // 滑动距离埋点
+    console.log(scrollRatio)
+  },
+
+  onUnload: function() {
+    // 滑动距离埋点
+    console.log(scrollRatio)
   },
 
   /**
