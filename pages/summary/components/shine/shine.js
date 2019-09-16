@@ -18,6 +18,14 @@ Component({
     stage: {
       type: String,
       value: ''
+    },
+    trophyNum: {
+      type: Number,
+      value: 0
+    },
+    nickname: {
+      type: String,
+      value: ''
     }
   },
 

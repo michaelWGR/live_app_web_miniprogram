@@ -1,9 +1,9 @@
 <!--pages/summary/components/submitHomework/submitHomework.wxml-->
-<view class="submit-homework">
-  <view class="submit-homework-title"><text class="submit-homework-title-text">Level 1 state 2 画作提交</text></view>
+<view class="submit-homework" wx:if="{{homeworkCommitNum + homeworkNoCommitNum > 0}}">
+  <view class="submit-homework-title"><text class="submit-homework-title-text">Level {{level}} stage {{stage}} 画作提交</text></view>
   <gridBox>
     <view class="submit-homework-content">
-      <view class="ratio">9 / 11</view>
+      <view class="ratio">{{homeworkCommitNum}} / {{homeworkCommitNum + homeworkNoCommitNum}}</view>
       <view class="ratio-text">提交画作数/本阶段作业总数</view>
 
       <view class="legend">
@@ -16,12 +16,12 @@
       <view class="homework-list">
         <block wx:for="{{homeworkList}}" wx:key="{{index}}">
           <view class="homework-item">
-            <view class="painting-name">《<view>{{item.name}}</view>》</view>
+            <view class="painting-name">《<view>{{item.courseName}}</view>》</view>
             <view class="painting-status">
-              <view wx:if="{{item.status === 0}}" class="tiaoke-icon"></view>
-              <view wx:elif="{{item.status === 1}}" class="non-submit-icon"></view>
-              <view wx:elif="{{item.status === 2}}" class="half-submit-icon"></view>
-              <view wx:else="{{item.status === 3}}" class="perfect-submit-icon"></view>
+              <view wx:if="{{item.flag === 0}}" class="tiaoke-icon"></view>
+              <view wx:elif="{{item.flag === 1}}" class="non-submit-icon"></view>
+              <view wx:elif="{{item.flag === 2}}" class="half-submit-icon"></view>
+              <view wx:else="{{item.flag === 3}}" class="perfect-submit-icon"></view>
             </view>
           </view>
         </block>

@@ -20,7 +20,8 @@ Page({
       stage: '-'
     },
     isShowWelcome: true,
-    userId: ''
+    userId: '',
+    trophyNum: 100
   },
 
   /**
@@ -138,5 +139,16 @@ Page({
           }
         })
       })
+  },
+
+  //获取奖杯总数
+  getTrophyNum() {
+    summaryApi.getTrophyNum(app.globalData.access_token).then(res => {
+      if(res.data.code === 200) {
+        this.setData({
+          trophyNum: data
+        })
+      }
+    })
   }
 })

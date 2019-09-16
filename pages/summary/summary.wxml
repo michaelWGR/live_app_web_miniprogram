@@ -4,10 +4,12 @@
   <promote levelStage="{{levelStage}}" userId="{{userId}}"></promote>
   <assess levelStage="{{levelStage}}" userId="{{userId}}"></assess>
   <comment></comment>
-  <submitHomework></submitHomework>
-  <studentPaintings user-id="111" level="222" stage="333"></studentPaintings>
-  <shine user-id="111" level="222" stage="333"></shine>
-  <certificate></certificate>
+  <submitHomework user-id="{{userId}}" level="{{levelStage.level}}" stage="{{levelStage.stage}}"></submitHomework>
+  <studentPaintings user-id="{{userId}}" level="{{levelStage.level}}" stage="{{levelStage.stage}}"></studentPaintings>
+  <block wx:if="{{trophyNum > 0}}">
+    <shine user-id="{{userId}}" level="{{levelStage.level}}" stage="{{levelStage.stage}}" trophy-num="{{trophyNum}}" nickname="{{userInfo.nickname}}"></shine>
+  </block>
+  <certificate nickname="{{userInfo.nickname}}" level-stage="{{levelStage}}" user-id="{{userId}}"></certificate>
   <view class="bottom-text">
     <view>让每个孩子都有一双发现美的眼睛</view>
     <view>Let each child have the ability to feel beauty</view>

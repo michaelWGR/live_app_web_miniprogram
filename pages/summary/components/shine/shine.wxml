@@ -4,11 +4,11 @@
   <gridBox>
     <view class="shine-content">
       <view class="shine-top">
-        <text class="shine-top-red">孔维浩</text>宝贝，课堂上积极表达自己的ideas，共获得<text class="shine-top-red">28</text>个奖杯！
+        <text class="shine-top-red">{{nickname}}</text>宝贝，课堂上积极表达自己的ideas，共获得<text class="shine-top-red">{{trophyNum}}</text>个奖杯！
       </view>
       <view class="shine-middle">
         <view class="trophy"></view>
-        <view class="shine-middle-text">28</view>
+        <view class="shine-middle-text">{{trophyNum}}</view>
       </view>
       <view class="shine-swiper">
         <swiper previous-margin="30rpx" 
