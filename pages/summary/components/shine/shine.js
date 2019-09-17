@@ -85,12 +85,19 @@ Component({
     },
     getDeriveEventData: function(data) {
       const keys = Object.keys(data)
-      const derivedEventData = { ...data }
-      const hours = data.shortHomeworkCommitTimeDTO.commitTime / 3600000 
-      const minutes = (data.shortHomeworkCommitTimeDTO.commitTime % 3600000)/60000
-      derivedEventData.shortHomeworkCommitTimeDTO.commitTime = `${hours >= 1 ? (hours + '小时') : ''}${minutes >= 1 ? (minutes + '分钟') : ''}`
+      const eventNumFlag = []
+      const derivedEventData = { ...data, eventNumFlag}
+      if(data.shortHomeworkCommitTimeDTO){
+        const hours = data.shortHomeworkCommitTimeDTO.commitTime / 3600000 
+        const minutes = (data.shortHomeworkCommitTimeDTO.commitTime % 3600000)/60000
+        derivedEventData.shortHomeworkCommitTimeDTO.commitTime = `${hours >= 1 ? (hours + '小时') : ''}${minutes >= 1 ? (minutes + '分钟') : ''}`
+      }
+      
       keys.forEach(key => {
-        derivedEventData[key].time = util.formatTime(data[key])
+        if(derivedEventData[key]){
+          derivedEventData.eventNumFlag.push(1)
+          derivedEventData[key].time = util.formatTime(data[key])
+        }
       })
       return derivedEventData
     }
