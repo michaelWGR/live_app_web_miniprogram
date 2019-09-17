@@ -76,10 +76,7 @@ Component({
       const userId = this.properties.userId
       const level = this.properties.level
       const stage = this.properties.stage
-      const data = {
-        scene: `${userId}&${level}&${stage}`
-      }
-      const params = util.qs(data)
+      const params = `?scene=${userId}&${level}&${stage}`
       request.post('/v1/report/reportPraise' + params, token)
     },
 
@@ -89,10 +86,8 @@ Component({
         level: Number(this.properties.level),
         stage: Number(this.properties.stage)
       }
-      const params = {
-        scene: `${data.userId}&${data.level}&${data.stage}`
-      }
-      return request.get('/v1/report/getHomeworks', params, app.globalData.access_token)
+      const params = `?scene=${data.userId}&${data.level}&${data.stage}`
+      return request.get('/v1/report/getHomeworks' + params, app.globalData.access_token)
     },
 
     getDeriveHomeworkList(data, level, stage) {

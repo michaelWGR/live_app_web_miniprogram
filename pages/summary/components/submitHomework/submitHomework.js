@@ -42,10 +42,8 @@ Component({
         level: Number(this.properties.level),
         stage: Number(this.properties.stage)
       }
-      const params = {
-        scene: `${data.userId}&${data.level}&${data.stage}`
-      }
-      request.get('/v1/report/getHomeworkMessageByLevelStage', params, token).then(res => {
+      const params = `?scene=${data.userId}&${data.level}&${data.stage}`
+      request.get('/v1/report/getHomeworkMessageByLevelStage' + params, token).then(res => {
         if(res.data.code === 200) {
           const homework = res.data.data
           const allHomeworkNum = homework.homeworkCommitNum + homework.homeworkNoCommitNum

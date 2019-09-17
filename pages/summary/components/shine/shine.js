@@ -72,19 +72,18 @@ Component({
         level: Number(this.properties.level),
         stage: Number(this.properties.stage)
       }
-      const params = {
-        scene: `${data.userId}&${data.level}&${data.stage}`
-      }
-      request.post('/v1/report/reportPraise', params, token)
+      const params = `?scene=${data.userId}&${data.level}&${data.stage}`
+      request.post('/v1/report/reportPraise' + params, token)
     },
     getEventData: function() {
       const token = app.globalData.access_token
-      const params = {
+      const data = {
         userId: this.properties.userId,
         level: this.properties.level,
         stage: this.properties.stage
       }
-      return request.get('/v1/report/getSpecialEvent', params, token)
+      const params = `?scene=${data.userId}&${data.level}&${data.stage}`
+      return request.get('/v1/report/getSpecialEvent' + params, token)
     },
     getDeriveEventData: function(data) {
       const keys = Object.keys(data)
