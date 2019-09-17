@@ -19,7 +19,7 @@
           circular="true">
 
           <block>
-            <swiper-item>
+            <swiper-item wx:if="{{eventData.shortHomeworkCommitTimeDTO}}">
               <view class="{{currIndex === index ? 'shine-record-paper active-shine-record-paper' : 'shine-record-paper'}}">
                 <view class="shine-record">
                   <!-- 提交作业耗时最短 -->
@@ -32,7 +32,7 @@
             </swiper-item>
 
             <!-- 作业描述语音最长 -->
-            <swiper-item>
+            <swiper-item wx:if="{{eventData.homeworkMostLongAudioDTO}}">
               <view class="{{currIndex === index ? 'shine-record-paper active-shine-record-paper' : 'shine-record-paper'}}">
                 <view class="shine-record">
                   <view><text class="red-font">{{eventData.homeworkMostLongAudioDTO.time}}</text>是个特殊的日子</view>
@@ -44,7 +44,7 @@
             </swiper-item>
 
             <!-- 最早进入直播间 -->
-            <swiper-item>
+            <swiper-item wx:if="{{eventData.mostAccessLiveRoomDTO}}">
               <view class="{{currIndex === index ? 'shine-record-paper active-shine-record-paper' : 'shine-record-paper'}}">
                 <view class="shine-record">
                   <view><text class="red-font">{{eventData.mostAccessLiveRoomDTO.time}}</text>是个特殊的日子</view>
@@ -56,7 +56,7 @@
             </swiper-item>
 
             <!-- 获取奖杯最多 -->
-            <swiper-item>
+            <swiper-item wx:if="{{eventData.mostTrophyDTO}}">
               <view class="{{currIndex === index ? 'shine-record-paper active-shine-record-paper' : 'shine-record-paper'}}">
                 <view class="shine-record">
                   <view><text class="red-font">{{eventData.mostTrophyDTO.time}}</text>是个特殊的日子</view>
@@ -71,7 +71,7 @@
         </swiper>
       </view>
       <view class="indicator-dots">
-        <block wx:for="{{[1,2,3,4]}}" wx:key="{{index}}">
+        <block wx:for="{{eventData.eventNumFlag}}" wx:key="{{index}}">
           <view class="{{currIndex === index ? 'dots-item active-dots-item' : 'dots-item'}}" ></view>
         </block>
       </view>
