@@ -19,7 +19,7 @@
     <studentPaintings user-id="{{userId}}" level="{{levelStage.level}}" stage="{{levelStage.stage}}"></studentPaintings>
   </block>
     
-  <block wx:if="{{userId && levelStage.level && hasGetToken}}">
+  <block wx:if="{{trophyNum > 0 && userId && levelStage.level && hasGetToken}}">
     <shine user-id="{{userId}}" level="{{levelStage.level}}" stage="{{levelStage.stage}}" trophy-num="{{trophyNum}}" nickname="{{userInfo.nickname}}"></shine>
   </block>
 
