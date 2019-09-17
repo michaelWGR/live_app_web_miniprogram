@@ -50,7 +50,7 @@ Component({
   methods: {
     goToCollections: function() {
       wx.navigateTo({
-        url: '../../pages/collections/collections?userId=123&level=1&stage=1',
+        url: `../../pages/collections/collections?userId=${this.properties.userId}&level=${this.properties.level}&stage=${this.properties.stage}`,
       })
     },
     onClickLike: function() {
@@ -76,7 +76,8 @@ Component({
         level: Number(this.properties.level),
         stage: Number(this.properties.stage)
       }
-      request.post('/v1/report/reportPraise', data, token)
+      const params = util.qs(data)
+      request.post('/v1/report/reportPraise' + params, token)
     },
 
     getHomeworkList: function() {
@@ -95,7 +96,11 @@ Component({
           level: level,
           stage: stage,
           imgUrl: item.homeworkCommentForShareDTO.comment.beautifiedImage.urlHost + item.homeworkCommentForShareDTO.comment.beautifiedImage.urlPath,
-          audioDescriptions: item.homeworkCommentForShareDTO.homework.audioResources.map(audio => ({url: audio.urlHost + audio.urlPath, duration: audio.mediaLength})),
+          audioDescriptions: item.homeworkCommentForShareDTO.homework.audioResources.map(audio => ({
+            url: audio.urlHost + audio.urlPath, 
+            duration: audio.mediaLength, 
+            stuAvatar: item.homeworkCommentForShareDTO.baseInfo.studentAvatar
+          })),
           submitTime: util.formatTime(item.homeworkCommentForShareDTO.homework.submitTime, '.', true),
           courseOrder: item.sortCourse
         }

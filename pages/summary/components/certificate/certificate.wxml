@@ -10,7 +10,7 @@
           <view>在《Level {{levelStage.level}} stage {{levelStage.stage}} 》的学习中，画作充满魔力，</view>
           <view>为你封号：</view>
         </view>
-        <view class="student-title">最佳画作创想家</view>
+        <view class="student-title">{{title}}</view>
         <view class="hualala-stamp"></view> 
       </view>
     </view>

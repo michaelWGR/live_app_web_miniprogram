@@ -27,12 +27,11 @@ Page({
       level: Number(level),
       stage: Number(stage)
     })
-    console.log(userId, level, stage)
     this.getHomeworkList(userId, level, stage).then(res => {
       if(res.data.code === 200){
-        const data = {...res.data.data}
+        const data = res.data.data
         this.setData({
-          studentName: data.baseInfo.studentName,
+          studentName: data[0].homeworkCommentForShareDTO.baseInfo.studentName,
           homeworkList: this.getDeriveHomeworkList(data, level, stage)
         })
       }else{
@@ -55,11 +54,13 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    util.getPageHeight({id: '#collections', page: this}).then(res => {
-      this.setData({
-        pageHeight: res 
+    setTimeout(()=>{
+      util.getPageHeight({id: '#collections', page: this}).then(res => {
+        this.setData({
+          pageHeight: res 
+        })
       })
-    })
+    }, 500)
   },
 
   /**
@@ -71,12 +72,12 @@ Page({
 
   onHide: function() {
     // 滑动距离埋点
-    console.log(scrollRatio)
+    
   },
 
   onUnload: function() {
     // 滑动距离埋点
-    console.log(scrollRatio)
+    
   },
 
   /**
@@ -103,7 +104,11 @@ Page({
         level: level,
         stage: stage,
         imgUrl: item.homeworkCommentForShareDTO.comment.beautifiedImage.urlHost + item.homeworkCommentForShareDTO.comment.beautifiedImage.urlPath,
-        audioDescriptions: item.homeworkCommentForShareDTO.homework.audioResources.map(audio => (audio.urlHost + audio.urlPath)),
+        audioDescriptions: item.homeworkCommentForShareDTO.homework.audioResources.map(audio => ({
+          url: audio.urlHost + audio.urlPath, 
+          duration: audio.mediaLength, 
+          stuAvatar: item.homeworkCommentForShareDTO.baseInfo.studentAvatar
+        })),
         submitTime: util.formatTime(item.homeworkCommentForShareDTO.homework.submitTime, '.', true),
         courseOrder: item.sortCourse
       }

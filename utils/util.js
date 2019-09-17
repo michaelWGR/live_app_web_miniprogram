@@ -97,7 +97,6 @@ export const getIntersection = (arr1, arr2) => {
     const query =  page.createSelectorQuery()
     query.select(id).boundingClientRect()
     query.exec(res => {
-      console.log(systemInfo,res[0].top,res[0].bottom)
       resolve(res[0].height - systemInfo.windowHeight)
     })
    })

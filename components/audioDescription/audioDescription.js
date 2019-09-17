@@ -26,13 +26,12 @@ Component({
   methods: {
     changeAudioState: function() {
       if(this.data.isPlaying){
-        innerAudioContext.pause()
+        this.data.innerAudioContext.pause()
         this.setData({
           isPlaying: false
         })
       }else{
-
-        innerAudioContext.play()
+        this.data.innerAudioContext.play()
         this.setData({
           isPlaying: true
         })
@@ -45,17 +44,13 @@ Component({
       })
 
       innerAudioContext.onTimeUpdate(e => {
-        console.log('播放进度更新', innerAudioContext.currentTime)
-        audioInterval = setInterval(() => {
-          this.setData({
-            duration: Math.ceil(innerAudioContext.currentTime)
-          })
-        }, 1000)
+        this.setData({
+          duration: Math.floor(innerAudioContext.duration - innerAudioContext.currentTime)
+        })
       })
 
       innerAudioContext.onEnded(() => {
         innerAudioContext.stop()
-        clearInterval(audioInterval)
         this.setData({
           isPlaying: false,
           duration: this.properties.audioData.duration

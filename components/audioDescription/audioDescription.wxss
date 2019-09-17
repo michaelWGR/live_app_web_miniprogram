@@ -56,4 +56,5 @@
   height: 80rpx;
   border-radius: 50% 50%;
   background: #fff;
+  overflow: hidden;
 }

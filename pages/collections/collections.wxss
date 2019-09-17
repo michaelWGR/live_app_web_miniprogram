@@ -4,7 +4,7 @@
   background: url('https://appdev.61draw.com/dev_test/miniprogram/collection-background.png') 0 0 repeat-y;
   background-size: 100%;
   position: relative;
-  padding-bottom: 150rpx;
+  /* padding-bottom: 150rpx; */
 }
 .page-title{
   height: 168rpx;
