@@ -36,8 +36,8 @@ Page({
     const paramsList = options.scene.split('&')
     const userId = Number(paramsList[0])
     const levelStage = {
-      level: Number(paramsList[0]),
-      stage: Number(paramsList[1])
+      level: Number(paramsList[1]),
+      stage: Number(paramsList[2])
     }
     this.setData({
       userId,
