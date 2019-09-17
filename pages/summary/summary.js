@@ -120,7 +120,7 @@ Page({
       _this.setData({
         isShowWelcome: false
       })
-    }, 1800)
+    }, 1350)
   },
 
   //获取奖杯总数

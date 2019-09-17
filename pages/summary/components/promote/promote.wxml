@@ -52,13 +52,14 @@
     var detailIndex = 0
     if (!option) return
     for (var i = 0; i < option.length; i++) {
-      if (detail[detailIndex]) {
-        detail[detailIndex] = detail[detailIndex] + option[i]
-      } else {
-        detail[detailIndex] = option[i]
-      }
       if (option[i] === ',' || option[i] === '、'|| option[i] === '，' || option[i] === '。') {
         detailIndex = detailIndex + 1
+      } else {
+        if (detail[detailIndex]) {
+          detail[detailIndex] = detail[detailIndex] + option[i]
+        } else {
+          detail[detailIndex] = option[i]
+        }
       }
     }
       
