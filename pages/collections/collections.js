@@ -27,7 +27,6 @@ Page({
       level: Number(level),
       stage: Number(stage)
     })
-    console.log(userId, level, stage)
     this.getHomeworkList(userId, level, stage).then(res => {
       if(res.data.code === 200){
         const data = res.data.data
@@ -55,11 +54,13 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    util.getPageHeight({id: '#collections', page: this}).then(res => {
-      this.setData({
-        pageHeight: res 
+    setTimeout(()=>{
+      util.getPageHeight({id: '#collections', page: this}).then(res => {
+        this.setData({
+          pageHeight: res 
+        })
       })
-    })
+    }, 500)
   },
 
   /**
@@ -71,12 +72,12 @@ Page({
 
   onHide: function() {
     // 滑动距离埋点
-    console.log(scrollRatio)
+    
   },
 
   onUnload: function() {
     // 滑动距离埋点
-    console.log(scrollRatio)
+    
   },
 
   /**

@@ -28,10 +28,6 @@ Component({
         currIndex: e.detail.current
       })
     }
-  },
-
-  attached: function() {
-    console.log('painting', this.properties.homeworkData)
   }
 
 })

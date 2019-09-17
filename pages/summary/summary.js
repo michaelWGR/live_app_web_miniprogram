@@ -61,12 +61,12 @@ Page({
 
   onHide: function() {
     // 滑动距离埋点
-    console.log(scrollRatio)
+    console.log('滑动比例',scrollRatio+'%')
   },
 
   onUnload: function() {
     // 滑动距离埋点
-    console.log(scrollRatio)
+    console.log('滑动比例',scrollRatio+'%')
   },
 
   /**
