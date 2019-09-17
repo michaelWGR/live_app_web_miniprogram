@@ -132,7 +132,7 @@
 
 .stage .card-pop .card-content {
   font-size: 32rpx;
-  padding-top: 50rpx;
+  padding-top: 35rpx;
 }
 
 .stage .card-pop .card-content .card-item {
