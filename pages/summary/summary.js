@@ -33,10 +33,11 @@ Page({
     //   level: options.level,
     //   stage: options.stage
     // }
-    const userId = 306990
+    const paramsList = options.scene.split('&')
+    const userId = Number(paramsList[0])
     const levelStage = {
-      level: 1,
-      stage: 1
+      level: Number(paramsList[0]),
+      stage: Number(paramsList[1])
     }
     this.setData({
       userId,
