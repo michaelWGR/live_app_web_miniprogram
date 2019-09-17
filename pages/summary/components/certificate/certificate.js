@@ -34,10 +34,11 @@ Component({
   methods: {
     getTitle: function() {
       const token = app.globalData.access_token
+      const userId = this.properties.userId
+      const level = this.properties.levelStage.level
+      const stage = this.properties.levelStage.stage
       const params = {
-        userId: this.properties.userId,
-        level: this.properties.levelStage.level,
-        stage: this.properties.levelStage.stage
+        scene: `${userId}&${level}&${stage}`
       }
       request.get('/v1/report/getDiploma', params, token).then(res => {
         if(res.data.code === 200) {

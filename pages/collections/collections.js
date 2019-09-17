@@ -93,7 +93,9 @@ Page({
   },
 
   getHomeworkList: function(userId, level, stage) {
-    const params = {userId, level, stage}
+    const params = {
+      scene: `${userId}&${level}&${stage}`
+    }
     return request.get('/v1/report/getHomeworks', params, app.globalData.access_token)
   },
 

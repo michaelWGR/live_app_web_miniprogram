@@ -73,20 +73,24 @@ Component({
         })
       }, 1400)
       const token = app.globalData.access_token
+      const userId = this.properties.userId
+      const level = this.properties.level
+      const stage = this.properties.stage
       const data = {
-        userId: Number(this.properties.userId),
-        level: Number(this.properties.level),
-        stage: Number(this.properties.stage)
+        scene: `${userId}&${level}&${stage}`
       }
       const params = util.qs(data)
       request.post('/v1/report/reportPraise' + params, token)
     },
 
     getHomeworkList: function() {
-      const params = {
+      const data = {
         userId: Number(this.properties.userId),
         level: Number(this.properties.level),
         stage: Number(this.properties.stage)
+      }
+      const params = {
+        scene: `${data.userId}&${data.level}&${data.stage}`
       }
       return request.get('/v1/report/getHomeworks', params, app.globalData.access_token)
     },
