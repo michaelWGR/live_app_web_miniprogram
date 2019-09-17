@@ -28,16 +28,18 @@ Component({
     isShowLikeModal: false,
     isShowCloseAnimation: false,
     praiseImg: util.img_baseUrl + 'praise.gif',
-    homeworkList: []
+    homeworkList: [],
+    submitNum: 0
   },
 
   attached: function() {
     this.getHomeworkList().then(res => {
-      if(res.data.code === 200) {
+      if(res.data.code === 200 && res.data.data) {
         const data = res.data.data
         const level = Number(this.properties.level)
         const stage = Number(this.properties.stage)
         this.setData({
+          submitNum: data.length,
           homeworkList: this.getDeriveHomeworkList(data, level, stage)
         })
       }
