@@ -48,22 +48,23 @@
   margin: 14rpx 0 50rpx 0;
 }
 .find-more-paintings .find-more-paintings-text{
-  width: 215rpx;
+  width: 250rpx;
   height: 39rpx;
   font-size: 26rpx;
   color: #ff6c00;
   border-bottom: 1px sold #ff6c00;
   position: relative;
   letter-spacing: 1rpx;
+  text-align: center;
 }
 .find-more-paintings .find-more-paintings-text::after{
   content: '';
-  width: 100%;
+  width: 90%;
   height: 1rpx;
   background: #ff6c00;
   position: absolute;
   bottom: -2rpx;
-  left: -2rpx;
+  left: 8rpx;
 }
 .student-painting-like-btn{
   width: 382rpx;
