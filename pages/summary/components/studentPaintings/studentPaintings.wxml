@@ -1,5 +1,5 @@
 <!--pages/summary/components/studentPaintings/studentPaintings.wxml-->
-<view class="student-painting-root">
+<view class="student-painting-root" wx:if="{{submitNum}}">
   <view class="student-painting-title"><text class="student-painting-title-text">宝贝画作展示</text></view>
   <gridBox>
     <block wx:for="{{homeworkList}}" wx:key="{{index}}">
