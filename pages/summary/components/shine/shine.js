@@ -72,10 +72,7 @@ Component({
         level: Number(this.properties.level),
         stage: Number(this.properties.stage)
       }
-      const params = {
-        scene: `${data.userId}&${data.level}&${data.stage}`
-      }
-      request.post('/v1/report/reportPraise', params, token)
+      request.post('/v1/report/reportPraise', data, token)
     },
     getEventData: function() {
       const token = app.globalData.access_token
