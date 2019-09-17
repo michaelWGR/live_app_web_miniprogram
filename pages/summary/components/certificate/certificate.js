@@ -37,8 +37,10 @@ Component({
       const userId = this.properties.userId
       const level = this.properties.levelStage.level
       const stage = this.properties.levelStage.stage
-      const params = `?scene=${userId}&${level}&${stage}`
-      request.get('/v1/report/getDiploma' + params, token).then(res => {
+      const params = {
+        scene: `${userId}&${level}&${stage}`
+      }
+      request.get('/v1/report/getDiploma', params, token).then(res => {
         if(res.data.code === 200) {
           this.setData({
             title: res.data.data
