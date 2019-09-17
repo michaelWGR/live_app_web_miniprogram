@@ -1,28 +1,29 @@
 <view class="summary" id="summary">
 
   <block wx:if="{{userId && levelStage.level && hasGetToken}}">
-    <studentInfo userInfo="{{userInfo}}" levelStage="{{levelStage}}" userId="{{userId}}"></studentInfo>
+    <studentInfo levelStage="{{levelStage}}" userId="{{userId}}" userInfo="{{userInfo}}"></studentInfo>
+    <stage levelStage="{{levelStage}}" userId="{{userId}}"></stage>
+    <promote levelStage="{{levelStage}}" userId="{{userId}}"></promote>
+    <assess levelStage="{{levelStage}}" userId="{{userId}}"></assess>
+    <comment levelStage="{{levelStage}}" userId="{{userId}}"></comment>
   </block>
 
   
-  <stage levelStage="{{levelStage}}" userId="{{userId}}"></stage>
-  <promote levelStage="{{levelStage}}" userId="{{userId}}"></promote>
-  <assess levelStage="{{levelStage}}" userId="{{userId}}"></assess>
-  <comment></comment>
+ 
 
-  <block wx:if="{{userId && levelStage.level}}">
+  <block wx:if="{{userId && levelStage.level && hasGetToken}}">
     <submitHomework user-id="{{userId}}" level="{{levelStage.level}}" stage="{{levelStage.stage}}"></submitHomework>
   </block>
 
-  <block wx:if="{{userId && levelStage.level}}">
+  <block wx:if="{{userId && levelStage.level && hasGetToken}}">
     <studentPaintings user-id="{{userId}}" level="{{levelStage.level}}" stage="{{levelStage.stage}}"></studentPaintings>
   </block>
     
-  <block wx:if="{{trophyNum > 0 && userId && levelStage.level}}">
+  <block wx:if="{{trophyNum > 0 && userId && levelStage.level && hasGetToken}}">
     <shine user-id="{{userId}}" level="{{levelStage.level}}" stage="{{levelStage.stage}}" trophy-num="{{trophyNum}}" nickname="{{userInfo.nickname}}"></shine>
   </block>
 
-  <block wx:if="{{userId && levelStage.level}}">
+  <block wx:if="{{userId && levelStage.level && hasGetToken}}">
     <certificate nickname="{{userInfo.nickname}}" level-stage="{{levelStage}}" user-id="{{userId}}"></certificate>
   </block>
     

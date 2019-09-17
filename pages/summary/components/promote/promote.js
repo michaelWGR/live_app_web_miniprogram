@@ -14,12 +14,7 @@ Component({
     },
     levelStage: {
       type: Object,
-      value: { level: '-', stage: '-' },
-      observer: function (newVal, oldVal) {
-        if (newVal.level !== oldVal.level) {
-          this.getAbilityPromotion(newVal)
-        }
-      }
+      value: { level: '-', stage: '-' }
     }
   },
 
@@ -35,7 +30,11 @@ Component({
     allAbilityNum: '-',
     stageAlreadyAbilityNum: '-',
     currIndex: 0,
-    levelStageSkillDTO: []
+    levelStageSkillDTO: null
+  },
+
+  attached: function () {
+    this.getAbilityPromotion()
   },
 
   /**
@@ -48,18 +47,21 @@ Component({
       })
     },
 
-    getAbilityPromotion(option) {
+    getAbilityPromotion() {
       const _this = this
       const data = {
-        level: option.level,
-        stage: option.stage
+        userId: this.properties.userId,
+        level: this.properties.levelStage.level,
+        stage: this.properties.levelStage.stage
       }
       summaryApi.getAbilityPromotion(data, app.globalData.access_token)
         .then(res => {
-          if (res.data.code == 0) {
+          if (res.data.code === 200 || res.data.code === 0) {
             _this.setData({
-              stageReportSchedule: res.data.data,
-              isShowName: isShowName
+              newAbilityNum: res.data.data.newAbilityNum,
+              allAbilityNum: res.data.data.allAbilityNum,
+              stageAlreadyAbilityNum: res.data.data.stageAlreadyAbilityNum,
+              levelStageSkillDTO: res.data.data.levelStageSkillDTO
             })
           } else {
             wx.showToast({

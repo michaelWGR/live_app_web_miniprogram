@@ -131,7 +131,7 @@
 }
 
 .stage .card-pop .card-content {
-  font-size: 36rpx;
+  font-size: 32rpx;
   padding-top: 50rpx;
 }
 

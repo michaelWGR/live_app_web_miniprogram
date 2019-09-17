@@ -14,12 +14,7 @@ Component({
     },
     levelStage: {
       type: Object,
-      value: { level: '-', stage: '-' },
-      observer: function (newVal, oldVal) {
-        if (newVal.level !== oldVal.level) {
-          this.getTeacherComment(newVal)
-        }
-      }
+      value: { level: '-', stage: '-' }
     }
   },
 
@@ -29,65 +24,150 @@ Component({
   data: {
     imageUrl: {
       title: util.img_baseUrl + 'summary-comment-title.png',
-      like: util.img_baseUrl + 'summary-comment-like-before.png'
+      like: util.img_baseUrl + 'summary-comment-like-before.png',
+      likeNo: util.img_baseUrl + 'summary-comment-like-before.png',
+      likedOff: util.img_baseUrl + 'summary-comment-like-before-has.png',
+      likeGif: util.img_baseUrl + 'summary-comment-like-after.gif'
     },
     comment: {
       artName: '---',
       headUrl: '',
-      comment: ''
+      comment: '',
+      flag: 0
     }
+  },
+
+  attached: function () {
+    this.getTeacherComment()
   },
 
   /**
    * 组件的方法列表
    */
   methods: {
-    thankTeacher() {
-      var imageUrl = this.data.imageUrl;
-      imageUrl.like = 'http://10.10.117.199:3000/images/summary-comment-like-after.gif';
-
-      this.setData({
-        imageUrl: imageUrl
-      })
-    },
-
-    getTeacherComment(option) {
+    getTeacherComment() {
       const _this = this
       const data = {
         userId: this.properties.userId,
-        level: option.level,
-        stage: option.stage
+        level: this.properties.levelStage.level,
+        stage: this.properties.levelStage.stage
       }
       summaryApi.getTeacherComment(data, app.globalData.access_token)
-      .then(res => {
-        if (res.data.code == 0) {
-          _this.setData({
-            comment: res.data.data
-          })
-        } else {
+        .then(res => {
+          if (res.data.code === 200 || res.data.code === 0) {
+            _this.setData({
+              comment: res.data.data
+            })
+            if (res.data.data.flag === 1) {
+              let imageUrl = this.data.imageUrl;
+              imageUrl.like = imageUrl.likedOff;
+
+              this.setData({
+                imageUrl: imageUrl
+              })
+            }
+          } else {
+            wx.showToast({
+              title: '服务器错误',
+              icon: 'none',
+              duration: 3000,
+              complete: function () {
+                console.log(res.data.msg);
+              }
+            })
+          }
+        }).catch(error => {
           wx.showToast({
-            title: '服务器错误',
+            title: '网络错误',
             icon: 'none',
             duration: 3000,
             complete: function () {
-              console.log(res.data.msg);
+              console.log(error)
             }
           })
-        }
-      }).catch(error => {
-        wx.showToast({
-          title: '网络错误',
-          icon: 'none',
-          duration: 3000,
-          complete: function () {
-            console.log(error)
-          }
         })
-      })
     },
 
+    thankTeacher() {
+      if (this.data.comment.flag === 0) {
+        this.teacherPraise()
+      } else {
+        this.teacherCancelPraise()
+      }
+    },
+
+    // 点赞老师评语
     teacherPraise() {
-      
+      const _this = this
+      const data = {
+        teacherCommentId: this.data.comment.reportId
+      }
+      summaryApi.teacherPraise(data, app.globalData.access_token)
+        .then(res => {
+          if (res.data.code === 200 || res.data.code === 0) {
+            let imageUrl = this.data.imageUrl;
+            imageUrl.like = imageUrl.likeGif;
+
+            this.setData({
+              imageUrl: imageUrl
+            })
+          } else {
+            wx.showToast({
+              title: '服务器错误',
+              icon: 'none',
+              duration: 3000,
+              complete: function () {
+                console.log(res.data.msg);
+              }
+            })
+          }
+        }).catch(error => {
+          wx.showToast({
+            title: '网络错误',
+            icon: 'none',
+            duration: 3000,
+            complete: function () {
+              console.log(error)
+            }
+          })
+        })
+    },
+    
+    // 取消点赞老师评语
+    teacherCancelPraise() {
+      const _this = this
+      const data = {
+        teacherCommentId: this.data.comment.reportId
+      }
+      summaryApi.teacherCancelPraise(data, app.globalData.access_token)
+        .then(res => {
+          if (res.data.code === 200 || res.data.code === 0) {
+            let imageUrl = this.data.imageUrl;
+            imageUrl.like = imageUrl.likeNo;
+
+            this.setData({
+              imageUrl: imageUrl
+            })
+          } else {
+            wx.showToast({
+              title: '服务器错误',
+              icon: 'none',
+              duration: 3000,
+              complete: function () {
+                console.log(res.data.msg);
+              }
+            })
+          }
+        }).catch(error => {
+          wx.showToast({
+            title: '网络错误',
+            icon: 'none',
+            duration: 3000,
+            complete: function () {
+              console.log(error)
+            }
+          })
+        })
     }
   }
 })

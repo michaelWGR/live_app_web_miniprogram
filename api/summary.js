@@ -36,9 +36,14 @@ const getTeacherComment = (params, token) => {
   return request.get('/v1/report/getTeacherComment', params, token);
 }
 
-/** 用户老师评语 */
+/** 用户点赞老师评语 */
 const teacherPraise = (params, token) => {
-  return request.get('/v1/report/teacherPraise', params, token);
+  return request.post('/v1/report/teacherPraise', params, token);
+}
+
+/** 用户取消点赞老师评语 */
+const teacherCancelPraise = (params, token) => {
+  return request.post('/v1/report/teacherCancelPraise', params, token);
 }
 
 /** 获取奖杯总数*/
@@ -55,5 +60,6 @@ module.exports = {
   getAbilityPromotion,
   getTeacherComment,
   teacherPraise,
+  teacherCancelPraise,
   getTrophyNum
 }

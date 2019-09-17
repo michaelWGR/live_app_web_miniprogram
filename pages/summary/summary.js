@@ -12,9 +12,7 @@ Page({
     imageUrl: {
       welcome: util.img_baseUrl + 'summary-welcome.gif'
     },
-    userInfo: {
-      nickname: ''
-    },
+    userInfo: null,
     levelStage: {
       level: '',
       stage: ''
@@ -96,8 +94,8 @@ Page({
     }
     if (app.globalData.access_token && app.globalData.access_token != '') {
       console.log('token: ' + app.globalData.access_token)
-      _this.getUserInfo(userId, app.globalData.access_token)
       _this.getTrophyNum(params, app.globalData.access_token)
+      _this.getUserInfo(userId, app.globalData.access_token)
       _this.setData({
         hasGetToken: true
       })
@@ -105,8 +103,8 @@ Page({
       app.tokenCallback = (token) => {
         if (token && token != '') {
           console.log('token: ' + token)
-          _this.getUserInfo(userId, token)
           _this.getTrophyNum(params, token)
+          _this.getUserInfo(userId, token)
           _this.setData({
             hasGetToken: true
           })
@@ -125,12 +123,23 @@ Page({
     }, 1800)
   },
 
+  //获取奖杯总数
+  getTrophyNum(params, token) {
+    summaryApi.getTrophyNum(params, token).then(res => {
+      if(res.data.code === 200) {
+        this.setData({
+          trophyNum: res.data.data
+        })
+      }
+    })
+  },
+
   // 获取用户信息 
   getUserInfo(userId, token) {
     const _this = this
-    summaryApi.getUserInfo({userId: userId}, token)
+    summaryApi.getUserInfo({ userId }, app.globalData.access_token)
       .then(res => {
-        if (res.data.code == 0) {
+        if (res.data.code === 200 || res.data.code === 0) {
           _this.setData({
             userInfo: res.data.data
           })
@@ -154,16 +163,5 @@ Page({
           }
         })
       })
-  },
-
-  //获取奖杯总数
-  getTrophyNum(params, token) {
-    summaryApi.getTrophyNum(params, token).then(res => {
-      if(res.data.code === 200) {
-        this.setData({
-          trophyNum: res.data.data
-        })
-      }
-    })
   }
 })

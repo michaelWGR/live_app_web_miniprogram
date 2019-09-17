@@ -7,7 +7,7 @@
     <view class="item {{levelStage.stage > index ? 'finish' : ''}}" wx:for="{{stageReportSchedule}}" wx:key bindtap="showCardPop" data-text="{{index}}">
       <image class="crown  {{levelStage.stage === index + 1 ? 'currentStage' : ''}}" mode="widthFix" src="{{image.crown}}"></image>
       <view class="num">stage{{index+1}}</view>
-      <view class="text text-{{index}}">{{isShowCardPop ? item.content : ''}}</view>
+      <view class="text text-{{index}}">{{isShowName ? item.content : ''}}</view>
     </view>
     <view class="tips">(点击卡片可知道各阶段学什么)</view>
   </view>
@@ -27,10 +27,15 @@
   var initSkillProfile = function(option) {
     var skillProfile = [];
     var skillProfileIndex = 0
+    if (!option) return
     for (var i = 0; i < option.length; i++) {
-      skillProfile[skillProfileIndex] = skillProfile[skillProfileIndex] + option[i]
-      if (option[i] === ',' || option[i] === '、') {
-        skillProfileIndex++
+      if (skillProfile[skillProfileIndex]) {
+        skillProfile[skillProfileIndex] = skillProfile[skillProfileIndex] + option[i]
+      } else {
+        skillProfile[skillProfileIndex] = option[i]
+      }
+      if (option[i] === ',' || option[i] === '、' || option[i] === '，' || option[i] === '。') {
+        skillProfileIndex = skillProfileIndex + 1
       }
     }
       

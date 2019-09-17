@@ -1,4 +1,4 @@
-<view class="promote" wx:if="{{levelStageSkillDTO.length > 0}}">
+<view class="promote" wx:if="{{levelStageSkillDTO.levelStageSkillDetailList.length > 0}}">
   <view class="title">
     <image class="background" mode="widthFix" src="{{imageUrl.title}}"></image>
     <text class="text">能力提升</text>
@@ -29,7 +29,7 @@
             <view class="card-frame {{currIndex === index ? ' active-card-frame' : ''}} {{'card-frame-' + index%3}}">
               <view class="title">{{item.point}}</view>
               <view class="card-content">
-                <view class="desc" wx:for="{{wxs.initDetail(item.detail)}}" wx:for-index="idx" wx:for-item="desc" wx:key>{{desc}}</view>
+                <view class="desc" wx:for="{{wxs.initDetail(item.detail)}}" wx:for-index="idx" wx:for-item="desc" wx:key>{{desc}} </view>
               </view>
               <view class="index">{{index + 1}}</view>
             </view>
@@ -37,7 +37,7 @@
         </block>
       </swiper>
       <view class="card-dots">
-        <block wx:for="{{cardList}}" wx:key="{{index}}">
+        <block wx:for="{{levelStageSkillDTO.levelStageSkillDetailList}}" wx:key="{{index}}">
           <view class="card-dots-item {{currIndex === index ? 'active-card-dots-item' : ''}}" ></view>
         </block>
       </view>
@@ -48,12 +48,17 @@
 <wxs module="wxs">
   // 获取弹框数组
   var initDetail = function(option) {
-    var detail = [];
+    var detail = []
     var detailIndex = 0
+    if (!option) return
     for (var i = 0; i < option.length; i++) {
-      detail[detailIndex] = detail[detailIndex] + option[i]
-      if (option[i] === ',' || option[i] === '、') {
-        detailIndex++
+      if (detail[detailIndex]) {
+        detail[detailIndex] = detail[detailIndex] + option[i]
+      } else {
+        detail[detailIndex] = option[i]
+      }
+      if (option[i] === ',' || option[i] === '、'|| option[i] === '，' || option[i] === '。') {
+        detailIndex = detailIndex + 1
       }
     }
       

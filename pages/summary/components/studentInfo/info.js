@@ -10,7 +10,9 @@ Component({
   properties: {
     userInfo: {
       type: Object,
-      value: { nickname: '---', headurl: '' }
+      value: {
+        nickname: '---'
+      }
     },
     userId: {
       type: String,
@@ -37,7 +39,8 @@ Component({
     accumulativeTime: {
       totalTime: '-',
       nowStageTime: '-'
-    }
+    },
+    userInfo: null
   },
 
   attached: function () {
@@ -50,7 +53,7 @@ Component({
    */
   methods: {
     // 获取作品数目
-    getCommitClassTime(option) {
+    getCommitClassTime() {
       const _this = this
       const data = {
         userId: this.properties.userId,
@@ -59,7 +62,7 @@ Component({
       }
       summaryApi.getCommitClassTime(data, app.globalData.access_token)
         .then(res => {
-          if (res.data.code == 0) {
+          if (res.data.code === 200 || res.data.code === 0) {
             _this.setData({
               commitClassTime: res.data.data
             })
@@ -85,16 +88,16 @@ Component({
         })
     },
     // 获取累积事件
-    getAccumulativeTime(option) {
+    getAccumulativeTime() {
       const _this = this
       const data = {
         userId: this.properties.userId,
-        level: option.level,
-        stage: option.stage
+        level: this.properties.levelStage.level,
+        stage: this.properties.levelStage.stage
       }
-      summaryApi.getCommitClassTime(data, app.globalData.access_token)
+      summaryApi.getAccumulativeTime(data, app.globalData.access_token)
         .then(res => {
-          if (res.data.code == 0) {
+          if (res.data.code === 200 || res.data.code === 0) {
             _this.setData({
               accumulativeTime: res.data.data
             })

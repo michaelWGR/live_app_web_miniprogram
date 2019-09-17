@@ -14,12 +14,7 @@ Component({
     },
     levelStage: {
       type: Object,
-      value: { level: '-', stage: '-' },
-      observer: function (newVal, oldVal) {
-        if (newVal.level !== oldVal.level) {
-          this.getStageReportSchedule(newVal)
-        }
-      }
+      value: { level: '-', stage: '-' }
     }
   },
 
@@ -36,6 +31,10 @@ Component({
     showCardIndex: '',
     stageReportSchedule: [],
     isShowName: true
+  },
+
+  attached: function () {
+    this.getStageReportSchedule()
   },
 
   /**
@@ -57,23 +56,24 @@ Component({
       })
     },
 
-    getStageReportSchedule(option) {
+    getStageReportSchedule() {
       const _this = this
       const data = {
-        level: option.level,
-        stage: option.stage
+        userId: this.properties.userId,
+        level: this.properties.levelStage.level,
+        stage: this.properties.levelStage.stage
       }
       summaryApi.getStageReportSchedule(data, app.globalData.access_token)
         .then(res => {
-          if (res.data.code == 0) {
+          if (res.data.code === 200 || res.data.code === 0) {
             var stageReportSchedule = res.data.data
             var isShowName = true
             if (stageReportSchedule.length < 4) {
               stageReportSchedule.push({})
-              var isShowName = false
+              isShowName = false
             }
             _this.setData({
-              stageReportSchedule: res.data.data,
+              stageReportSchedule: stageReportSchedule,
               isShowName: isShowName
             })
           } else {

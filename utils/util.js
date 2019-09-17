@@ -1,4 +1,4 @@
-// const BASE_URL = "http://10.60.7.252:8998"  //本地测试地址
+// const BASE_URL = "http://10.10.117.71:8998"  //本地测试地址
 const BASE_URL = "https://appminip-test.61draw.com" //测试线地址
 // const BASE_URL = "https://appminip.61draw.com"         //正式线地址
 
