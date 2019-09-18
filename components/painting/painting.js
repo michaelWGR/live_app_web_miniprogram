@@ -16,7 +16,8 @@ Component({
    */
   data: {
     currIndex: 0,
-    descriptions: [1, 2]
+    descriptions: [1, 2],
+    activeAudioId: ''
   },
 
   /**
@@ -26,6 +27,12 @@ Component({
     onSwiperSlide: function(e) {
       this.setData({
         currIndex: e.detail.current
+      })
+    },
+    onAudioPlay: function(e) {
+      console.log('有音频播放', e.detail)
+      this.setData({
+        activeAudioId: e.detail.audioId
       })
     }
   }
