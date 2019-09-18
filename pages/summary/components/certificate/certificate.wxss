@@ -48,6 +48,7 @@
   font-size: 25rpx;
   margin-right: 15rpx;
   position: relative;
+  font-weight: bold;
 }
 .student-name .student-name-red::after{
   content: '';
