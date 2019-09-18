@@ -1,4 +1,4 @@
-<view class="assess" wx:if="{{assessList}}">
+<view class="assess" wx:if="{{assessList.length > 0}}">
   <view class="title">
     <image class="background" mode="widthFix" src="{{imageUrl.title}}"></image>
     <text class="text">综合能力评估</text>
