@@ -4,7 +4,7 @@
   <gridBox>
     <block wx:for="{{homeworkList}}" wx:key="{{index}}">
       <view class="{{index < homeworkList.length-1 ? 'paiting-wrapper paiting-wrapper-not-last' : 'paiting-wrapper paiting-wrapper-not-first'}}">
-        <painting homeworkData="{{item}}"/>
+        <painting homeworkData="{{item}}" navigationFlag="{{navigationFlag}}"/>
       </view>
     </block>
     <view class="find-more-paintings">

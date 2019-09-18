@@ -29,7 +29,8 @@ Component({
     isShowCloseAnimation: false,
     praiseImg: util.img_baseUrl + 'praise.gif',
     homeworkList: [],
-    submitNum: 0
+    submitNum: 0,
+    navigationFlag: false
   },
 
   attached: function() {
@@ -51,6 +52,9 @@ Component({
    */
   methods: {
     goToCollections: function() {
+      this.setData({
+        navigationFlag: true
+      })
       this.triggerEvent('goToOtherPage')
       wx.navigateTo({
         url: `../../pages/collections/collections?userId=${this.properties.userId}&level=${this.properties.level}&stage=${this.properties.stage}`,

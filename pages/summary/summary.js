@@ -22,7 +22,7 @@ Page({
     userId: '',
     trophyNum: 100,
     pageHeight: 0,
-    hasGetToken: false
+    hasGetToken: false,
   },
 
   /**
@@ -51,11 +51,13 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    util.getPageHeight({id: '#summary', page: this}).then(res => {
-      this.setData({
-        pageHeight: res 
+    setTimeout(()=>{
+      util.getPageHeight({id: '#summary', page: this}).then(res => {
+        this.setData({
+          pageHeight: res 
+        })
       })
-    })
+    }, 1000)
   },
 
   onShow: function () {
@@ -91,7 +93,6 @@ Page({
    */
   onPageScroll: function(e) {
     scrollRatio = Math.ceil((e.scrollTop / this.data.pageHeight)*100)
-    // console.log(Math.ceil((e.scrollTop / this.data.pageHeight)*100))
   },
 
   // 判断是否存在token

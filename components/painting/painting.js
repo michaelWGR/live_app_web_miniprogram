@@ -8,6 +8,10 @@ Component({
     homeworkData: {
       type: Object,
       value: {}
+    },
+    navigationFlag: {
+      type: Boolean,
+      value: false
     }
   },
 
@@ -30,10 +34,19 @@ Component({
       })
     },
     onAudioPlay: function(e) {
-      console.log('有音频播放', e.detail)
       this.setData({
         activeAudioId: e.detail.audioId
       })
+    }
+  },
+
+  observers: {
+    'navigationFlag': function(navigationFlag) {
+      if(navigationFlag){
+        this.setData({
+          activeAudioId: ''
+        })
+      }
     }
   }
 

@@ -34,6 +34,7 @@ Component({
           isPlaying: false
         })
       }else{
+        console.log('音频播放', this.properties.audioData.id)
         this.triggerPlay()
         this.innerAudioContext.play()
         this.setData({
@@ -67,6 +68,7 @@ Component({
     },
     onOtherAudioPlay() {
       if(this.data.isPlaying){
+        console.log('停止音频', this.properties.audioData.id)
         this.onEnded()
       }
     }
@@ -77,6 +79,10 @@ Component({
     this.setData({
       duration: this.properties.audioData.duration
     })
+  },
+
+  detached: function() {
+    console.log(666)
   },
 
   observers: {
