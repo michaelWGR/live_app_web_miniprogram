@@ -101,7 +101,7 @@ Component({
           audioDescriptions: item.homeworkCommentForShareDTO.homework.audioResources.map(audio => ({
             url: audio.urlHost + audio.urlPath, 
             duration: audio.mediaLength, 
-            stuAvatar: item.homeworkCommentForShareDTO.baseInfo.studentAvatar
+            stuAvatar: item.homeworkCommentForShareDTO.baseInfo.studentAvatar ? item.homeworkCommentForShareDTO.baseInfo.studentAvatar : util.img_baseUrl+'summary-info-headImage.png'
           })),
           submitTime: util.formatTime(item.homeworkCommentForShareDTO.homework.submitTime, '.', true),
           courseOrder: item.sortCourse

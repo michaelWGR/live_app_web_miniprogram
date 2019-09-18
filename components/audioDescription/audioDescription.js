@@ -69,6 +69,16 @@ Component({
       innerAudioContext.onCanplay(() => {
         wx.hideToast();
       })
+
+      innerAudioContext.onError(err => {
+        console.error(err)
+        wx.showToast({
+          title: '播放出错',
+          icon: 'none',
+          duration: 1500,
+          mask: false,
+        });
+      })
     }
   },
 
