@@ -18,10 +18,10 @@
           <view class="homework-item">
             <view class="painting-name">《<view>{{item.courseName}}</view>》</view>
             <view class="painting-status">
-              <view wx:if="{{item.flag === 0}}" class="tiaoke-icon"></view>
-              <view wx:elif="{{item.flag === 1}}" class="non-submit-icon"></view>
-              <view wx:elif="{{item.flag === 2}}" class="half-submit-icon"></view>
-              <view wx:else="{{item.flag === 3}}" class="perfect-submit-icon"></view>
+              <view wx:if="{{item.flag === 1}}" class="tiaoke-icon"></view>
+              <view wx:elif="{{item.flag === 2}}" class="non-submit-icon"></view>
+              <view wx:elif="{{item.flag === 3}}" class="half-submit-icon"></view>
+              <view wx:else="{{item.flag === 4}}" class="perfect-submit-icon"></view>
             </view>
           </view>
         </block>
