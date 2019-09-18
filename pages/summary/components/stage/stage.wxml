@@ -15,7 +15,8 @@
     <view class="card-pop">
       <view class="title">{{stageReportSchedule[showCardIndex].content}}</view>
       <view class="card-content">
-        <text class="card-item" wx:for="{{wxs.initSkillProfile(stageReportSchedule[showCardIndex].skillProfile)}}" wx:key>{{item}}</text>
+        <!-- <text class="card-item" wx:for="{{wxs.initSkillProfile(stageReportSchedule[showCardIndex].skillProfile)}}" wx:key>{{item}}</text> -->
+        <text class="card-item-text">{{stageReportSchedule[showCardIndex].skillProfile}}</text>
       </view>
       <view class="close" bindtap="hidePop">X</view>
     </view>

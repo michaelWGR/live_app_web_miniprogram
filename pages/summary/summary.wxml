@@ -16,7 +16,7 @@
   </block>
 
   <block wx:if="{{userId && levelStage.level && hasGetToken}}">
-    <studentPaintings user-id="{{userId}}" level="{{levelStage.level}}" stage="{{levelStage.stage}}"></studentPaintings>
+    <studentPaintings user-id="{{userId}}" level="{{levelStage.level}}" stage="{{levelStage.stage}}"  bind:goToOtherPage="goToOtherPage"></studentPaintings>
   </block>
     
   <block wx:if="{{trophyNum > 0 && userId && levelStage.level && hasGetToken}}">

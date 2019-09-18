@@ -4,7 +4,7 @@
     <arcsText text="Level{{levelStage.level}}stage{{levelStage.stage}}" angle="8" heightPrecent="2.5"></arcsText>
   </view>
   <view class="content">
-    <image class="headImage" mode="widthFix" src="{{userInfo.headurl}}"></image>
+    <image class="headImage" mode="widthFix" src="{{userInfo.headurl ? userInfo.headurl : imageUrl.headImage}}"></image>
     <view class="name">{{userInfo.nickname}}宝贝</view>
     <view class="wrap">
       <view class="works">
@@ -29,5 +29,6 @@
       </view>
     </view>
   </view>
+  <!-- <image src="{{erweima}}"></image> -->
 </view>
 

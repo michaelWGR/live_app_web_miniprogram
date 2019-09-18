@@ -3,6 +3,7 @@ const app = getApp();
 const util = require('./../../utils/util.js');
 const summaryApi = require('../../api/summary.js');
 let scrollRatio = 0
+let isGoOtherPage = false // 是否跳到其他页面了，如果是ture下次onShow不展示彩礼
 Page({
 
   /**
@@ -17,7 +18,7 @@ Page({
       level: '',
       stage: ''
     },
-    isShowWelcome: true,
+    isShowWelcome: false,
     userId: '',
     trophyNum: 100,
     pageHeight: 0,
@@ -55,17 +56,25 @@ Page({
         pageHeight: res 
       })
     })
-    this.initWelcome()
+  },
+
+  onShow: function () {
+    console.log('onShow')
+    if (isGoOtherPage) {
+      isGoOtherPage = false
+    } else {
+      this.initWelcome()
+    }
   },
 
   onHide: function() {
     // 滑动距离埋点
-    console.log('滑动比例',scrollRatio+'%')
+    console.log('onHide滑动比例',scrollRatio+'%')
   },
 
   onUnload: function() {
     // 滑动距离埋点
-    console.log('滑动比例',scrollRatio+'%')
+    console.log('onUnload滑动比例',scrollRatio+'%')
   },
 
   /**
@@ -117,6 +126,9 @@ Page({
   // 展示欢迎动画
   initWelcome() {
     const _this = this
+    this.setData({
+      isShowWelcome: true
+    })
     setTimeout(function() {
       _this.setData({
         isShowWelcome: false
@@ -164,5 +176,10 @@ Page({
           }
         })
       })
+  },
+
+  // 跳转到其他页面
+  goToOtherPage() {
+    isGoOtherPage = true
   }
 })
