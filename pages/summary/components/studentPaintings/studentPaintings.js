@@ -51,6 +51,7 @@ Component({
    */
   methods: {
     goToCollections: function() {
+      this.triggerEvent('goToOtherPage')
       wx.navigateTo({
         url: `../../pages/collections/collections?userId=${this.properties.userId}&level=${this.properties.level}&stage=${this.properties.stage}`,
       })

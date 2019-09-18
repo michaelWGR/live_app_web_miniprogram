@@ -90,8 +90,18 @@ Component({
 
     thankTeacher() {
       if (this.data.comment.flag === 0) {
+        let comment = this.data.comment
+        comment.flag = 1
+        this.setData({
+          comment: comment
+        })
         this.teacherPraise()
       } else {
+        let comment = this.data.comment
+        comment.flag = 0
+        this.setData({
+          comment: comment
+        })
         this.teacherCancelPraise()
       }
     },

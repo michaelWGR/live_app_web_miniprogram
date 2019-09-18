@@ -30,7 +30,8 @@ Component({
   data: {
     imageUrl: {
       banner: util.img_baseUrl + 'summary-info-banner.png',
-      arrow: util.img_baseUrl + 'summary-info-arrow.png'
+      arrow: util.img_baseUrl + 'summary-info-arrow.png',
+      headImage: util.img_baseUrl + 'summary-info-headImage.png'
     },
     commitClassTime: {
       homeworkTotal: '-',
@@ -40,12 +41,14 @@ Component({
       totalTime: '-',
       nowStageTime: '-'
     },
-    userInfo: null
+    userInfo: null,
+    erweima: ''
   },
 
   attached: function () {
     this.getCommitClassTime()
     this.getAccumulativeTime()
+    this.test123()
   },
 
   /**
@@ -100,6 +103,40 @@ Component({
           if (res.data.code === 200 || res.data.code === 0) {
             _this.setData({
               accumulativeTime: res.data.data
+            })
+          } else {
+            wx.showToast({
+              title: '服务器错误',
+              icon: 'none',
+              duration: 3000,
+              complete: function () {
+                console.log(res.data.msg);
+              }
+            })
+          }
+        }).catch(error => {
+          wx.showToast({
+            title: '网络错误',
+            icon: 'none',
+            duration: 3000,
+            complete: function () {
+              console.log(error)
+            }
+          })
+        })
+    },
+    test123() {
+      const _this = this
+      const data = {
+        userId: this.properties.userId,
+        level: this.properties.levelStage.level,
+        stage: this.properties.levelStage.stage
+      }
+      summaryApi.test123(data, app.globalData.access_token)
+        .then(res => {
+          if (res.data.code === 200 || res.data.code === 0) {
+            _this.setData({
+              erweima: 'data:image/png;base64,' + res.data.data.qrbase64
             })
           } else {
             wx.showToast({

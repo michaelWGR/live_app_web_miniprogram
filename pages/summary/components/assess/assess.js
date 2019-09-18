@@ -1,12 +1,21 @@
 // pages/summary/components/assess/assess.js
+const app = getApp();
 const util = require('./../../../../utils/util.js');
+const summaryApi = require('../../../../api/summary.js');
 
 Component({
   /**
    * 组件的属性列表
    */
   properties: {
-
+    userId: {
+      type: String,
+      value: ''
+    },
+    levelStage: {
+      type: Object,
+      value: { level: '-', stage: '-' }
+    }
   },
 
   /**
@@ -26,41 +35,47 @@ Component({
       backgroundCloud: util.img_baseUrl + 'summary-assess-cloud.png',
       backgroundCloudLeft: util.img_baseUrl + 'summary-assess-cloud-left.png'
     },
-    assessList: [
-      {
-        name: '思维散发能力',
-        value: 4.5
-      },
-      {
-        name: '观察能力',
-        value: 4.0
-      },
-      {
-        name: '动手能力',
-        value: 3.8
-      },
-      {
-        name: '色彩搭配能力',
-        value: 3.5
-      },
-      {
-        name: '色调统一性',
-        value: 3.0
-      },
-      {
-        name: '线条装饰能力',
-        value: 2.8
-      },
-      {
-        name: '图案装饰能力',
-        value: 2.7
-      }
-    ]
+    assessList: null
   },
 
-  /**
-   * 组件的方法列表
-   */
+  attached: function () {
+    this.getSynthesisAbility()
+  },
+
   methods: {
+    getSynthesisAbility() {
+      const _this = this
+      const data = {
+        userId: this.properties.userId,
+        level: this.properties.levelStage.level,
+        stage: this.properties.levelStage.stage
+      }
+      summaryApi.getSynthesisAbility(data, app.globalData.access_token)
+        .then(res => {
+          if (res.data.code === 200 || res.data.code === 0) {
+            _this.setData({
+              assessList: res.data.data
+            })
+          } else {
+            wx.showToast({
+              title: '服务器错误',
+              icon: 'none',
+              duration: 3000,
+              complete: function () {
+                console.log(res.data.msg);
+              }
+            })
+          }
+        }).catch(error => {
+          wx.showToast({
+            title: '网络错误',
+            icon: 'none',
+            duration: 3000,
+            complete: function () {
+              console.log(error)
+            }
+          })
+        })
+    }
   }
 })

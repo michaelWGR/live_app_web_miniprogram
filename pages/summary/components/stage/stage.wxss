@@ -140,3 +140,12 @@
   padding-top: 8rpx;
   text-align: center;
 }
+
+.stage .card-pop .card-content .card-item-text {
+  display: block;
+  width:380rpx;
+  margin: 0 auto;
+  text-align: left;
+  text-indent: 52rpx;
+  letter-spacing: 3rpx;
+}

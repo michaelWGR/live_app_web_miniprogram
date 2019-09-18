@@ -38,17 +38,27 @@ const getTeacherComment = (params, token) => {
 
 /** 用户点赞老师评语 */
 const teacherPraise = (params, token) => {
-  return request.post('/v1/report/teacherPraise', params, token);
+  return request.post('/v1/report/teacherPraise?teacherCommentId=' + params.teacherCommentId, params, token);
 }
 
 /** 用户取消点赞老师评语 */
 const teacherCancelPraise = (params, token) => {
-  return request.post('/v1/report/teacherCancelPraise', params, token);
+  return request.post('/v1/report/teacherCancelPraise?teacherCommentId=' + params.teacherCommentId, params, token);
 }
 
 /** 获取奖杯总数*/
 const getTrophyNum = (params, token) => {
   return request.get('/v1/report/getTrophyNum', params, token);
+}
+
+/** 获取二维码*/
+const test123 = (params, token) => {
+  return request.get('/v1/report/test123', params, token);
+}
+
+/** 获取综合能力评估*/
+const getSynthesisAbility = (params, token) => {
+  return request.get('/v1/report/getSynthesisAbility', params, token);
 }
 
 module.exports = {
@@ -61,5 +71,7 @@ module.exports = {
   getTeacherComment,
   teacherPraise,
   teacherCancelPraise,
-  getTrophyNum
+  getTrophyNum,
+  getSynthesisAbility,
+  test123
 }
