@@ -8,6 +8,8 @@
       </view>
     </block>
   </view>
+  <view class="bottom-view"></view>
+    
   <view class="left-bottom-grass"></view>
   <view class="right-bottom-grass"></view>
   <button open-type="share" class="share-btn"><text class="share-text">分享</text></button>

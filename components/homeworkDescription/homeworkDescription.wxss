@@ -1,0 +1,60 @@
+/* components/homeworkDescription/homeworkDescription.wxss */
+
+.description-item{
+    width: 560rpx;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 48rpx;
+  }
+  .audio-wrapper{
+    width: 382rpx;
+    height: 78rpx;
+    /* border: solid 1px #e3e3e3; */
+    border-radius: 2em 2em;
+    background: #fff;
+    box-shadow: 0 5rpx 10rpx #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 33rpx;
+  }
+  .play-btn{
+    width: 48rpx;
+    height: 48rpx;
+    background: url('https://appdev.61draw.com/dev_test/miniprogram/audio-play-btn.png') 0 0 no-repeat;
+    background-size: 100%;
+  }
+  .pause-btn{
+    width: 48rpx;
+    height: 48rpx;
+    background: url('https://appdev.61draw.com/dev_test/miniprogram/audio-pause-btn.png') 0 0 no-repeat;
+    background-size: 100%;
+  }
+  .audio-duration{
+    color: #4cc1ff;
+    font-size: 24rpx;
+    position: relative;
+    padding-right: 15rpx;
+  }
+  .audio-wave{
+    width: 233rpx;
+    height: 28rpx;
+    background: url('https://appdev.61draw.com/dev_test/miniprogram/audio-wave.png') 0 0 no-repeat;
+    background-size: 100%;
+  }
+  .audio-duration::after{
+    content: '\'\'';
+    position: absolute;
+    color: #4cc1ff;
+    font-size: 24rpx;
+    top: 0;
+    right: -2rpx;
+  }
+  .student-avatar{
+    width: 80rpx;
+    height: 80rpx;
+    border-radius: 50% 50%;
+    background: #fff;
+    overflow: hidden;
+  }

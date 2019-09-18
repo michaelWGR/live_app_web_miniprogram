@@ -72,7 +72,8 @@ Component({
         level: Number(this.properties.level),
         stage: Number(this.properties.stage)
       }
-      request.post('/v1/report/reportPraise', data, token)
+      const params = util.qs(data)
+      request.post('/v1/report/reportPraise' + params, {}, token)
     },
     getEventData: function() {
       const token = app.globalData.access_token
@@ -88,15 +89,16 @@ Component({
       const eventNumFlag = []
       const derivedEventData = { ...data, eventNumFlag}
       if(data.shortHomeworkCommitTimeDTO){
-        const hours = data.shortHomeworkCommitTimeDTO.commitTime / 3600000 
-        const minutes = (data.shortHomeworkCommitTimeDTO.commitTime % 3600000)/60000
+        const hours = Math.floor(data.shortHomeworkCommitTimeDTO.commitTime / 3600000) 
+        const minutes = Math.floor((data.shortHomeworkCommitTimeDTO.commitTime % 3600000)/60000)
         derivedEventData.shortHomeworkCommitTimeDTO.commitTime = `${hours >= 1 ? (hours + '小时') : ''}${minutes >= 1 ? (minutes + '分钟') : ''}`
       }
       
       keys.forEach(key => {
         if(derivedEventData[key]){
           derivedEventData.eventNumFlag.push(1)
-          derivedEventData[key].time = util.formatTime(data[key])
+          let timeStamp = data[key]
+          derivedEventData[key].time = util.formatTime(timeStamp)
         }
       })
       return derivedEventData

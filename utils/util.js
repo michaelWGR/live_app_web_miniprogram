@@ -20,11 +20,11 @@ const formatTime = (timeStamp, flag='ch', zeroize=false) => {
   let minute = date.getMinutes();
   let second = date.getSeconds();
   if(zeroize){
-    month = month < 10 ? month + 1 : month
-    day = day < 10 ? day + 1 : day
-    hour = hour < 10 ? hour + 1 : hour
-    minute = minute < 10 ? minute + 1 : minute
-    minute = minute < 10 ? minute + 1 : minute
+    month = month < 10 ? '0' + month : month
+    day = day < 10 ? '0' + day : day
+    hour = hour < 10 ? '0' + hour : hour
+    minute = minute < 10 ? '0' + minute : minute
+    second = second < 10 ? '0' + second : second
   }
   if(flag === 'ch') {
     return `${year}年${month}月${day}日`;
