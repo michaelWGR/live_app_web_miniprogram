@@ -72,7 +72,8 @@ Component({
         level: Number(this.properties.level),
         stage: Number(this.properties.stage)
       }
-      request.post('/v1/report/reportPraise', data, token)
+      const params = util.qs(data)
+      request.post('/v1/report/reportPraise' + params, {}, token)
     },
     getEventData: function() {
       const token = app.globalData.access_token

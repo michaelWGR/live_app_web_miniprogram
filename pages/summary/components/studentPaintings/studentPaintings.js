@@ -79,7 +79,7 @@ Component({
         stage: Number(this.properties.stage)
       }
       const params = util.qs(data)
-      request.post('/v1/report/reportPraise', params, token)
+      request.post('/v1/report/reportPraise' + params, {}, token)
     },
 
     getHomeworkList: function() {
