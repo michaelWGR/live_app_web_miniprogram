@@ -7,6 +7,10 @@ Component({
     audioData: {
       type: Object,
       value: {}
+    },
+    activeAudioId: {
+      type: String,
+      value: ''
     }
   },
 
@@ -30,6 +34,7 @@ Component({
           isPlaying: false
         })
       }else{
+        this.triggerPlay()
         this.innerAudioContext.play()
         this.setData({
           isPlaying: true
@@ -53,6 +58,17 @@ Component({
         isPlaying: false,
         duration: this.properties.audioData.duration
       })
+    },
+    triggerPlay() {
+      const detail = {
+        audioId: this.properties.audioData.id
+      }
+      this.triggerEvent('audioPlay', detail)
+    },
+    onOtherAudioPlay() {
+      if(this.data.isPlaying){
+        this.onEnded()
+      }
     }
   },
 
@@ -61,6 +77,14 @@ Component({
     this.setData({
       duration: this.properties.audioData.duration
     })
+  },
+
+  observers: {
+    'activeAudioId': function(activeAudioId) {
+      if(Number(activeAudioId) !== Number(this.properties.audioData.id)){
+        this.onOtherAudioPlay()
+      }
+    }
   }
 })
 

@@ -36,7 +36,7 @@
   </view>
   <view class="homework-description">
     <block wx:for="{{homeworkData.audioDescriptions}}" wx:key="{{index}}">
-      <homeworkDescription audioData="{{item}}"/>
+      <homeworkDescription audioData="{{item}}" bind:audioPlay="onAudioPlay" activeAudioId="{{activeAudioId}}"/>
     </block>
   </view>
 </view>

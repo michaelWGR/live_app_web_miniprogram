@@ -8,6 +8,10 @@ Component({
     audioData: {
       type: Object,
       value: {}
+    },
+    activeAudioId: {
+      type: String,
+      value: ''
     }
   },
 
@@ -26,38 +30,39 @@ Component({
   methods: {
     changeAudioState: function() {
       if(this.data.isPlaying){
-        this.data.innerAudioContext.pause()
+        this.innerAudioContext.pause()
         this.setData({
           isPlaying: false
         })
       }else{
-        this.data.innerAudioContext.play()
+        this.triggerPlay()
+        this.innerAudioContext.play()
         this.setData({
           isPlaying: true
         })
       }
     },
 
-    bindAudioEvent(innerAudioContext) {
-      innerAudioContext.onPlay(() => {
+    bindAudioEvent() {
+      this.innerAudioContext.onPlay(() => {
         console.log('开始播放')
       })
 
-      innerAudioContext.onTimeUpdate(e => {
+      this.innerAudioContext.onTimeUpdate(e => {
         this.setData({
-          duration: Math.floor(innerAudioContext.duration - innerAudioContext.currentTime)
+          duration: Math.floor(this.innerAudioContext.duration - this.innerAudioContext.currentTime)
         })
       })
 
-      innerAudioContext.onEnded(() => {
-        innerAudioContext.stop()
+      this.innerAudioContext.onEnded(() => {
+        this.innerAudioContext.stop()
         this.setData({
           isPlaying: false,
           duration: this.properties.audioData.duration
         })
       })
 
-      innerAudioContext.onWaiting(() => {
+      this.innerAudioContext.onWaiting(() => {
         wx.showToast({
           title: '音频加载中...',
           icon: 'none',
@@ -66,11 +71,11 @@ Component({
         });
       })
 
-      innerAudioContext.onCanplay(() => {
+      this.innerAudioContext.onCanplay(() => {
         wx.hideToast();
       })
 
-      innerAudioContext.onError(err => {
+      this.innerAudioContext.onError(err => {
         console.error(err)
         wx.showToast({
           title: '播放出错',
@@ -79,24 +84,45 @@ Component({
           mask: false,
         });
       })
+    },
+    triggerPlay() {
+      const detail = {
+        audioId: this.properties.audioData.id
+      }
+      this.triggerEvent('audioPlay', detail)
+    },
+    onOtherAudioPlay() {
+      if(this.data.isPlaying){
+        this.innerAudioContext.stop()
+        this.setData({
+          isPlaying: false,
+          duration: this.properties.audioData.duration
+        })
+      }
     }
   },
 
   attached: function() {
-    const innerAudioContext = wx.createInnerAudioContext()
-    innerAudioContext.src = this.properties.audioData.url
+    this.innerAudioContext = wx.createInnerAudioContext()
+    this.innerAudioContext.src = this.properties.audioData.url
     this.setData({
-      innerAudioContext,
       duration: this.properties.audioData.duration
     }, () => {
-      this.bindAudioEvent(this.data.innerAudioContext)
+      this.bindAudioEvent()
     })
   },
 
   detached: function() {
-    this.data.innerAudioContext.offPlay()
-    this.data.innerAudioContext.offTimeUpdate()
-    this.data.innerAudioContext.offWaiting()
-    this.data.innerAudioContext.offCanplay()
+    this.innerAudioContext.offPlay()
+    this.innerAudioContext.offTimeUpdate()
+    this.innerAudioContext.offWaiting()
+    this.innerAudioContext.offCanplay()
   },
+  observers: {
+    'activeAudioId': function(activeAudioId) {
+      if(Number(activeAudioId) !== Number(this.properties.audioData.id)){
+        this.onOtherAudioPlay()
+      }
+    }
+  }
 })
