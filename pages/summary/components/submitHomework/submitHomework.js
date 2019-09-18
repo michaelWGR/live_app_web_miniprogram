@@ -2,6 +2,7 @@
 const util = require('../../../../utils/util.js')
 const app = getApp();
 const request = require('../../../../utils/request')
+const summaryApi = require('../../../../api/summary.js');
 Component({
   /**
    * 组件的属性列表
@@ -29,6 +30,7 @@ Component({
     homeworkList: [],
     homeworkCommitNum: 0,
     homeworkNoCommitNum: 0,
+    teacherAvatar: ''
   },
 
   /**
@@ -54,10 +56,45 @@ Component({
           })
         }
       })
+    },
+    getTeacherAvatar() {
+      const _this = this
+      const data = {
+        userId: this.properties.userId,
+        level: this.properties.level,
+        stage: this.properties.stage
+      }
+      summaryApi.getTeacherComment(data, app.globalData.access_token)
+        .then(res => {
+          if (res.data.code === 200 || res.data.code === 0) {
+            _this.setData({
+              teacherAvatar: res.data.data.headUrl
+            })
+          } else {
+            wx.showToast({
+              title: '服务器错误',
+              icon: 'none',
+              duration: 3000,
+              complete: function () {
+                console.log(res.data.msg);
+              }
+            })
+          }
+        }).catch(error => {
+          wx.showToast({
+            title: '网络错误',
+            icon: 'none',
+            duration: 3000,
+            complete: function () {
+              console.log(error)
+            }
+          })
+        })
     }
   },
 
   attached: function() {
     this.getHomeworkList()
+    this.getTeacherAvatar()
   }
 })

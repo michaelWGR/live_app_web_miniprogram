@@ -29,7 +29,7 @@
 
       <view class="homework-bottom">
         <view class="teacher-comment">{{paintings.getText(rate)}}</view>
-        <image src="" class="homework-teacher-avatar"></image>
+        <image src="{{teacherAvatar}}" class="homework-teacher-avatar"></image>
       </view>
     </view>
   </gridBox>
