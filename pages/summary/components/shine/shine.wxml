@@ -24,7 +24,7 @@
                 <view class="shine-record">
                   <!-- 提交作业耗时最短 -->
                   <view><text class="red-font">{{eventData.shortHomeworkCommitTimeDTO.time}}</text>是个特殊的日子</view>
-                  <view>宝贝课后用最快的时间，<text class="red-font">{{eventData.shortHomeworkCommitTimeDTO.commitTime}}</text>完成</view>
+                  <view>宝贝课后用最快的时间,<text class="red-font">{{eventData.shortHomeworkCommitTimeDTO.commitTime}}</text>完成</view>
                   <view><text class="red-font">{{eventData.shortHomeworkCommitTimeDTO.courseName}}</text>的画作</view>
                   <view>今日事，今日毕</view>
                 </view>
@@ -36,8 +36,8 @@
               <view class="{{currIndex === index ? 'shine-record-paper active-shine-record-paper' : 'shine-record-paper'}}">
                 <view class="shine-record">
                   <view><text class="red-font">{{eventData.homeworkMostLongAudioDTO.time}}</text>是个特殊的日子</view>
-                  <view>宝贝用<text class="red-font">{{eventData.homeworkMostLongAudioDTO.audioSecond}}秒</text></view>
-                  <view>描述<text class="red-font">{{eventData.homeworkMostLongAudioDTO.title}}</text>的画作</view>
+                  <view>宝贝用<text class="red-font"> {{eventData.homeworkMostLongAudioDTO.audioSecond}} 秒</text></view>
+                  <view>描述 <text class="red-font">{{eventData.homeworkMostLongAudioDTO.title}}</text> 的画作</view>
                   <view>天马行空的描述，让画作充满活力</view>
                 </view>
               </view>

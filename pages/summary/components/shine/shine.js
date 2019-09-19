@@ -97,7 +97,7 @@ Component({
       keys.forEach(key => {
         if(derivedEventData[key]){
           derivedEventData.eventNumFlag.push(1)
-          let timeStamp = data[key]
+          let timeStamp = data[key].time
           derivedEventData[key].time = util.formatTime(timeStamp)
         }
       })
