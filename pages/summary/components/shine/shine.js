@@ -2,6 +2,7 @@
 const util = require('../../../../utils/util.js');
 const app = getApp();
 const request = require('../../../../utils/request')
+const summaryApi = require('../../../../api/summary')
 Component({
   /**
    * 组件的属性列表
@@ -19,10 +20,6 @@ Component({
       type: Number,
       value: ''
     },
-    trophyNum: {
-      type: Number,
-      value: 0
-    },
     nickname: {
       type: String,
       value: ''
@@ -38,6 +35,7 @@ Component({
     isShowCloseAnimation: false,
     praiseImg: util.img_baseUrl + 'praise.gif',
     eventData: null,
+    trophyNum: 0
   },
 
   /**
@@ -102,7 +100,23 @@ Component({
         }
       })
       return derivedEventData
-    }
+    },
+    //获取奖杯总数
+    getTrophyNum() {
+      const token = app.globalData.access_token
+      const params = {
+        userId: this.properties.userId,
+        level: this.properties.level,
+        stage: this.properties.stage
+      }
+      summaryApi.getTrophyNum(params, token).then(res => {
+        if(res.data.code === 200) {
+          this.setData({
+            trophyNum: res.data.data
+          })
+        }
+      })
+    },
   },
 
   attached: function() {
@@ -114,5 +128,6 @@ Component({
         })
       }
     })
+    this.getTrophyNum()
   }
 })

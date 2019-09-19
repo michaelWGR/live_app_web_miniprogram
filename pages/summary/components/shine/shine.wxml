@@ -3,13 +3,15 @@
   <view class="shine-title"><text class="shine-titlt-text">宝贝本阶段的闪光点</text></view>
   <gridBox>
     <view class="shine-content">
-      <view class="shine-top">
-        <text class="shine-top-red">{{nickname}}</text>宝贝，课堂上积极表达自己的ideas，共获得<text class="shine-top-red">{{trophyNum}}</text>个奖杯！
-      </view>
-      <view class="shine-middle">
-        <view class="trophy"></view>
-        <view class="shine-middle-text">{{trophyNum}}</view>
-      </view>
+      <block wx:if="{{trophyNum}}">
+        <view class="shine-top">
+          <text class="shine-top-red">{{nickname}}</text>宝贝，课堂上积极表达自己的ideas，共获得<text class="shine-top-red">{{trophyNum}}</text>个奖杯！
+        </view>
+        <view class="shine-middle">
+          <view class="trophy"></view>
+          <view class="shine-middle-text">{{trophyNum}}</view>
+        </view>
+      </block>
       <view class="shine-swiper">
         <swiper previous-margin="30rpx" 
           next-margin="100rpx" 
@@ -25,7 +27,7 @@
                   <!-- 提交作业耗时最短 -->
                   <view><text class="red-font">{{eventData.shortHomeworkCommitTimeDTO.time}}</text>是个特殊的日子</view>
                   <view>宝贝课后用最快的时间,<text class="red-font">{{eventData.shortHomeworkCommitTimeDTO.commitTime}}</text>完成</view>
-                  <view><text class="red-font">{{eventData.shortHomeworkCommitTimeDTO.courseName}}</text>的画作</view>
+                  <view><text class="red-font">《{{eventData.shortHomeworkCommitTimeDTO.courseName}}》</text>的画作</view>
                   <view>今日事，今日毕</view>
                 </view>
               </view>
@@ -37,7 +39,7 @@
                 <view class="shine-record">
                   <view><text class="red-font">{{eventData.homeworkMostLongAudioDTO.time}}</text>是个特殊的日子</view>
                   <view>宝贝用<text class="red-font"> {{eventData.homeworkMostLongAudioDTO.audioSecond}} 秒</text></view>
-                  <view>描述 <text class="red-font">{{eventData.homeworkMostLongAudioDTO.title}}</text> 的画作</view>
+                  <view>描述 <text class="red-font">《{{eventData.homeworkMostLongAudioDTO.title}}》</text> 的画作</view>
                   <view>天马行空的描述，让画作充满活力</view>
                 </view>
               </view>

@@ -113,7 +113,6 @@ Page({
     }
     if (app.globalData.access_token && app.globalData.access_token != '') {
       console.log('token: ' + app.globalData.access_token)
-      _this.getTrophyNum(params, app.globalData.access_token)
       _this.getUserInfo(userId, app.globalData.access_token)
       _this.getReportIdAndTeacherAvatar(params, app.globalData.access_token)
       _this.setData({
@@ -123,7 +122,6 @@ Page({
       app.tokenCallback = (token) => {
         if (token && token != '') {
           console.log('token: ' + token)
-          _this.getTrophyNum(params, token)
           _this.getUserInfo(userId, token)
           _this.getReportIdAndTeacherAvatar(params, token).then(reportId => {
             if(_shouldPostScanPage){
@@ -149,17 +147,6 @@ Page({
         isShowWelcome: false
       })
     }, 1350)
-  },
-
-  //获取奖杯总数
-  getTrophyNum(params, token) {
-    summaryApi.getTrophyNum(params, token).then(res => {
-      if(res.data.code === 200) {
-        this.setData({
-          trophyNum: res.data.data
-        })
-      }
-    })
   },
 
   // 获取用户信息 
