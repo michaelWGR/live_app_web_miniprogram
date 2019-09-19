@@ -4,6 +4,7 @@ const util = require('./../../utils/util.js');
 const summaryApi = require('../../api/summary.js');
 let scrollRatio = 0
 let isGoOtherPage = false // 是否跳到其他页面了，如果是ture下次onShow不展示彩礼
+let enterTimestamp
 Page({
 
   /**
@@ -23,6 +24,8 @@ Page({
     trophyNum: 100,
     pageHeight: 0,
     hasGetToken: false,
+    teacherAvatar: '',
+    reportId: 0,
   },
 
   /**
@@ -62,6 +65,7 @@ Page({
 
   onShow: function () {
     console.log('onShow')
+    enterTimestamp = new Date().getTime()
     if (isGoOtherPage) {
       isGoOtherPage = false
     } else {
@@ -70,13 +74,13 @@ Page({
   },
 
   onHide: function() {
-    // 滑动距离埋点
-    console.log('onHide滑动比例',scrollRatio+'%')
+    // 埋点
+    this.postScaleData()
   },
 
   onUnload: function() {
-    // 滑动距离埋点
-    console.log('onUnload滑动比例',scrollRatio+'%')
+    // 埋点
+    this.postScaleData()
   },
 
   /**
@@ -107,6 +111,7 @@ Page({
       console.log('token: ' + app.globalData.access_token)
       _this.getTrophyNum(params, app.globalData.access_token)
       _this.getUserInfo(userId, app.globalData.access_token)
+      _this.getReportIdAndTeacherAvatar(params, app.globalData.access_token)
       _this.setData({
         hasGetToken: true
       })
@@ -116,6 +121,7 @@ Page({
           console.log('token: ' + token)
           _this.getTrophyNum(params, token)
           _this.getUserInfo(userId, token)
+          _this.getReportIdAndTeacherAvatar(params, token)
           _this.setData({
             hasGetToken: true
           })
@@ -182,5 +188,51 @@ Page({
   // 跳转到其他页面
   goToOtherPage() {
     isGoOtherPage = true
+  },
+
+  //获取报告id和老师头像
+  getReportIdAndTeacherAvatar(params, token) {
+    const _this = this
+    summaryApi.getTeacherComment(params, token)
+      .then(res => {
+        if (res.data.code === 200 || res.data.code === 0) {
+          _this.setData({
+            teacherAvatar: res.data.data.headUrl,
+            reportId: res.data.data.reportId
+          })
+        } else {
+          wx.showToast({
+            title: '服务器错误',
+            icon: 'none',
+            duration: 3000,
+            complete: function () {
+              console.log(res.data.msg);
+            }
+          })
+        }
+      }).catch(error => {
+        wx.showToast({
+          title: '网络错误',
+          icon: 'none',
+          duration: 3000,
+          complete: function () {
+            console.log(error)
+          }
+        })
+      })
+  },
+
+  //浏览时长和滑动比例埋点
+  postScaleData() {
+    const leaveTimestamp = new Date().getTime()
+    const time = leaveTimestamp - enterTimestamp
+    const scale = scrollRatio > 100 ? 100 : (scrollRatio < 0 ? 0 : scrollRatio)
+    const data = {
+      reportId: this.data.reportId,
+      time: time,
+      scale: scale,
+      type: 1
+    }
+    summaryApi.postScaleData(data, app.globalData.access_token)
   }
 })

@@ -1,5 +1,6 @@
 const request = require('../utils/request.js')
 const app = getApp();
+const util = require('./../utils/util')
 
 /** 用户基本信息 */
 const getUserInfo = (params, token) => {
@@ -61,6 +62,12 @@ const getSynthesisAbility = (params, token) => {
   return request.get('/v1/report/getSynthesisAbility', params, token);
 }
 
+/** 埋点*/
+const postScaleData = (data, token) => {
+  const params = util.qs(data)
+  return request.post('/v1/report/postScaleData' + params, {}, token);
+}
+
 module.exports = {
   getUserInfo,
   getLevelStage,
@@ -73,5 +80,6 @@ module.exports = {
   teacherCancelPraise,
   getTrophyNum,
   getSynthesisAbility,
+  postScaleData,
   test123
 }

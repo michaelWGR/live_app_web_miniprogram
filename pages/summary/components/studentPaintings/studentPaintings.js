@@ -18,6 +18,10 @@ Component({
     stage: {
       type: String,
       value: ''
+    },
+    reportId: {
+      type: Number,
+      value: 0
     }
   },
 
@@ -57,7 +61,7 @@ Component({
       })
       this.triggerEvent('goToOtherPage')
       wx.navigateTo({
-        url: `../../pages/collections/collections?userId=${this.properties.userId}&level=${this.properties.level}&stage=${this.properties.stage}`,
+        url: `../../pages/collections/collections?userId=${this.properties.userId}&level=${this.properties.level}&stage=${this.properties.stage}&reportId=${this.properties.reportId}`,
       })
     },
     onClickLike: function() {

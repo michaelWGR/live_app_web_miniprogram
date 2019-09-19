@@ -2,7 +2,9 @@
 const request = require('../../utils/request.js');
 const util = require('./../../utils/util');
 const app = getApp();
+const summaryApi = require('../../api/summary.js');
 let collectionScrollRatio = 0
+let enterTimestamp
 Page({
 
   /**
@@ -14,18 +16,20 @@ Page({
     stage: 0,
     studentName: '',
     homeworkList: [],
-    pageHeight: 0
+    pageHeight: 0,
+    reportId: 0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    const {userId, level, stage} = { ...options }
+    const {userId, level, stage, reportId} = { ...options }
     this.setData({
       userId: Number(userId),
       level: Number(level),
-      stage: Number(stage)
+      stage: Number(stage),
+      reportId: Number(reportId)
     })
     this.getHomeworkList(userId, level, stage).then(res => {
       if(res.data.code === 200){
@@ -70,14 +74,18 @@ Page({
     collectionScrollRatio = Math.ceil((e.scrollTop / this.data.pageHeight)*100)
   },
 
+  onShow: function() {
+    enterTimestamp = new Date().getTime()
+  },
+
   onHide: function() {
-    // 滑动距离埋点
-    
+    // 埋点
+    this.postScaleData()
   },
 
   onUnload: function() {
-    // 滑动距离埋点
-    
+    // 埋点
+    this.postScaleData()
   },
 
   /**
@@ -87,7 +95,7 @@ Page({
     const imgUrl = this.data.homeworkList.length > 0 && this.data.homeworkList[0].imgUrl ? this.data.homeworkList[0].imgUrl : ''
     return {
       title: `${this.data.studentName}《Level ${this.data.level} stage ${this.data.stage}》在画啦啦的创想作品集`,// 韩**《Level 1 stage 2》在画啦啦的创想作品集
-      path: `/pages/collections/collections?userId=${this.data.userId}&level=${this.data.level}&stage=${this.data.stage}`,
+      path: `/pages/collections/collections?userId=${this.data.userId}&level=${this.data.level}&stage=${this.data.stage}$reportId=${this.data.reportId}`,
       imageUrl: imgUrl// 截取页面中第一幅画作的内容
     }
   },
@@ -115,5 +123,19 @@ Page({
       }
     })
     return homeworkList
+  },
+
+  //浏览时长和滑动比例埋点
+  postScaleData() {
+    const leaveTimestamp = new Date().getTime()
+    const time = leaveTimestamp - enterTimestamp
+    const scale = collectionScrollRatio > 100 ? 100 : (collectionScrollRatio < 0 ? 0 : collectionScrollRatio)
+    const data = {
+      reportId: this.data.reportId,
+      time: time,
+      scale: scale,
+      type: 2
+    }
+    summaryApi.postScaleData(data, app.globalData.access_token)
   }
 })
