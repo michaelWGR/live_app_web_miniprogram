@@ -7,6 +7,7 @@ let isGoOtherPage = false // 是否跳到其他页面了，如果是ture下次on
 let _enterTimestamp
 let _shouldPostScanPage = false;//onShow的时候拿不到token和reportId,等拿到token再发送埋点
 const TYPE_ENTER_SUMMARY = 1
+const TYPE_SHARE_SUMMARY = 4
 Page({
 
   /**
@@ -34,8 +35,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log('summary onload')
-    const userId =  58661
+    const userId =  6322
     const levelStage = {
       level: 1,
       stage: 1
@@ -90,6 +90,7 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
+    this.postShare()
     return {
       title: this.data.userInfo.nickname + '《Level ' + this.data.levelStage.level + ' stage ' + this.data.levelStage.stage + '》的画啦啦艺术成长报告'
     }
@@ -252,6 +253,13 @@ Page({
       summaryApi.postClickData(reportId, TYPE_ENTER_SUMMARY, app.globalData.access_token)
     }else{
       _shouldPostScanPage = true
+    }
+  },
+  //分享埋点
+  postShare() {
+    if(app.globalData.access_token && app.globalData.access_token != '' && this.data.reportId) {
+      const reportId = this.data.reportId
+      summaryApi.postClickData(reportId, TYPE_SHARE_SUMMARY, app.globalData.access_token)
     }
   }
 })

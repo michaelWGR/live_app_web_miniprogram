@@ -7,6 +7,8 @@ let collectionScrollRatio = 0
 let enterTimestamp
 let shouldPostScanPage = false;//onShow的时候拿不到token和reportId,等拿到token再发送埋点
 const TYPE_ENTER_COLLECTIONS = 3
+const TYPE_SHARE_COLLECTIONS_MENU = 5;// 点击右上角分享
+const TYPE_SHARE_COLLECTIONS_BUTTON = 6;// 点击按钮分享
 Page({
 
   /**
@@ -74,7 +76,8 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function (opts) {
+    this.postShare(opts.from)
     const imgUrl = this.data.homeworkList.length > 0 && this.data.homeworkList[0].imgUrl ? this.data.homeworkList[0].imgUrl : ''
     return {
       title: `${this.data.studentName}《Level ${this.data.level} stage ${this.data.stage}》在画啦啦的创想作品集`,// 韩**《Level 1 stage 2》在画啦啦的创想作品集
@@ -173,6 +176,14 @@ Page({
       summaryApi.postClickData(reportId, TYPE_ENTER_COLLECTIONS, app.globalData.access_token)
     }else{
       shouldPostScanPage = true
+    }
+  },
+  //分享埋点
+  postShare(from) {
+    if(app.globalData.access_token && app.globalData.access_token != '' && this.data.reportId) {
+      const reportId = this.data.reportId
+      const type = from === 'button' ? TYPE_SHARE_COLLECTIONS_BUTTON : TYPE_SHARE_COLLECTIONS_MENU
+      summaryApi.postClickData(reportId, type, app.globalData.access_token)
     }
   }
 })
