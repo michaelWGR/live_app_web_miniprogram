@@ -2,6 +2,8 @@
 const util = require('../../../../utils/util.js')
 const app = getApp();
 const request = require('../../../../utils/request')
+const summaryApi = require('../../../../api/summary.js')
+const TYPE_CLICK_GO_COLLECTIONS = 2
 Component({
   /**
    * 组件的属性列表
@@ -18,6 +20,10 @@ Component({
     stage: {
       type: String,
       value: ''
+    },
+    reportId: {
+      type: Number,
+      value: 0
     }
   },
 
@@ -52,12 +58,13 @@ Component({
    */
   methods: {
     goToCollections: function() {
+      this.postClick()
       this.setData({
         navigationFlag: true
       })
       this.triggerEvent('goToOtherPage')
       wx.navigateTo({
-        url: `../../pages/collections/collections?userId=${this.properties.userId}&level=${this.properties.level}&stage=${this.properties.stage}`,
+        url: `../../pages/collections/collections?userId=${this.properties.userId}&level=${this.properties.level}&stage=${this.properties.stage}&reportId=${this.properties.reportId}`,
       })
     },
     onClickLike: function() {
@@ -115,6 +122,12 @@ Component({
       })
       // 最多显示2个作业
       return homeworkList.length > 2 ? homeworkList.slice(0, 2) : homeworkList
+    },
+
+    //埋点
+    postClick() {
+      const token = app.globalData.access_token
+      summaryApi.postClickData(this.properties.reportId, TYPE_CLICK_GO_COLLECTIONS, token)
     }
   }
 })

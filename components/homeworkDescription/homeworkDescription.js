@@ -82,7 +82,6 @@ Component({
   },
 
   detached: function() {
-    console.log(666)
   },
 
   observers: {

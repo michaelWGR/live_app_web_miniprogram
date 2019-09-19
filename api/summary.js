@@ -1,5 +1,6 @@
 const request = require('../utils/request.js')
 const app = getApp();
+const util = require('./../utils/util')
 
 /** 用户基本信息 */
 const getUserInfo = (params, token) => {
@@ -61,6 +62,21 @@ const getSynthesisAbility = (params, token) => {
   return request.get('/v1/report/getSynthesisAbility', params, token);
 }
 
+/** 埋点*/
+const postScaleData = (data, token) => {
+  const params = util.qs(data)
+  return request.post('/v1/report/postScaleData' + params, {}, token);
+}
+
+/** 点击事件埋点*/
+const postClickData = (reportId, type, token) => {
+  const params = util.qs({
+    reportId,
+    type
+  })
+  return request.post('/v1/report/postClickData' + params, {}, token);
+}
+
 module.exports = {
   getUserInfo,
   getLevelStage,
@@ -73,5 +89,7 @@ module.exports = {
   teacherCancelPraise,
   getTrophyNum,
   getSynthesisAbility,
+  postScaleData,
+  postClickData,
   test123
 }

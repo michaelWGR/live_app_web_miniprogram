@@ -89,11 +89,11 @@
 }
 .shine-record{
   color:#743f00;
-  font-size: 28rpx;
+  font-size: 27rpx;
   line-height: 61rpx;
   position: absolute;
   left: 42rpx;
-  top: 10rpx;
+  top: 11rpx;
 }
 .red-font{
   color: #ff6950;

@@ -100,7 +100,6 @@ export const getIntersection = (arr1, arr2) => {
       resolve(res[0].height - systemInfo.windowHeight)
     })
    })
-  
  }
 
 

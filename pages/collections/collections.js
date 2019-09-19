@@ -2,7 +2,13 @@
 const request = require('../../utils/request.js');
 const util = require('./../../utils/util');
 const app = getApp();
+const summaryApi = require('../../api/summary.js');
 let collectionScrollRatio = 0
+let enterTimestamp
+let shouldPostScanPage = false;//onShow的时候拿不到token和reportId,等拿到token再发送埋点
+const TYPE_ENTER_COLLECTIONS = 3
+const TYPE_SHARE_COLLECTIONS_MENU = 5;// 点击右上角分享
+const TYPE_SHARE_COLLECTIONS_BUTTON = 6;// 点击按钮分享
 Page({
 
   /**
@@ -14,40 +20,22 @@ Page({
     stage: 0,
     studentName: '',
     homeworkList: [],
-    pageHeight: 0
+    pageHeight: 0,
+    reportId: 0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    const {userId, level, stage} = { ...options }
+    const {userId, level, stage, reportId} = { ...options }
     this.setData({
       userId: Number(userId),
       level: Number(level),
-      stage: Number(stage)
+      stage: Number(stage),
+      reportId: Number(reportId)
     })
-    this.getHomeworkList(userId, level, stage).then(res => {
-      if(res.data.code === 200){
-        const data = res.data.data
-        this.setData({
-          studentName: data[0].homeworkCommentForShareDTO.baseInfo.studentName,
-          homeworkList: this.getDeriveHomeworkList(data, level, stage)
-        })
-      }else{
-        wx.showToast({
-          title: `服务器错误${res.data.code}`,
-          icon: 'none',
-          duration: 3000
-        })
-      }
-    }, err => {
-      wx.showToast({
-        title: `服务器错误${res.data.code}`,
-        icon: 'none',
-        duration: 3000
-      })
-    })
+    this.initToken(userId, level, stage, reportId)
   },
 
   /**
@@ -70,31 +58,81 @@ Page({
     collectionScrollRatio = Math.ceil((e.scrollTop / this.data.pageHeight)*100)
   },
 
+  onShow: function() {
+    enterTimestamp = new Date().getTime()
+    this.postScanPage()
+  },
+
   onHide: function() {
-    // 滑动距离埋点
-    
+    // 埋点
+    this.postScaleData()
   },
 
   onUnload: function() {
-    // 滑动距离埋点
-    
+    // 埋点
+    this.postScaleData()
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function (opts) {
+    this.postShare(opts.from)
     const imgUrl = this.data.homeworkList.length > 0 && this.data.homeworkList[0].imgUrl ? this.data.homeworkList[0].imgUrl : ''
     return {
       title: `${this.data.studentName}《Level ${this.data.level} stage ${this.data.stage}》在画啦啦的创想作品集`,// 韩**《Level 1 stage 2》在画啦啦的创想作品集
-      path: `/pages/collections/collections?userId=${this.data.userId}&level=${this.data.level}&stage=${this.data.stage}`,
+      path: `/pages/collections/collections?userId=${this.data.userId}&level=${this.data.level}&stage=${this.data.stage}$reportId=${this.data.reportId}`,
       imageUrl: imgUrl// 截取页面中第一幅画作的内容
     }
   },
 
-  getHomeworkList: function(userId, level, stage) {
+  // 判断是否存在token
+  initToken(userId, level, stage, reportId) {
+    const _this = this;
+    if (app.globalData.access_token && app.globalData.access_token != '') {
+      const params = {
+        userId,
+        level,
+        stage,
+        token: app.globalData.access_token
+      }
+      _this.getHomeworkList(params)
+    } else {
+      app.tokenCallback = (token) => {
+        if (token && token != '') {
+          _this.getHomeworkList(userId, level, stage, token)
+          if(shouldPostScanPage) {
+            summaryApi.postClickData(reportId, TYPE_ENTER_COLLECTIONS, token)
+            shouldPostScanPage = false
+          }
+        }
+      }
+    }
+  },
+
+  getHomeworkList: function({userId, level, stage, token}) {
     const params = {userId, level, stage}
-    return request.get('/v1/report/getHomeworks', params, app.globalData.access_token)
+    request.get('/v1/report/getHomeworks', params, token).then(res => {
+      if(res.data.code === 200){
+        const data = res.data.data
+        this.setData({
+          studentName: data[0].homeworkCommentForShareDTO.baseInfo.studentName,
+          homeworkList: this.getDeriveHomeworkList(data, level, stage)
+        })
+      }else{
+        wx.showToast({
+          title: `服务器错误${res.data.code}`,
+          icon: 'none',
+          duration: 3000
+        })
+      }
+    }, err => {
+      wx.showToast({
+        title: `服务器错误${res.data.code}`,
+        icon: 'none',
+        duration: 3000
+      })
+    })
   },
 
   getDeriveHomeworkList(data, level, stage) {
@@ -115,5 +153,37 @@ Page({
       }
     })
     return homeworkList
+  },
+
+  //浏览时长和滑动比例埋点
+  postScaleData() {
+    const leaveTimestamp = new Date().getTime()
+    const time = leaveTimestamp - enterTimestamp
+    const scale = collectionScrollRatio > 100 ? 100 : (collectionScrollRatio < 0 ? 0 : collectionScrollRatio)
+    const data = {
+      reportId: this.data.reportId,
+      time: time,
+      scale: scale,
+      type: 2
+    }
+    summaryApi.postScaleData(data, app.globalData.access_token)
+  },
+
+  //进入页面埋点
+  postScanPage() {
+    if(app.globalData.access_token && app.globalData.access_token != '' && this.data.reportId) {
+      const reportId = this.data.reportId
+      summaryApi.postClickData(reportId, TYPE_ENTER_COLLECTIONS, app.globalData.access_token)
+    }else{
+      shouldPostScanPage = true
+    }
+  },
+  //分享埋点
+  postShare(from) {
+    if(app.globalData.access_token && app.globalData.access_token != '' && this.data.reportId) {
+      const reportId = this.data.reportId
+      const type = from === 'button' ? TYPE_SHARE_COLLECTIONS_BUTTON : TYPE_SHARE_COLLECTIONS_MENU
+      summaryApi.postClickData(reportId, type, app.globalData.access_token)
+    }
   }
 })

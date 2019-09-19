@@ -1,5 +1,8 @@
 <view class="summary" id="summary">
-
+  <view>
+    userId:{{userId}} level:{{levelStage.level}} stage:{{levelStage.stage}}
+  </view>
+    
   <block wx:if="{{userId && levelStage.level && hasGetToken}}">
     <studentInfo levelStage="{{levelStage}}" userId="{{userId}}" userInfo="{{userInfo}}"></studentInfo>
     <stage levelStage="{{levelStage}}" userId="{{userId}}"></stage>
@@ -12,14 +15,14 @@
  
 
   <block wx:if="{{userId && levelStage.level && hasGetToken}}">
-    <submitHomework user-id="{{userId}}" level="{{levelStage.level}}" stage="{{levelStage.stage}}"></submitHomework>
+    <submitHomework user-id="{{userId}}" level="{{levelStage.level}}" stage="{{levelStage.stage}}" teacherAvatar="{{teacherAvatar}}"></submitHomework>
   </block>
 
   <block wx:if="{{userId && levelStage.level && hasGetToken}}">
-    <studentPaintings user-id="{{userId}}" level="{{levelStage.level}}" stage="{{levelStage.stage}}"  bind:goToOtherPage="goToOtherPage"></studentPaintings>
+    <studentPaintings user-id="{{userId}}" level="{{levelStage.level}}" stage="{{levelStage.stage}}" reportId="{{reportId}}" bind:goToOtherPage="goToOtherPage"></studentPaintings>
   </block>
     
-  <block wx:if="{{trophyNum > 0 && userId && levelStage.level && hasGetToken}}">
+  <block wx:if="{{userId && levelStage.level && hasGetToken}}">
     <shine user-id="{{userId}}" level="{{levelStage.level}}" stage="{{levelStage.stage}}" trophy-num="{{trophyNum}}" nickname="{{userInfo.nickname}}"></shine>
   </block>
 
