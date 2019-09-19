@@ -93,6 +93,10 @@ Component({
         const minutes = Math.floor((data.shortHomeworkCommitTimeDTO.commitTime % 3600000)/60000)
         derivedEventData.shortHomeworkCommitTimeDTO.commitTime = `${hours >= 1 ? (hours + '小时') : ''}${minutes >= 1 ? (minutes + '分钟') : ''}`
       }
+      if(data.mostAccessLiveRoomDTO) {
+        const minuteTime = Math.ceil(Math.abs(data.shortHomeworkCommitTimeDTO.minuteTime) / 60)
+        derivedEventData.mostAccessLiveRoomDTO.minuteTime = minuteTime
+      }
       
       keys.forEach(key => {
         if(derivedEventData[key]){
