@@ -116,7 +116,7 @@ Page({
       if(res.data.code === 200){
         const data = res.data.data
         this.setData({
-          studentName: data[0].homeworkCommentForShareDTO.baseInfo.studentName,
+          studentName: data[0].homeworkResourseDTO.userName,
           homeworkList: this.getDeriveHomeworkList(data, level, stage)
         })
       }else{
@@ -145,7 +145,7 @@ Page({
         audioDescriptions: item.homeworkResourseDTO.userAudio.map(audio => ({
           id: audio.id,
           url: audio.urlHost + audio.urlPath, 
-          duration: audio.mediaLength, 
+          duration: audio.duration, 
           stuAvatar: item.homeworkResourseDTO.stuAvatar ? item.homeworkResourseDTO.stuAvatar : util.img_baseUrl+'summary-info-headImage.png'
         })),
         submitTime: util.formatTime(item.homeworkResourseDTO.submitTime, '.', true),

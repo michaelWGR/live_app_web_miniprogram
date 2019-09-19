@@ -113,7 +113,7 @@ Component({
           audioDescriptions: item.homeworkResourseDTO.userAudio.map(audio => ({
             id: audio.id,
             url: audio.urlHost + audio.urlPath, 
-            duration: audio.mediaLength, 
+            duration: audio.duration, 
             stuAvatar: item.homeworkResourseDTO.stuAvatar ? item.homeworkResourseDTO.stuAvatar : util.img_baseUrl+'summary-info-headImage.png'
           })),
           submitTime: util.formatTime(item.homeworkResourseDTO.submitTime, '.', true),
