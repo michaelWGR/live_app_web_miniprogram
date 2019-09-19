@@ -6,6 +6,7 @@ const summaryApi = require('../../api/summary.js');
 let collectionScrollRatio = 0
 let enterTimestamp
 let shouldPostScanPage = false;//onShow的时候拿不到token和reportId,等拿到token再发送埋点
+const TYPE_ENTER_COLLECTIONS = 3
 Page({
 
   /**
@@ -98,7 +99,6 @@ Page({
         if (token && token != '') {
           _this.getHomeworkList(userId, level, stage, token)
           if(shouldPostScanPage) {
-            const TYPE_ENTER_COLLECTIONS = 3
             summaryApi.postClickData(reportId, TYPE_ENTER_COLLECTIONS, token)
             shouldPostScanPage = false
           }
@@ -169,7 +169,6 @@ Page({
   //进入页面埋点
   postScanPage() {
     if(app.globalData.access_token && app.globalData.access_token != '' && this.data.reportId) {
-      const TYPE_ENTER_COLLECTIONS = 3
       const reportId = this.data.reportId
       summaryApi.postClickData(reportId, TYPE_ENTER_COLLECTIONS, app.globalData.access_token)
     }else{

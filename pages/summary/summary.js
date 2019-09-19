@@ -6,6 +6,7 @@ let scrollRatio = 0
 let isGoOtherPage = false // 是否跳到其他页面了，如果是ture下次onShow不展示彩礼
 let _enterTimestamp
 let _shouldPostScanPage = false;//onShow的时候拿不到token和reportId,等拿到token再发送埋点
+const TYPE_ENTER_SUMMARY = 1
 Page({
 
   /**
@@ -105,9 +106,9 @@ Page({
   initToken(userId, levelStage) {
     const _this = this;
     const params = {
-      userId: userId,
-      level: levelStage.level,
-      stage: levelStage.stage
+      userId: Number(userId),
+      level: Number(levelStage.level),
+      stage: Number(levelStage.stage)
     }
     if (app.globalData.access_token && app.globalData.access_token != '') {
       console.log('token: ' + app.globalData.access_token)
@@ -125,8 +126,7 @@ Page({
           _this.getUserInfo(userId, token)
           _this.getReportIdAndTeacherAvatar(params, token).then(reportId => {
             if(_shouldPostScanPage){
-              const TYPE_ENTER_COLLECTIONS = 3
-              summaryApi.postClickData(reportId, TYPE_ENTER_COLLECTIONS, app.globalData.access_token)
+              summaryApi.postClickData(reportId, TYPE_ENTER_SUMMARY, app.globalData.access_token)
             }
           })
           _this.setData({
@@ -248,9 +248,8 @@ Page({
   //进入报告埋点
   postScanPage() {
     if(app.globalData.access_token && app.globalData.access_token != '' && this.data.reportId) {
-      const TYPE_ENTER_COLLECTIONS = 3
       const reportId = this.data.reportId
-      summaryApi.postClickData(reportId, TYPE_ENTER_COLLECTIONS, app.globalData.access_token)
+      summaryApi.postClickData(reportId, TYPE_ENTER_SUMMARY, app.globalData.access_token)
     }else{
       _shouldPostScanPage = true
     }
