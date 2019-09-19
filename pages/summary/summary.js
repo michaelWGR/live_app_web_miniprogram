@@ -24,7 +24,7 @@ Page({
     },
     isShowWelcome: false,
     userId: '',
-    trophyNum: 100,
+    trophyNum: 0,
     pageHeight: 0,
     hasGetToken: false,
     teacherAvatar: '',
