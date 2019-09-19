@@ -4,7 +4,8 @@ const util = require('./../../utils/util.js');
 const summaryApi = require('../../api/summary.js');
 let scrollRatio = 0
 let isGoOtherPage = false // 是否跳到其他页面了，如果是ture下次onShow不展示彩礼
-let enterTimestamp
+let _enterTimestamp
+let _shouldPostScanPage = false;//onShow的时候拿不到token和reportId,等拿到token再发送埋点
 Page({
 
   /**
@@ -32,6 +33,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log('summary onload')
     const userId =  58661
     const levelStage = {
       level: 1,
@@ -64,8 +66,8 @@ Page({
   },
 
   onShow: function () {
-    console.log('onShow')
-    enterTimestamp = new Date().getTime()
+    _enterTimestamp = new Date().getTime()
+    this.postScanPage()
     if (isGoOtherPage) {
       isGoOtherPage = false
     } else {
@@ -121,7 +123,12 @@ Page({
           console.log('token: ' + token)
           _this.getTrophyNum(params, token)
           _this.getUserInfo(userId, token)
-          _this.getReportIdAndTeacherAvatar(params, token)
+          _this.getReportIdAndTeacherAvatar(params, token).then(reportId => {
+            if(_shouldPostScanPage){
+              const TYPE_ENTER_COLLECTIONS = 3
+              summaryApi.postClickData(reportId, TYPE_ENTER_COLLECTIONS, app.globalData.access_token)
+            }
+          })
           _this.setData({
             hasGetToken: true
           })
@@ -192,14 +199,15 @@ Page({
 
   //获取报告id和老师头像
   getReportIdAndTeacherAvatar(params, token) {
-    const _this = this
-    summaryApi.getTeacherComment(params, token)
-      .then(res => {
+    return new Promise((resolve, reject) => {
+      const _this = this
+      summaryApi.getTeacherComment(params, token).then(res => {
         if (res.data.code === 200 || res.data.code === 0) {
           _this.setData({
             teacherAvatar: res.data.data.headUrl,
             reportId: res.data.data.reportId
           })
+          resolve(res.data.data.reportId)
         } else {
           wx.showToast({
             title: '服务器错误',
@@ -220,12 +228,13 @@ Page({
           }
         })
       })
+    })
   },
 
   //浏览时长和滑动比例埋点
   postScaleData() {
     const leaveTimestamp = new Date().getTime()
-    const time = leaveTimestamp - enterTimestamp
+    const time = leaveTimestamp - _enterTimestamp
     const scale = scrollRatio > 100 ? 100 : (scrollRatio < 0 ? 0 : scrollRatio)
     const data = {
       reportId: this.data.reportId,
@@ -234,5 +243,16 @@ Page({
       type: 1
     }
     summaryApi.postScaleData(data, app.globalData.access_token)
+  },
+
+  //进入报告埋点
+  postScanPage() {
+    if(app.globalData.access_token && app.globalData.access_token != '' && this.data.reportId) {
+      const TYPE_ENTER_COLLECTIONS = 3
+      const reportId = this.data.reportId
+      summaryApi.postClickData(reportId, TYPE_ENTER_COLLECTIONS, app.globalData.access_token)
+    }else{
+      _shouldPostScanPage = true
+    }
   }
 })

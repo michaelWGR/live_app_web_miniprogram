@@ -68,6 +68,15 @@ const postScaleData = (data, token) => {
   return request.post('/v1/report/postScaleData' + params, {}, token);
 }
 
+/** 点击事件埋点*/
+const postClickData = (reportId, type, token) => {
+  const params = util.qs({
+    reportId,
+    type
+  })
+  return request.post('/v1/report/postClickData' + params, {}, token);
+}
+
 module.exports = {
   getUserInfo,
   getLevelStage,
@@ -81,5 +90,6 @@ module.exports = {
   getTrophyNum,
   getSynthesisAbility,
   postScaleData,
+  postClickData,
   test123
 }

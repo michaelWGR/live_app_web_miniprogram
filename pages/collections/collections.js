@@ -5,6 +5,7 @@ const app = getApp();
 const summaryApi = require('../../api/summary.js');
 let collectionScrollRatio = 0
 let enterTimestamp
+let shouldPostScanPage = false;//onShow的时候拿不到token和reportId,等拿到token再发送埋点
 Page({
 
   /**
@@ -31,27 +32,7 @@ Page({
       stage: Number(stage),
       reportId: Number(reportId)
     })
-    this.getHomeworkList(userId, level, stage).then(res => {
-      if(res.data.code === 200){
-        const data = res.data.data
-        this.setData({
-          studentName: data[0].homeworkCommentForShareDTO.baseInfo.studentName,
-          homeworkList: this.getDeriveHomeworkList(data, level, stage)
-        })
-      }else{
-        wx.showToast({
-          title: `服务器错误${res.data.code}`,
-          icon: 'none',
-          duration: 3000
-        })
-      }
-    }, err => {
-      wx.showToast({
-        title: `服务器错误${res.data.code}`,
-        icon: 'none',
-        duration: 3000
-      })
-    })
+    this.initToken(userId, level, stage, reportId)
   },
 
   /**
@@ -76,6 +57,7 @@ Page({
 
   onShow: function() {
     enterTimestamp = new Date().getTime()
+    this.postScanPage()
   },
 
   onHide: function() {
@@ -100,9 +82,54 @@ Page({
     }
   },
 
-  getHomeworkList: function(userId, level, stage) {
+  // 判断是否存在token
+  initToken(userId, level, stage, reportId) {
+    const _this = this;
+    if (app.globalData.access_token && app.globalData.access_token != '') {
+      const params = {
+        userId,
+        level,
+        stage,
+        token: app.globalData.access_token
+      }
+      _this.getHomeworkList(params)
+    } else {
+      app.tokenCallback = (token) => {
+        if (token && token != '') {
+          _this.getHomeworkList(userId, level, stage, token)
+          if(shouldPostScanPage) {
+            const TYPE_ENTER_COLLECTIONS = 3
+            summaryApi.postClickData(reportId, TYPE_ENTER_COLLECTIONS, token)
+            shouldPostScanPage = false
+          }
+        }
+      }
+    }
+  },
+
+  getHomeworkList: function({userId, level, stage, token}) {
     const params = {userId, level, stage}
-    return request.get('/v1/report/getHomeworks', params, app.globalData.access_token)
+    request.get('/v1/report/getHomeworks', params, token).then(res => {
+      if(res.data.code === 200){
+        const data = res.data.data
+        this.setData({
+          studentName: data[0].homeworkCommentForShareDTO.baseInfo.studentName,
+          homeworkList: this.getDeriveHomeworkList(data, level, stage)
+        })
+      }else{
+        wx.showToast({
+          title: `服务器错误${res.data.code}`,
+          icon: 'none',
+          duration: 3000
+        })
+      }
+    }, err => {
+      wx.showToast({
+        title: `服务器错误${res.data.code}`,
+        icon: 'none',
+        duration: 3000
+      })
+    })
   },
 
   getDeriveHomeworkList(data, level, stage) {
@@ -137,5 +164,16 @@ Page({
       type: 2
     }
     summaryApi.postScaleData(data, app.globalData.access_token)
+  },
+
+  //进入页面埋点
+  postScanPage() {
+    if(app.globalData.access_token && app.globalData.access_token != '' && this.data.reportId) {
+      const TYPE_ENTER_COLLECTIONS = 3
+      const reportId = this.data.reportId
+      summaryApi.postClickData(reportId, TYPE_ENTER_COLLECTIONS, app.globalData.access_token)
+    }else{
+      shouldPostScanPage = true
+    }
   }
 })
