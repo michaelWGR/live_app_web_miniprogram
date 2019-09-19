@@ -90,6 +90,7 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
+    this.goToOtherPage()
     this.postShare()
     return {
       title: this.data.userInfo.nickname + '《Level ' + this.data.levelStage.level + ' stage ' + this.data.levelStage.stage + '》的画啦啦艺术成长报告'
