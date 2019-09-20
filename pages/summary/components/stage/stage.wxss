@@ -143,9 +143,9 @@
 
 .stage .card-pop .card-content .card-item-text {
   display: block;
-  width:380rpx;
+  width: 380rpx;
   margin: 0 auto;
   text-align: left;
-  text-indent: 52rpx;
+  text-indent: 70rpx;
   letter-spacing: 3rpx;
 }
