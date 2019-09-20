@@ -4,6 +4,7 @@ const app = getApp();
 const request = require('../../../../utils/request')
 const summaryApi = require('../../../../api/summary.js')
 const TYPE_CLICK_GO_COLLECTIONS = 2
+const HOMEWORK_NUM_TWO = 2;//本模块展示的作业数量，服务端返回，值只有1和2
 Component({
   /**
    * 组件的属性列表
@@ -120,8 +121,8 @@ Component({
           courseOrder: item.sortCourse
         }
       })
-      // 最多显示2个作业
-      return homeworkList.length > 2 ? homeworkList.slice(0, 2) : homeworkList
+      // 根据flag判断显示1个还是2个作业
+      return data.length > 1 && data[0].flag === HOMEWORK_NUM_TWO ? homeworkList.slice(0, 2) : homeworkList.slice(0, 1)
     },
 
     //埋点
