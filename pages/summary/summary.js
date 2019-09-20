@@ -71,7 +71,7 @@ Page({
     this.postScanPage()
     if (isGoOtherPage) {
       isGoOtherPage = false
-    } else if (this.data.userInfo.nickname) {
+    } else if (this.data.userInfo && this.data.userInfo.nickname) {
       this.initWelcome()
     }
   },

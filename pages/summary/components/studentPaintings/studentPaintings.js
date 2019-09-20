@@ -47,7 +47,7 @@ Component({
         const level = Number(this.properties.level)
         const stage = Number(this.properties.stage)
         this.setData({
-          submitNum: data.length,
+          submitNum: data.homeworkDTOS.length,
           homeworkList: this.getDeriveHomeworkList(data, level, stage)
         })
       }
@@ -105,14 +105,14 @@ Component({
     },
 
     getDeriveHomeworkList(data, level, stage) {
-      let homeworkList = data.map(item => {
+      let homeworkList = data.homeworkDTOS.map(item => {
         return {
           courseName: item.courseName,
           level: level,
           stage: stage,
           imgUrl: item.homeworkResourseDTO.imgUrl,
           audioDescriptions: item.homeworkResourseDTO.userAudio.map(audio => ({
-            id: audio.id,
+            id: audio.resourseId,
             url: audio.urlHost + audio.urlPath, 
             duration: audio.duration, 
             stuAvatar: item.homeworkResourseDTO.stuAvatar ? item.homeworkResourseDTO.stuAvatar : util.img_baseUrl+'summary-info-headImage.png'
@@ -122,7 +122,7 @@ Component({
         }
       })
       // 根据flag判断显示1个还是2个作业
-      return data.length > 1 && data[0].flag === HOMEWORK_NUM_TWO ? homeworkList.slice(0, 2) : homeworkList.slice(0, 1)
+      return data.homeworkDTOS.length > 1 && data.flag === HOMEWORK_NUM_TWO ? homeworkList.slice(0, 2) : homeworkList.slice(0, 1)
     },
 
     //埋点
