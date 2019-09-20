@@ -41,6 +41,5 @@
       <view class="welcome-text">恭喜<text class="welcome-yellow">{{userInfo.nickname}}宝贝，已经完成</text></view>
       <view class="welcome-text"><text class="welcome-yellow">《正式课 Level {{levelStage.level}} stage{{levelStage.stage}}》</text>的学习</view>
     </view>
-    
   </view>
 </view>
