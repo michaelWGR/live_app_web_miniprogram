@@ -35,7 +35,8 @@ Component({
     isShowCloseAnimation: false,
     praiseImg: util.img_baseUrl + 'praise.gif',
     eventData: null,
-    trophyNum: 0
+    trophyNum: 0,
+    isShowEvents: false
   },
 
   /**
@@ -117,14 +118,24 @@ Component({
         }
       })
     },
+
+    // 是否显示特殊事件
+    getIsShowEvents(data) {
+      const keys = Object.keys(data)
+      return keys.every(key => {
+        return data[key]
+      })
+    },
   },
 
   attached: function() {
     this.getEventData().then(res => {
       if(res.data.code === 200) {
         const eventData = this.getDeriveEventData(res.data.data)
+        const isShowEvents = this.getIsShowEvents(res.data.data)
         this.setData({
-          eventData
+          eventData,
+          isShowEvents
         })
       }
     })

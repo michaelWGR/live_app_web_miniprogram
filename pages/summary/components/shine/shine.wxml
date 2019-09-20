@@ -1,5 +1,5 @@
 <!--pages/summary/components/shine/shine.wxml-->
-<view class="shine-root">
+<view class="shine-root" wx:if="{{trophyNum || isShowEvents}}">
   <view class="shine-title"><text class="shine-titlt-text">宝贝本阶段的闪光点</text></view>
   <gridBox>
     <view class="shine-content">
@@ -12,7 +12,7 @@
           <view class="shine-middle-text">{{trophyNum}}</view>
         </view>
       </block>
-      <view class="shine-swiper">
+      <view class="shine-swiper" wx:if="{{isShowEvents}}">
         <swiper previous-margin="30rpx" 
           next-margin="100rpx" 
           duration="300"
