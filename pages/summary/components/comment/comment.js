@@ -34,7 +34,8 @@ Component({
       headUrl: '',
       comment: '',
       flag: 0
-    }
+    },
+    cancelThanksNum: 0
   },
 
   attached: function () {
@@ -145,39 +146,50 @@ Component({
     
     // 取消点赞老师评语
     teacherCancelPraise() {
-      const _this = this
-      const data = {
-        teacherCommentId: this.data.comment.reportId
-      }
-      summaryApi.teacherCancelPraise(data, app.globalData.access_token)
-        .then(res => {
-          if (res.data.code === 200 || res.data.code === 0) {
-            let imageUrl = this.data.imageUrl;
-            imageUrl.like = imageUrl.likeNo;
+      const cancelThanksTips = ['老师收到你的感谢，觉得特别幸福', '老师已经收到你的鼓励~', '带着你的感谢，我们一起成长']
+      const title = cancelThanksTips[this.data.cancelThanksNum % 3]
+      this.setData({
+        cancelThanksNum: this.data.cancelThanksNum + 1
+      })
+      wx.showToast({
+        title: title,
+        icon: 'none',
+        duration: 2000
+      })
+      
+      // const _this = this
+      // const data = {
+      //   teacherCommentId: this.data.comment.reportId
+      // }
+      // summaryApi.teacherCancelPraise(data, app.globalData.access_token)
+      //   .then(res => {
+      //     if (res.data.code === 200 || res.data.code === 0) {
+      //       let imageUrl = this.data.imageUrl;
+      //       imageUrl.like = imageUrl.likeNo;
 
-            this.setData({
-              imageUrl: imageUrl
-            })
-          } else {
-            wx.showToast({
-              title: '服务器错误',
-              icon: 'none',
-              duration: 3000,
-              complete: function () {
-                console.log(res.data.msg);
-              }
-            })
-          }
-        }).catch(error => {
-          wx.showToast({
-            title: '网络错误',
-            icon: 'none',
-            duration: 3000,
-            complete: function () {
-              console.log(error)
-            }
-          })
-        })
+      //       this.setData({
+      //         imageUrl: imageUrl
+      //       })
+      //     } else {
+      //       wx.showToast({
+      //         title: '服务器错误',
+      //         icon: 'none',
+      //         duration: 3000,
+      //         complete: function () {
+      //           console.log(res.data.msg);
+      //         }
+      //       })
+      //     }
+      //   }).catch(error => {
+      //     wx.showToast({
+      //       title: '网络错误',
+      //       icon: 'none',
+      //       duration: 3000,
+      //       complete: function () {
+      //         console.log(error)
+      //       }
+      //     })
+      //   })
     }
   }
 })
