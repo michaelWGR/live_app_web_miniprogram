@@ -7,7 +7,6 @@
     <audio id="{{'audio' + audioData.id}}" 
         src="{{audioData.url}}" 
         loop="false"
-        binderror=""
         bindtimeupdate="onTimeUpdate"
         style="display:none;">
     </audio>

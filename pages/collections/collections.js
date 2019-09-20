@@ -116,7 +116,7 @@ Page({
       if(res.data.code === 200){
         const data = res.data.data
         this.setData({
-          studentName: data.homeworkDTOS[0].homeworkResourseDTO.userName,
+          studentName: data[0].homeworkResourseDTO.userName,
           homeworkList: this.getDeriveHomeworkList(data, level, stage)
         })
       }else{
@@ -136,7 +136,7 @@ Page({
   },
 
   getDeriveHomeworkList(data, level, stage) {
-    let homeworkList = data.homeworkDTOS.map(item => {
+    let homeworkList = data.map(item => {
       return {
         courseName: item.courseName,
         level: level,
@@ -144,7 +144,7 @@ Page({
         imgUrl: item.homeworkResourseDTO.imgUrl,
         audioDescriptions: item.homeworkResourseDTO.userAudio.map(audio => ({
           id: audio.resourseId,
-          url: audio.urlHost + audio.urlPath, 
+          url: audio.host + audio.path, 
           duration: audio.duration, 
           stuAvatar: item.homeworkResourseDTO.stuAvatar ? item.homeworkResourseDTO.stuAvatar : util.img_baseUrl+'summary-info-headImage.png'
         })),

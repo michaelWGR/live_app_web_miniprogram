@@ -94,8 +94,7 @@
   animation: fadeIn 0.3s ease-in-out;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
-  padding-top: 209rpx;
+  align-items: center;
 }
 .like-image{
   width: 639rpx;
