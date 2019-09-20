@@ -13,7 +13,7 @@
           <image class="middle" style="width: {{item.nowStageTime * 64}}rpx" src="{{imageUrl.scoreMiddle}}"></image>
           <image class="right" src="{{imageUrl.scoreRight}}"></image>
         </view>
-        <text class="num">{{item.nowStageTime}}</text>
+        <text class="num">{{item.score}}</text>
       </view>
       <view class="tips">(根据本阶段的画作情况进行分析)</view>
       <view class="analysis"><text class="list">{{wxs.initAssessList(assessList)}}</text> {{wxs.initAnalysis(assessList)}}</view>
