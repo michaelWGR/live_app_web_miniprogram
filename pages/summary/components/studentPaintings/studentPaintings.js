@@ -112,7 +112,7 @@ Component({
           stage: stage,
           imgUrl: item.homeworkResourseDTO.imgUrl,
           audioDescriptions: item.homeworkResourseDTO.userAudio.map(audio => ({
-            id: audio.id,
+            id: audio.resourseId,
             url: audio.urlHost + audio.urlPath, 
             duration: audio.duration, 
             stuAvatar: item.homeworkResourseDTO.stuAvatar ? item.homeworkResourseDTO.stuAvatar : util.img_baseUrl+'summary-info-headImage.png'
