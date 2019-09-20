@@ -98,11 +98,11 @@ Component({
         })
         this.teacherPraise()
       } else {
-        let comment = this.data.comment
-        comment.flag = 0
-        this.setData({
-          comment: comment
-        })
+        // let comment = this.data.comment
+        // comment.flag = 0
+        // this.setData({
+        //   comment: comment
+        // })
         this.teacherCancelPraise()
       }
     },
