@@ -71,7 +71,7 @@ Page({
     this.postScanPage()
     if (isGoOtherPage) {
       isGoOtherPage = false
-    } else {
+    } else if (this.data.userInfo.nickname) {
       this.initWelcome()
     }
   },
@@ -159,6 +159,7 @@ Page({
           _this.setData({
             userInfo: res.data.data
           })
+          _this.initWelcome()
         } else {
           wx.showToast({
             title: '服务器错误',

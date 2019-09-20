@@ -10,10 +10,10 @@
         <text class="name">{{item.question}}</text>
         <view class="graph">
           <image class="left" src="{{imageUrl.scoreLeft}}"></image>
-          <image class="middle" style="width: {{item.nowStageTime * 64}}rpx" src="{{imageUrl.scoreMiddle}}"></image>
+          <image class="middle" style="width: {{item.score * 64}}rpx" src="{{imageUrl.scoreMiddle}}"></image>
           <image class="right" src="{{imageUrl.scoreRight}}"></image>
         </view>
-        <text class="num">{{item.score}}</text>
+        <text class="num">{{wxs.toFixedScore(item.score)}}</text>
       </view>
       <view class="tips">(根据本阶段的画作情况进行分析)</view>
       <view class="analysis"><text class="list">{{wxs.initAssessList(assessList)}}</text> {{wxs.initAnalysis(assessList)}}</view>
@@ -31,7 +31,7 @@
   var initAnalysis = function(assessList) {
     var needPromoted = false
     for (var i = 0; i < assessList.length; i++) {
-      if (assessList[i].nowStageTime <= 3.5) {
+      if (assessList[i].score <= 3.5) {
         needPromoted = true
         break
       }
@@ -48,7 +48,7 @@
   var initAssessList = function(assessList) {
     var needPromotedAssess = ''
     for (var i = 0; i < assessList.length; i++) {
-      if (assessList[i].nowStageTime <= 3.5) {
+      if (assessList[i].score <= 3.5) {
         needPromotedAssess = needPromotedAssess + assessList[i].question + '、'
       }
     }
@@ -60,7 +60,12 @@
     }
   }
 
+  // 保留一位小数
+  var toFixedScore = function(score) {
+    return score.toFixed(1)
+  }
 
   module.exports.initAnalysis = initAnalysis;
   module.exports.initAssessList = initAssessList;
+  module.exports.toFixedScore = toFixedScore;
 </wxs>

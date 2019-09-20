@@ -17,6 +17,7 @@
 
 .welcome-pop-wrap {
   position: fixed;
+  text-align: center;
   width: 100%;
   top: 0;
   left: 0;
@@ -30,7 +31,26 @@
 }
 
 .welcome-pop-wrap .welcome-pop {
-  width: 100%
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.welcome-pop-wrap .welcome-image {
+  width: 100%;
+}
+
+.welcome-pop-wrap .welcome-text {
+  width: 100%;
+  padding-top: 10rpx;
+  font-size: 39rpx;
+  color: #fff;
+}
+
+.welcome-pop-wrap .welcome-yellow {
+  color: #FFEC00;
 }
 
 @keyframes welcomePopOut {

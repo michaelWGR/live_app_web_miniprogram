@@ -34,7 +34,13 @@
     <view>让每个孩子都有一双发现美的眼睛</view>
     <view>Let each child have the ability to feel beauty</view>
   </view>
+
   <view class="welcome-pop-wrap" wx:if="{{isShowWelcome}}" catchtouchmove='true'>
-    <image class="welcome-pop" mode="widthFix" src="{{imageUrl.welcome}}"></image>
+    <view class="welcome-pop">
+      <image class="welcome-image" mode="widthFix" src="{{imageUrl.welcome}}"></image>
+      <view class="welcome-text">恭喜<text class="welcome-yellow">{{userInfo.nickname}}宝贝，已经完成</text></view>
+      <view class="welcome-text"><text class="welcome-yellow">《正式课 Level {{levelStage.level}} stage{{levelStage.stage}}》</text>的学习</view>
+    </view>
+    
   </view>
 </view>
