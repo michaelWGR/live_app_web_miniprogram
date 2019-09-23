@@ -22,13 +22,13 @@
   .play-btn{
     width: 48rpx;
     height: 48rpx;
-    background: url('https://appdev.61draw.com/dev_test/miniprogram/audio-play-btn.png') 0 0 no-repeat;
+    background: url('http://appminip.61draw.com/res/images/audio-play-btn.png') 0 0 no-repeat;
     background-size: 100%;
   }
   .pause-btn{
     width: 48rpx;
     height: 48rpx;
-    background: url('https://appdev.61draw.com/dev_test/miniprogram/audio-pause-btn.png') 0 0 no-repeat;
+    background: url('http://appminip.61draw.com/res/images/audio-pause-btn.png') 0 0 no-repeat;
     background-size: 100%;
   }
   .audio-duration{
@@ -40,7 +40,7 @@
   .audio-wave{
     width: 233rpx;
     height: 28rpx;
-    background: url('https://appdev.61draw.com/dev_test/miniprogram/audio-wave.png') 0 0 no-repeat;
+    background: url('http://appminip.61draw.com/res/images/audio-wave.png') 0 0 no-repeat;
     background-size: 100%;
   }
   .audio-duration::after{

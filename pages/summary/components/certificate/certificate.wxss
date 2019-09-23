@@ -9,7 +9,7 @@
 .certificate-title{
   width: 447rpx;
   height: 100rpx;     
-  background: url('https://appdev.61draw.com/dev_test/miniprogram/certificate-title-background.png') 0 0 no-repeat;
+  background: url('http://appminip.61draw.com/res/images/certificate-title-background.png') 0 0 no-repeat;
   background-size: 100%;
   position: relative;
 }
@@ -33,7 +33,7 @@
 .certificate-model{
   width: 630rpx;
   height: 486rpx;
-  background: url('https://appdev.61draw.com/dev_test/miniprogram/certificate-model.png') 0 0 no-repeat;
+  background: url('http://appminip.61draw.com/res/images/certificate-model.png') 0 0 no-repeat;
   background-size: 100%;
   font-size: 23rpx;
   position: relative;
@@ -79,7 +79,7 @@
 .hualala-stamp{
   width: 164rpx;
   height: 164rpx;
-  background: url('https://appdev.61draw.com/dev_test/miniprogram/hualala-stamp.png') 0 0 no-repeat;
+  background: url('http://appminip.61draw.com/res/images/hualala-stamp.png') 0 0 no-repeat;
   background-size: 100%;
   position: absolute;
   right: 20rpx;
@@ -88,7 +88,7 @@
 .grass-1{
   width: 102rpx;
   height: 75rpx;
-  background: url('https://appdev.61draw.com/dev_test/miniprogram/summary-assess-left.png') 0 0 no-repeat;
+  background: url('http://appminip.61draw.com/res/images/summary-assess-left.png') 0 0 no-repeat;
   background-size: 100%;
   position: absolute;
   bottom: -19rpx;
@@ -97,7 +97,7 @@
 .grass-2{
   width: 75rpx;
   height: 80rpx;
-  background: url('https://appdev.61draw.com/dev_test/miniprogram/grass-2.png') 0 0 no-repeat;
+  background: url('http://appminip.61draw.com/res/images/grass-2.png') 0 0 no-repeat;
   background-size: 100%;
   transform: rotateY(180deg);
   position: absolute;

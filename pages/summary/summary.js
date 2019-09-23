@@ -36,13 +36,11 @@ Page({
    */
   onLoad: function (options) {
     // const userId =  58661
-    // const userId =  6322
     // const levelStage = {
     //   level: 1,
     //   stage: 1
     // }
     const paramsList = options.scene.split('&')
-    const option = JSON.stringify(options)
     const userId = Number(paramsList[0])
     const levelStage = {
       level: Number(paramsList[1]),

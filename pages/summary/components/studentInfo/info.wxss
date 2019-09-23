@@ -18,7 +18,7 @@
   transform: translateX(-50%);
   padding-top: 16rpx;
   text-align: center;
-  background: no-repeat url('https://appdev.61draw.com/dev_test/miniprogram/summary-info-title.png');
+  background: no-repeat url('http://appminip.61draw.com/res/images/summary-info-title.png');
   background-size: 100% 100%;
   font-size: 29rpx;
   font-family: 'SourceHanSansCN-Bold';
@@ -34,7 +34,7 @@
   left: 50%;
   transform: translateX(-50%);
   padding-top: 110rpx;
-  background: no-repeat url('https://appdev.61draw.com/dev_test/miniprogram/summary-info-card.png');
+  background: no-repeat url('http://appminip.61draw.com/res/images/summary-info-card.png');
   background-size: 100% 100%;
   text-align: center;
 }
