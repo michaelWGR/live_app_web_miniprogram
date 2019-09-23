@@ -40,7 +40,7 @@ Page({
     //   level: 1,
     //   stage: 1
     // }
-    const paramsList = options.scene.split('&')
+    const paramsList = decodeURIComponent(options.scene).split('&')
     const userId = Number(paramsList[0])
     const levelStage = {
       level: Number(paramsList[1]),

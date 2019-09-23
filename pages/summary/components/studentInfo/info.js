@@ -48,7 +48,7 @@ Component({
   attached: function () {
     this.getCommitClassTime()
     this.getAccumulativeTime()
-    this.test123()
+    // this.test123()
   },
 
   /**
