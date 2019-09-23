@@ -35,20 +35,22 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    const userId =  6322
-    const levelStage = {
-      level: 1,
-      stage: 1
-    }
-    // const paramsList = options.scene.split('&')
-    // const userId = Number(paramsList[0])
+    // const userId =  58661
+    // const userId =  6322
     // const levelStage = {
-    //   level: Number(paramsList[1]),
-    //   stage: Number(paramsList[2])
+    //   level: 1,
+    //   stage: 1
     // }
+    const paramsList = options.scene.split('&')
+    const option = JSON.stringify(options)
+    const userId = Number(paramsList[0])
+    const levelStage = {
+      level: Number(paramsList[1]),
+      stage: Number(paramsList[2])
+    }
     this.setData({
       userId,
-      levelStage
+      levelStage,
     })
     this.initToken(userId, levelStage)
   },

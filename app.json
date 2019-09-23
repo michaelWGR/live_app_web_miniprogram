@@ -1,11 +1,11 @@
 {
   "pages": [
-    "pages/summary/summary",
     "pages/index/index",
     "pages/homework/homework",
     "pages/unauth/unauth",
     "pages/class/class",
-    "pages/collections/collections"
+    "pages/collections/collections",
+    "pages/summary/summary"
   ],
   "window": {
     "backgroundTextStyle": "light",

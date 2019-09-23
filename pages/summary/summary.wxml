@@ -1,8 +1,5 @@
 <view class="summary" id="summary">
-  <view>
-    userId:{{userId}} level:{{levelStage.level}} stage:{{levelStage.stage}}
-  </view>
-    
+
   <block wx:if="{{userId && levelStage.level && hasGetToken}}">
     <studentInfo levelStage="{{levelStage}}" userId="{{userId}}" userInfo="{{userInfo}}"></studentInfo>
     <stage levelStage="{{levelStage}}" userId="{{userId}}"></stage>
