@@ -1,4 +1,4 @@
-<view class="comment">
+<view class="comment" wx:if="{{comment.comment}}">
   <view class="title">
     <image class="background" mode="widthFix" src="{{imageUrl.title}}"></image>
     <text class="text">老师评语</text>
