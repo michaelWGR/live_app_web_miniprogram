@@ -122,7 +122,7 @@ Component({
     // 是否显示特殊事件
     getIsShowEvents(data) {
       const keys = Object.keys(data)
-      return keys.every(key => {
+      return keys.some(key => {
         return data[key]
       })
     },
