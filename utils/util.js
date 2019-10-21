@@ -1,10 +1,11 @@
 // const BASE_URL = "http://10.10.117.71:8998"  //本地测试地址
 // const BASE_URL = "https://appminip-test.61draw.com" //测试环境地址
 const BASE_URL = "https://appminip.61draw.com"         //正式环境地址
-
+//const BASE_URL = 'http://10.60.7.187:8998'//预发布
 // const IMG_BASEURL = "http://10.10.117.177:3000/images/"; //本地图片地址
 // const IMG_BASEURL = "https://appdev.61draw.com/dev_test/miniprogram/"  //测试环境图片地址
 const IMG_BASEURL = "http://appminip.61draw.com/res/images/"; //正式环境图片地址
+
 
 /**
  * 时间格式转换
