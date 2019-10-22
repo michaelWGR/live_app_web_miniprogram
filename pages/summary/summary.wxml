@@ -1,6 +1,6 @@
 <view class="summary" id="summary">
 
-  <block wx:if="{{userId && levelStage.level && hasGetToken}}">
+  <!-- <block wx:if="{{userId && levelStage.level && hasGetToken}}">
     <studentInfo levelStage="{{levelStage}}" userId="{{userId}}" userInfo="{{userInfo}}"></studentInfo>
     <stage levelStage="{{levelStage}}" userId="{{userId}}"></stage>
     <promote levelStage="{{levelStage}}" userId="{{userId}}"></promote>
@@ -38,5 +38,6 @@
       <view class="welcome-text">恭喜<text class="welcome-yellow">{{userInfo.nickname}}宝贝，已经完成</text></view>
       <view class="welcome-text"><text class="welcome-yellow">《正式课 Level {{levelStage.level}} stage{{levelStage.stage}}》</text>的学习</view>
     </view>
-  </view>
+  </view> -->
 </view>
+<canvas canvas-id="canvas-summary" class="share-canvas"></canvas>

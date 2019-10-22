@@ -1,4 +1,5 @@
 // pages/summary/summary.js
+import Wxml2Canvas from './../../utils/wxml2canvas.js'
 const app = getApp();
 const util = require('./../../utils/util.js');
 const summaryApi = require('../../api/summary.js');
@@ -63,6 +64,7 @@ Page({
           pageHeight: res 
         })
       })
+      this.drawImage1()
     }, 1000)
   },
 
@@ -250,5 +252,101 @@ Page({
       const reportId = this.data.reportId
       summaryApi.postClickData(reportId, TYPE_SHARE_SUMMARY, app.globalData.access_token)
     }
-  }
+  },
+  drawImage1(img) {
+    let self = this;
+    this.drawImage1 = new Wxml2Canvas({
+      obj: self,
+      width: 750, // 宽， 以iphone6为基准，传具体数值，其他机型自动适配
+      height: 750, // 高
+      element: 'canvas-summary',
+      background: '#ffca32',
+      progress(percent) {
+        console.log(percent)
+      },
+      finish(url) {
+        // let imgs = self.data.imgs;
+        // imgs.push(url);
+        // self.setData({
+        //   imgs
+        // })
+
+        // wx.previewImage({
+        //   urls: [url],
+        // })
+      },
+      error(res) {
+        console.error(res)
+      }
+    });
+
+    let data = {
+      list: [{
+        type: 'image',
+        x: 0,
+        y: 0,
+        url: 'http://appminip.61draw.com/res/images/summary-info-banner.png',
+        style: {
+          width: 375,
+          height: 450
+        }
+      },{
+          type: 'image',
+          x: 80,
+          y: 130,
+          url: 'http://appminip.61draw.com/res/images/summary-info-title.png',
+          style: {
+            width: 208,
+            height: 48
+          }
+      },{
+          type: 'text',
+          x: 135,
+          y: 140,
+          text: 'Level 1 stage2',
+          //color: 'red',
+          style: {
+            color: '#FF5917'
+          }
+      },{
+          type: 'image',
+          x: 30,
+          y: 290,
+          url: 'http://appminip.61draw.com/res/images/summary-stage-bg.png',
+          style: {
+            width: 320,
+            height: 172
+          }
+      },{
+          type: 'radius-image',
+          x: 160,
+          y: 260,
+          url: 'http://appminip.61draw.com/res/images/summary-info-headImage.png',
+          style: {
+            r: 35
+          }
+      },{
+          type: 'text',
+          x: 155,
+          y: 340,
+          text: '画小帅宝贝',
+          style: {
+            color: '#333333',
+            fontSize: '16px',
+            fontWeight: 'bold'
+          }
+      },{
+          type: 'text',
+          x: 100,
+          y: 400,
+          text: '40',
+          style: {
+            color: '#333333',
+            fontSize: '14px',
+          }
+      }]
+    }
+
+    this.drawImage1.draw(data);
+  },
 })

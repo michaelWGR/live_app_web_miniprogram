@@ -14,6 +14,11 @@
 .bottom-text > view:nth-child(1){
   padding-bottom: 20rpx;
 }
+.share-canvas{
+  width: 100%;
+  height: 2000rpx;
+  background: #ffca32;
+}
 
 .welcome-pop-wrap {
   position: fixed;

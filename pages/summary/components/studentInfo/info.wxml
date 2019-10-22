@@ -1,4 +1,4 @@
-<view class="info">
+<view class="info draw-canvas-info">
   <image class="banner" mode="widthFix" src="{{imageUrl.banner}}"></image>
   <view class="title">
     <arcsText text="Level{{levelStage.level}}stage{{levelStage.stage}}" angle="8" heightPrecent="2.5"></arcsText>

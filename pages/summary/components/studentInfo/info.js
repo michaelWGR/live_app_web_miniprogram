@@ -1,4 +1,5 @@
 // pages/summary/components/studentInfo/info.js
+import Wxml2Canvas from './../../../../utils/wxml2canvas.js'
 const app = getApp();
 const util = require('./../../../../utils/util.js');
 const summaryApi = require('../../../../api/summary.js');
