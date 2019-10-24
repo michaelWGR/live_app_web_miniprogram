@@ -56,6 +56,10 @@ Component({
             _this.setData({
               assessList: res.data.data
             })
+            this.triggerEvent('postData', {
+              ability: res.data.data,
+              analysis: this.initAssessList(res.data.data) + this.initAnalysis(res.data.data)
+            })
           } else {
             wx.showToast({
               title: '服务器错误',
@@ -76,6 +80,24 @@ Component({
             }
           })
         })
+    },
+    initAnalysis(assessList) {
+      const needPromoted = assessList.some(item => item.nowStageTime <= 3.5)
+      return needPromoted ? '还有提升空间' : '各项能力均衡发展，继续保持'
+    },
+    initAssessList(assessList) {
+      var needPromotedAssess = ''
+      for (var i = 0; i < assessList.length; i++) {
+        if (assessList[i].nowStageTime <= 3.5) {
+          needPromotedAssess = needPromotedAssess + assessList[i].question + '、'
+        }
+      }
+
+      if (needPromotedAssess) {
+        return needPromotedAssess.substring(0, needPromotedAssess.length - 1)
+      } else {
+        return ''
+      }
     }
   }
 })

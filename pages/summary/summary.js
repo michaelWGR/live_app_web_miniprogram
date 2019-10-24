@@ -1,5 +1,6 @@
 // pages/summary/summary.js
 import Wxml2Canvas from './../../utils/wxml2canvas.js'
+import generateCanvasData from '../../utils/generateCanvasData.js'
 const app = getApp();
 const util = require('./../../utils/util.js');
 const summaryApi = require('../../api/summary.js');
@@ -30,6 +31,7 @@ Page({
     hasGetToken: false,
     teacherAvatar: '',
     reportId: 0,
+    canvasData: {}
   },
 
   /**
@@ -47,6 +49,10 @@ Page({
     //   level: Number(paramsList[1]),
     //   stage: Number(paramsList[2])
     // }
+    this.mergeCanvasData({
+      level: levelStage.level,
+      stage: levelStage.stage
+    })
     this.setData({
       userId,
       levelStage,
@@ -161,6 +167,10 @@ Page({
           _this.setData({
             userInfo: res.data.data
           })
+          this.mergeCanvasData({
+            nickname: res.data.data.nickname,
+            headUrl: res.data.data.headurl
+          })
           _this.initWelcome()
         } else {
           wx.showToast({
@@ -198,6 +208,11 @@ Page({
           _this.setData({
             teacherAvatar: res.data.data.headUrl,
             reportId: res.data.data.reportId
+          })
+          this.mergeCanvasData({
+            teacherAvatar: res.data.data.headUrl,
+            comment: res.data.data.comment,
+            teacherName: res.data.data.artName
           })
           resolve(res.data.data.reportId)
         } else {
@@ -265,12 +280,6 @@ Page({
         console.log(percent)
       },
       finish(url) {
-        // let imgs = self.data.imgs;
-        // imgs.push(url);
-        // self.setData({
-        //   imgs
-        // })
-
         // wx.previewImage({
         //   urls: [url],
         // })
@@ -281,72 +290,17 @@ Page({
     });
 
     let data = {
-      list: [{
-        type: 'image',
-        x: 0,
-        y: 0,
-        url: 'http://appminip.61draw.com/res/images/summary-info-banner.png',
-        style: {
-          width: 375,
-          height: 450
-        }
-      },{
-          type: 'image',
-          x: 80,
-          y: 130,
-          url: 'http://appminip.61draw.com/res/images/summary-info-title.png',
-          style: {
-            width: 208,
-            height: 48
-          }
-      },{
-          type: 'text',
-          x: 135,
-          y: 140,
-          text: 'Level 1 stage2',
-          //color: 'red',
-          style: {
-            color: '#FF5917'
-          }
-      },{
-          type: 'image',
-          x: 30,
-          y: 290,
-          url: 'http://appminip.61draw.com/res/images/summary-stage-bg.png',
-          style: {
-            width: 320,
-            height: 172
-          }
-      },{
-          type: 'radius-image',
-          x: 160,
-          y: 260,
-          url: 'http://appminip.61draw.com/res/images/summary-info-headImage.png',
-          style: {
-            r: 35
-          }
-      },{
-          type: 'text',
-          x: 155,
-          y: 340,
-          text: '画小帅宝贝',
-          style: {
-            color: '#333333',
-            fontSize: '16px',
-            fontWeight: 'bold'
-          }
-      },{
-          type: 'text',
-          x: 100,
-          y: 400,
-          text: '40',
-          style: {
-            color: '#333333',
-            fontSize: '14px',
-          }
-      }]
+      list: generateCanvasData(this.canvasData)
     }
 
     this.drawImage1.draw(data);
   },
+  receiveData(e) {
+    this.mergeCanvasData(e.detail)
+    console.log(this.canvasData)
+  },
+  mergeCanvasData(obj) {
+    const tmp = {...this.canvasData, ...obj}
+    this.canvasData = tmp
+  }
 })

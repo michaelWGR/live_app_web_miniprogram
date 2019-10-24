@@ -70,6 +70,11 @@ Component({
             _this.setData({
               commitClassTime: res.data.data
             })
+            const detail = {
+              homeworkTotal: res.data.data.homeworkTotal,
+              stageHomeworkTotal: res.data.data.stageHomeworkTotal
+            }
+            this.triggerEvent('postData', detail)
           } else {
             wx.showToast({
               title: '服务器错误',
@@ -105,6 +110,7 @@ Component({
             _this.setData({
               accumulativeTime: res.data.data
             })
+            this.triggerEvent('postData', res.data.data)
           } else {
             wx.showToast({
               title: '服务器错误',

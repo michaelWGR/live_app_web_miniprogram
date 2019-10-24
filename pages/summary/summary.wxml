@@ -1,17 +1,17 @@
 <view class="summary" id="summary">
 
-  <!-- <block wx:if="{{userId && levelStage.level && hasGetToken}}">
-    <studentInfo levelStage="{{levelStage}}" userId="{{userId}}" userInfo="{{userInfo}}"></studentInfo>
-    <stage levelStage="{{levelStage}}" userId="{{userId}}"></stage>
-    <promote levelStage="{{levelStage}}" userId="{{userId}}"></promote>
-    <assess levelStage="{{levelStage}}" userId="{{userId}}"></assess>
+  <block wx:if="{{userId && levelStage.level && hasGetToken}}">
+    <studentInfo levelStage="{{levelStage}}" userId="{{userId}}" userInfo="{{userInfo}}" bind:postData="receiveData"></studentInfo>
+    <!-- <stage levelStage="{{levelStage}}" userId="{{userId}}"></stage>
+    <promote levelStage="{{levelStage}}" userId="{{userId}}"></promote> -->
+    <assess levelStage="{{levelStage}}" userId="{{userId}}" bind:postData="receiveData"></assess>
     <comment levelStage="{{levelStage}}" userId="{{userId}}"></comment>
   </block>
 
   
  
 
-  <block wx:if="{{userId && levelStage.level && hasGetToken}}">
+  <!-- <block wx:if="{{userId && levelStage.level && hasGetToken}}">
     <submitHomework user-id="{{userId}}" level="{{levelStage.level}}" stage="{{levelStage.stage}}" teacherAvatar="{{teacherAvatar}}"></submitHomework>
   </block>
 
