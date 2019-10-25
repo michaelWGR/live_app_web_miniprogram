@@ -1,4 +1,4 @@
-import abilityList from './mockData.js'
+import { abilityList, mockHomeworkList } from './mockData.js'
 const util = require('./util.js')
 const MAX_ABILITY_LENGTH = 197
 function getAbilityData(data) {
@@ -50,8 +50,54 @@ function getAbilityData(data) {
   return res
 }
 
+function getPaintingData(data, paintingList) {
+
+  let res = []
+  paintingList.forEach((item, idx) => {
+    let arr = []
+    arr[0] = {
+      type: 'text',
+      x: 0,
+      y: 1460 + idx * 300,
+      text: item.courseName,
+      style: {
+        width: 375,
+        fontSize: '16px',
+        color: '#ff6c00',
+        textAlign: 'center'
+      }
+    }
+    arr[1] = {
+      type: 'text',
+      x: 0,
+      y: 1490 + idx * 300,
+      text: `Level ${data.level} stage ${data.stage}-第${item.courseOrder}节课`,
+      style: {
+        width: 375,
+        color: '#666666',
+        textAlign: 'center'
+      }
+    }
+    arr[2] = {
+      type: 'image',
+      x: 80,
+      y: 1530 + idx * 300,
+      url: `${util.img_baseUrl}/painting.png`,
+      style: {
+        width: 197,
+        height: 197
+      }
+    }
+    res = [...res, ...arr]
+  })
+  return res
+}
+
 function generateCanvasData(data) {
   const abilityData = getAbilityData(abilityList)
+  const paintingData = getPaintingData(data, mockHomeworkList)
+  // const abilityData = []
+  // const paintingData = []
   return [
     {
       // 报告头部图片
@@ -273,7 +319,102 @@ function generateCanvasData(data) {
       url: `${util.img_baseUrl}/painting-bg.png`,
       style: {
         width: 375,
-        height: 800
+        height: mockHomeworkList.length > 1 ? 650 : 350
+      }
+    },
+    ...paintingData,
+    {
+      // 奖状背景
+      type: 'image',
+      x: 2,
+      y: mockHomeworkList.length > 1 ? 2100 : 1800,
+      url: `${util.img_baseUrl}/certificate-bg.png`,
+      style: {
+        width: 370,
+        height: 415
+      }
+    },{
+      type: 'text',
+      x: 73,
+      y: mockHomeworkList.length > 1 ? 2334 : 2034,
+      text: data.nickname,
+      style: {
+        width: 200,
+        color: '#ff6c00',
+        fontSize: '14px'
+      }
+    },{
+      type: 'text',
+      x: 92,
+      y: mockHomeworkList.length > 1 ? 2363 : 2063,
+      text: `Level ${data.level} stage ${data.stage}`,
+      style: {
+        fontSize: '10px'
+      }
+    },{
+      type: 'text',
+      x: 0,
+      y: mockHomeworkList.length > 1 ? 2410 : 2110,
+      text: data.title,
+      style: {
+        width: 375,
+        color: '#ff6c00',
+        fontSize: '22px',
+        fontWeight: 'bold',
+        textAlign: 'center'
+      }
+    },{
+      type: 'text',
+      x: 0,
+      y: mockHomeworkList.length > 1 ? 2530 : 2230,
+      text: '让每个孩子都有一双发现美的眼睛',
+      style: {
+        width: 375,
+        color: '#9e5600',
+        fontSize: '16px',
+        textAlign: 'center'
+      }
+    },{
+      type: 'text',
+      x: 0,
+      y: mockHomeworkList.length > 1 ? 2558 : 2258,
+      text: 'Let each child have the ability to feel beauty',
+      style: {
+        width: 375,
+        color: '#9e5600',
+        fontSize: '16px',
+        textAlign: 'center'
+      }
+    },{
+      type: 'image',
+      x: 98,
+      y: mockHomeworkList.length > 1 ? 2610 : 2310,
+      url: `${util.img_baseUrl}/painting.png`,
+      style: {
+        width: 175,
+        height: 175
+      }
+    },{
+      type: 'text',
+      x: 0,
+      y: mockHomeworkList.length > 1 ? 2810 : 2510,
+      text: '与我一起画画吧',
+      style: {
+        width: 375,
+        color: '#9e5600',
+        fontSize: '16px',
+        textAlign: 'center'
+      }
+    },{
+      type: 'text',
+      x: 0,
+      y: mockHomeworkList.length > 1 ? 2840 : 2540,
+      text: '长按二维码 加入画啦啦',
+      style: {
+        width: 375,
+        color: '#9e5600',
+        fontSize: '16px',
+        textAlign: 'center'
       }
     }
   ]

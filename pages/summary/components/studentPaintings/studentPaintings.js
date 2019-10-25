@@ -4,7 +4,6 @@ const app = getApp();
 const request = require('../../../../utils/request')
 const summaryApi = require('../../../../api/summary.js')
 const TYPE_CLICK_GO_COLLECTIONS = 2
-const HOMEWORK_NUM_TWO = 2;//本模块展示的作业数量，服务端返回，值只有1和2
 Component({
   /**
    * 组件的属性列表
@@ -46,9 +45,17 @@ Component({
         const data = res.data.data
         const level = Number(this.properties.level)
         const stage = Number(this.properties.stage)
+        const homeworkListTemp = this.getDeriveHomeworkList(data, level, stage)
         this.setData({
           submitNum: data.length,
-          homeworkList: this.getDeriveHomeworkList(data, level, stage)
+          homeworkList: homeworkListTemp
+        })
+        this.triggerEvent('postData', {
+          homeworkList: homeworkListTemp.map(item => ({
+            courseName: item.courseName,
+            paintingUrl: item.imgUrl,
+            courseOrder: item.courseOrder
+          }))
         })
       }
     })
@@ -121,7 +128,6 @@ Component({
           courseOrder: item.sortCourse
         }
       })
-      // 根据flag判断显示1个还是2个作业
       return homeworkList
     },
 

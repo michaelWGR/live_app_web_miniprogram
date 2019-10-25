@@ -1,0 +1,56 @@
+/* pages/summary/components/advertisement/advertisement.wxss */
+.advertisement{
+  width: 559rpx;
+  height: 103rpx;
+  background: url('https://appdev.61draw.com/dev_test/miniprogram/advertise.png') 0 0 no-repeat;
+  background-size: 100%;
+  padding: 17rpx 21rpx 0 170rpx;
+  line-height: 48rpx;
+  letter-spacing: 1rpx;
+  position: relative;
+}
+.ad-text-top{
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 30rpx;
+}
+.ad-text-bottom{
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 26rpx;
+}
+.prev-price{
+  font-size: 22rpx;
+  color: rgba(255, 255, 255, 0.7);
+  padding-left: 10rpx;
+}
+.line-through{
+  text-decoration: line-through;
+  margin-left: -6rpx;
+}
+.buy-btn{
+  width: 200rpx;
+  height: 85rpx;
+  background: url('https://appdev.61draw.com/dev_test/miniprogram/buy-btn.png') 0 0 no-repeat;
+  background-size: 100%;
+  position: absolute;
+  right: 10rpx;
+  top: 20rpx;
+  color: #AD4900;
+  text-align: center;
+  line-height: 79rpx;
+  font-size: 31rpx;
+  animation: breath 1.2s ease-in-out infinite;
+}
+
+@keyframes breath {
+  0% {
+    transform: scale(0.9, 0.9);
+  }
+
+  50% {
+    transform: scale(1.05, 1.05);
+  }
+
+  100% {
+    transform: scale(0.9, 0.9);
+  }
+}

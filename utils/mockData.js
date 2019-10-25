@@ -26,4 +26,17 @@ const abilityList = [
   }
 ]
 
-export default abilityList
+const mockHomeworkList = [
+  {
+    courseName: '神奇的线条',
+    paintingUrl: 'https://appdev.61draw.com/dev_test/miniprogram/painting.png',
+    courseOrder: '一'
+  },
+  {
+    courseName: '阿拉丁神灯',
+    paintingUrl: 'https://appdev.61draw.com/dev_test/miniprogram/painting.png',
+    courseOrder: '二'
+  }
+]
+
+export { abilityList, mockHomeworkList }

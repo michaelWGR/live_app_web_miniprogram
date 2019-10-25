@@ -17,7 +17,9 @@ Page({
    */
   data: {
     imageUrl: {
-      welcome: util.img_baseUrl + 'summary-welcome.gif'
+      welcome: util.img_baseUrl + 'summary-welcome.gif',
+      save: util.img_baseUrl + 'save-report.png',
+      weixin: util.img_baseUrl + 'weixin.png'
     },
     userInfo: null,
     levelStage: {
@@ -31,7 +33,8 @@ Page({
     hasGetToken: false,
     teacherAvatar: '',
     reportId: 0,
-    canvasData: {}
+    canvasData: {},
+    isShowCanvas: false
   },
 
   /**
@@ -70,7 +73,6 @@ Page({
           pageHeight: res 
         })
       })
-      this.drawImage1()
     }, 1000)
   },
 
@@ -273,16 +275,30 @@ Page({
     this.drawImage1 = new Wxml2Canvas({
       obj: self,
       width: 750, // 宽， 以iphone6为基准，传具体数值，其他机型自动适配
-      height: 750, // 高
+      height: 5800, // 高
       element: 'canvas-summary',
       background: '#ffca32',
       progress(percent) {
         console.log(percent)
       },
       finish(url) {
-        // wx.previewImage({
-        //   urls: [url],
-        // })
+        wx.hideLoading()
+        wx.saveImageToPhotosAlbum({
+          filePath: url,
+          success: function() {
+            wx.showToast({
+              title: '保存成功'
+            })
+          },
+          fail: function() {
+            wx.showToast({
+              title: '保存失败'
+            })
+          }
+        })
+        self.setData({
+          isShowCanvas: false
+        })
       },
       error(res) {
         console.error(res)
@@ -302,5 +318,16 @@ Page({
   mergeCanvasData(obj) {
     const tmp = {...this.canvasData, ...obj}
     this.canvasData = tmp
+  },
+  setReportToImg() {
+    wx.showLoading({
+      title: '保存中...',
+      mask: true
+    })
+    this.setData({
+      isShowCanvas: true
+    },() => {
+      this.drawImage1()
+    })
   }
 })

@@ -44,6 +44,9 @@ Component({
           this.setData({
             title: res.data.data
           })
+          this.triggerEvent('postData', {
+            title: res.data.data
+          })
         }
       })
     }

@@ -1,9 +1,12 @@
 <view class="summary" id="summary">
-
+  <block wx:if="{{userId}}">
+    <advertisement userId="{{userId}}"></advertisement>
+  </block>
+  
   <block wx:if="{{userId && levelStage.level && hasGetToken}}">
     <studentInfo levelStage="{{levelStage}}" userId="{{userId}}" userInfo="{{userInfo}}" bind:postData="receiveData"></studentInfo>
-    <!-- <stage levelStage="{{levelStage}}" userId="{{userId}}"></stage>
-    <promote levelStage="{{levelStage}}" userId="{{userId}}"></promote> -->
+    <stage levelStage="{{levelStage}}" userId="{{userId}}"></stage>
+    <promote levelStage="{{levelStage}}" userId="{{userId}}"></promote>
     <assess levelStage="{{levelStage}}" userId="{{userId}}" bind:postData="receiveData"></assess>
     <comment levelStage="{{levelStage}}" userId="{{userId}}"></comment>
   </block>
@@ -11,28 +14,61 @@
   
  
 
-  <!-- <block wx:if="{{userId && levelStage.level && hasGetToken}}">
-    <submitHomework user-id="{{userId}}" level="{{levelStage.level}}" stage="{{levelStage.stage}}" teacherAvatar="{{teacherAvatar}}"></submitHomework>
+  <block wx:if="{{userId && levelStage.level && hasGetToken}}">
+    <submitHomework 
+      user-id="{{userId}}" 
+      level="{{levelStage.level}}" 
+      stage="{{levelStage.stage}}" 
+      teacherAvatar="{{teacherAvatar}}">
+    </submitHomework>
   </block>
 
   <block wx:if="{{userId && levelStage.level && hasGetToken}}">
-    <studentPaintings user-id="{{userId}}" level="{{levelStage.level}}" stage="{{levelStage.stage}}" reportId="{{reportId}}" bind:goToOtherPage="goToOtherPage"></studentPaintings>
+    <studentPaintings 
+      user-id="{{userId}}" 
+      level="{{levelStage.level}}" 
+      stage="{{levelStage.stage}}" 
+      reportId="{{reportId}}" 
+      bind:goToOtherPage="goToOtherPage"
+      bind:postData="receiveData">
+    </studentPaintings>
   </block>
     
   <block wx:if="{{userId && levelStage.level && hasGetToken}}">
-    <shine user-id="{{userId}}" level="{{levelStage.level}}" stage="{{levelStage.stage}}" trophy-num="{{trophyNum}}" nickname="{{userInfo.nickname}}"></shine>
+    <shine 
+      user-id="{{userId}}" 
+      level="{{levelStage.level}}" 
+      stage="{{levelStage.stage}}" 
+      trophy-num="{{trophyNum}}" 
+      nickname="{{userInfo.nickname}}">
+    </shine>
   </block>
 
   <block wx:if="{{userId && levelStage.level && hasGetToken}}">
-    <certificate nickname="{{userInfo.nickname}}" level-stage="{{levelStage}}" user-id="{{userId}}"></certificate>
+    <certificate 
+      nickname="{{userInfo.nickname}}" 
+      level-stage="{{levelStage}}" 
+      user-id="{{userId}}"
+      bind:postData="receiveData" >
+    </certificate>
   </block>
     
   <view class="bottom-text">
     <view>让每个孩子都有一双发现美的眼睛</view>
     <view>Let each child have the ability to feel beauty</view>
   </view>
+  <view class="bottom-btn">
+    <button class="share-btn" open-type="share">
+      <image class="weixin-icon" src="{{imageUrl.weixin}}"></image>
+      <text class="share-text">分享</text>
+    </button>
+    <view bindtap="setReportToImg" class="save-btn">
+      <image class="save-icon" src="{{imageUrl.save}}"></image>
+      <text class="save-text">保存报告</text>
+    </view>
+  </view>
 
-  <view class="welcome-pop-wrap" wx:if="{{isShowWelcome}}" catchtouchmove='true'>
+  <!-- <view class="welcome-pop-wrap" wx:if="{{isShowWelcome}}" catchtouchmove='true'>
     <view class="welcome-pop">
       <image class="welcome-image" mode="widthFix" src="{{imageUrl.welcome}}"></image>
       <view class="welcome-text">恭喜<text class="welcome-yellow">{{userInfo.nickname}}宝贝，已经完成</text></view>
@@ -40,4 +76,6 @@
     </view>
   </view> -->
 </view>
-<canvas canvas-id="canvas-summary" class="share-canvas"></canvas>
+<block wx:if="{{isShowCanvas}}">
+  <canvas canvas-id="canvas-summary" class="share-canvas"></canvas>
+</block>
