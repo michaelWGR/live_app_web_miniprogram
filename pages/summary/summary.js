@@ -299,22 +299,30 @@ Page({
             })
           }
         })
-        self.setData({
-          isShowCanvas: false
-        })
+        // self.setData({
+        //   isShowCanvas: false
+        // })
       },
       error(res) {
         console.error(res)
       }
     });
 
-    self.drawQrcode(self.canvasData.qrCode).then(qrCodePath => {
-      console.log(qrCodePath)
+    if (self.canvasData.qrCode){
+      self.drawQrcode(self.canvasData.qrCode).then(qrCodePath => {
+        let data = {
+          list: generateCanvasData(self.canvasData, qrCodePath)
+        }
+        this.drawImage1.draw(data);
+      })
+    }else{
+      //没有二维码则不必转换base64到本地临时路径
       let data = {
-        list: generateCanvasData(self.canvasData, qrCodePath)
+        list: generateCanvasData(self.canvasData)
       }
       this.drawImage1.draw(data);
-    })
+    }
+    
   },
   drawQrcode(base64Data) {
     return new Promise((resolve, reject) => {

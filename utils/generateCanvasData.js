@@ -93,10 +93,49 @@ function getPaintingData(data, paintingList) {
   return res
 }
 
+function getQrcode(qrCodePath) {
+  if(!qrCodePath) return []
+  return [
+    {
+      type: 'image',
+      x: 98,
+      y: mockHomeworkList.length > 1 ? 2610 : 2310,
+      url: qrCodePath,
+      style: {
+        width: 175,
+        height: 175
+      }
+    }, {
+      type: 'text',
+      x: 0,
+      y: mockHomeworkList.length > 1 ? 2810 : 2510,
+      text: '与我一起画画吧',
+      style: {
+        width: 375,
+        color: '#9e5600',
+        fontSize: '16px',
+        textAlign: 'center'
+      }
+    }, {
+      type: 'text',
+      x: 0,
+      y: mockHomeworkList.length > 1 ? 2840 : 2540,
+      text: '长按二维码 加入画啦啦',
+      style: {
+        width: 375,
+        color: '#9e5600',
+        fontSize: '16px',
+        textAlign: 'center'
+      }
+    }
+  ]
+}
+
 function generateCanvasData(data, qrCodePath) {
   const abilityData = data.ability ? getAbilityData(data.ability) : []
   let homeworkList = data.homeworkList ? data.homeworkList : []
   const paintingData = getPaintingData(data, homeworkList)
+  const qrCodeData = getQrcode(qrCodePath)
   return [
     {
       // 报告头部图片
@@ -171,7 +210,7 @@ function generateCanvasData(data, qrCodePath) {
         // 新增作品数
         type: 'text',
         x: 107,
-        y: 378,
+        y: 375,
         text: `新增${data.stageHomeworkTotal}幅`,
         style: {
           color: '#FF5917',
@@ -191,7 +230,7 @@ function generateCanvasData(data, qrCodePath) {
         // 增加时间
         type: 'text',
         x: 240,
-        y: 378,
+        y: 375,
         text: `新增${data.nowStageTime}分钟`,
         style: {
           color: '#FF5917',
@@ -335,7 +374,7 @@ function generateCanvasData(data, qrCodePath) {
     },{
       type: 'text',
       x: 73,
-      y: mockHomeworkList.length > 1 ? 2334 : 2034,
+      y: mockHomeworkList.length > 1 ? 2332 : 2032,
       text: data.nickname,
       style: {
         width: 200,
@@ -345,7 +384,7 @@ function generateCanvasData(data, qrCodePath) {
     },{
       type: 'text',
       x: 92,
-      y: mockHomeworkList.length > 1 ? 2363 : 2063,
+      y: mockHomeworkList.length > 1 ? 2360 : 2060,
       text: `Level ${data.level} stage ${data.stage}`,
       style: {
         fontSize: '10px'
@@ -384,38 +423,8 @@ function generateCanvasData(data, qrCodePath) {
         fontSize: '16px',
         textAlign: 'center'
       }
-    },{
-      type: 'image',
-      x: 98,
-      y: mockHomeworkList.length > 1 ? 2610 : 2310,
-      url: qrCodePath,
-      style: {
-        width: 175,
-        height: 175
-      }
-    },{
-      type: 'text',
-      x: 0,
-      y: mockHomeworkList.length > 1 ? 2810 : 2510,
-      text: '与我一起画画吧',
-      style: {
-        width: 375,
-        color: '#9e5600',
-        fontSize: '16px',
-        textAlign: 'center'
-      }
-    },{
-      type: 'text',
-      x: 0,
-      y: mockHomeworkList.length > 1 ? 2840 : 2540,
-      text: '长按二维码 加入画啦啦',
-      style: {
-        width: 375,
-        color: '#9e5600',
-        fontSize: '16px',
-        textAlign: 'center'
-      }
-    }
+    },
+    ...qrCodeData
   ]
 }
 
