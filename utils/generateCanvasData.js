@@ -1,6 +1,7 @@
 import { abilityList, mockHomeworkList } from './mockData.js'
 const util = require('./util.js')
 const MAX_ABILITY_LENGTH = 197
+const INDENT = 100
 function getAbilityData(data) {
   let res = []
   const list = data.length > 7 ? data.slice(0, 7) : data
@@ -51,7 +52,6 @@ function getAbilityData(data) {
 }
 
 function getPaintingData(data, paintingList) {
-
   let res = []
   paintingList.forEach((item, idx) => {
     let arr = []
@@ -93,13 +93,13 @@ function getPaintingData(data, paintingList) {
   return res
 }
 
-function getQrcode(qrCodePath) {
+function getQrcode(data, qrCodePath) {
   if(!qrCodePath) return []
   return [
     {
       type: 'image',
       x: 98,
-      y: mockHomeworkList.length > 1 ? 2610 : 2310,
+      y: data.homeworkList.length < 1 ? 2010 - INDENT : 2010 + data.homeworkList.length * 300, 
       url: qrCodePath,
       style: {
         width: 175,
@@ -108,7 +108,7 @@ function getQrcode(qrCodePath) {
     }, {
       type: 'text',
       x: 0,
-      y: mockHomeworkList.length > 1 ? 2810 : 2510,
+      y: data.homeworkList.length < 1 ? 2210 - INDENT : 2210 + data.homeworkList.length * 300,
       text: '与我一起画画吧',
       style: {
         width: 375,
@@ -119,7 +119,7 @@ function getQrcode(qrCodePath) {
     }, {
       type: 'text',
       x: 0,
-      y: mockHomeworkList.length > 1 ? 2840 : 2540,
+      y: data.homeworkList.length < 1 ? 2140 : 2140 + data.homeworkList.length * 300,
       text: '长按二维码 加入画啦啦',
       style: {
         width: 375,
@@ -131,11 +131,49 @@ function getQrcode(qrCodePath) {
   ]
 }
 
+function getPaintingTitle(data) {
+  if(data.homeworkList.length < 1) return []
+  return [
+    {
+      // 学生画作title背景
+      type: 'image',
+      x: 80,
+      y: 1370,
+      url: `${util.img_baseUrl}/student-painting-title.png`,
+      style: {
+        width: 223,
+        height: 59
+      }
+    }, {
+      type: 'text',
+      x: 128,
+      y: 1385,
+      text: '宝贝画作展示',
+      style: {
+        width: 200,
+        color: '#FFFA69',
+        fontSize: '18px'
+      }
+    }, {
+      // 学生画作背景
+      type: 'image',
+      x: 0,
+      y: 1430,
+      url: `${util.img_baseUrl}/painting-bg.png`,
+      style: {
+        width: 375,
+        height: 50 + data.homeworkList.length * 300
+      }
+    }
+  ]
+}
+
 function generateCanvasData(data, qrCodePath) {
   const abilityData = data.ability ? getAbilityData(data.ability) : []
   let homeworkList = data.homeworkList ? data.homeworkList : []
   const paintingData = getPaintingData(data, homeworkList)
-  const qrCodeData = getQrcode(qrCodePath)
+  const qrCodeData = getQrcode(data, qrCodePath)
+  const paintingTitleData = getPaintingTitle(data)
   return [
     {
       // 报告头部图片
@@ -329,43 +367,14 @@ function generateCanvasData(data, qrCodePath) {
         width: 48,
         height: 62
       }
-    },{
-      // 学生画作title背景
-      type: 'image',
-      x: 80,
-      y: 1370,
-      url: `${util.img_baseUrl}/student-painting-title.png`,
-      style: {
-        width: 223,
-        height: 59
-      }
-    },{
-      type: 'text',
-      x: 128,
-      y: 1385,
-      text: '宝贝画作展示',
-      style: {
-        width: 200,
-        color: '#FFFA69',
-        fontSize: '18px'
-      }
-    },{
-      // 学生画作背景
-      type: 'image',
-      x: 0,
-      y: 1430,
-      url: `${util.img_baseUrl}/painting-bg.png`,
-      style: {
-        width: 375,
-        height: mockHomeworkList.length > 1 ? 650 : 350
-      }
     },
+    ...paintingTitleData,    
     ...paintingData,
     {
       // 奖状背景
       type: 'image',
       x: 2,
-      y: mockHomeworkList.length > 1 ? 2100 : 1800,
+      y: data.homeworkList.length < 1 ? 1500 - INDENT : 1500 + data.homeworkList.length * 300,
       url: `${util.img_baseUrl}/certificate-bg.png`,
       style: {
         width: 370,
@@ -374,7 +383,7 @@ function generateCanvasData(data, qrCodePath) {
     },{
       type: 'text',
       x: 73,
-      y: mockHomeworkList.length > 1 ? 2332 : 2032,
+      y: data.homeworkList.length < 1 ? 1732 - INDENT : 1732 + data.homeworkList.length * 300,
       text: data.nickname,
       style: {
         width: 200,
@@ -384,7 +393,7 @@ function generateCanvasData(data, qrCodePath) {
     },{
       type: 'text',
       x: 92,
-      y: mockHomeworkList.length > 1 ? 2360 : 2060,
+      y: data.homeworkList.length < 1 ? 1760 - INDENT : 1760 + data.homeworkList.length * 300,
       text: `Level ${data.level} stage ${data.stage}`,
       style: {
         fontSize: '10px'
@@ -392,7 +401,7 @@ function generateCanvasData(data, qrCodePath) {
     },{
       type: 'text',
       x: 0,
-      y: mockHomeworkList.length > 1 ? 2410 : 2110,
+      y: data.homeworkList.length < 1 ? 1810 - INDENT : 1810 + data.homeworkList.length * 300,
       text: data.title,
       style: {
         width: 375,
@@ -404,7 +413,7 @@ function generateCanvasData(data, qrCodePath) {
     },{
       type: 'text',
       x: 0,
-      y: mockHomeworkList.length > 1 ? 2530 : 2230,
+      y: data.homeworkList.length < 1 ? 1930 - INDENT : 1930 + data.homeworkList.length * 300,
       text: '让每个孩子都有一双发现美的眼睛',
       style: {
         width: 375,
@@ -415,7 +424,7 @@ function generateCanvasData(data, qrCodePath) {
     },{
       type: 'text',
       x: 0,
-      y: mockHomeworkList.length > 1 ? 2558 : 2258,
+      y: data.homeworkList.length < 1 ? 1958 - INDENT : 1958 + data.homeworkList.length * 300,
       text: 'Let each child have the ability to feel beauty',
       style: {
         width: 375,

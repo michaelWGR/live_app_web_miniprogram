@@ -57,6 +57,10 @@ Component({
             courseOrder: item.courseOrder
           }))
         })
+      }else{
+        this.triggerEvent('postData', {
+          homeworkList: []
+        })
       }
     })
   },

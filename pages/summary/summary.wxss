@@ -20,6 +20,16 @@
   height: 5800rpx;
   background: #ffca32;
 }
+.no-account-canvas{
+  width: 100%;
+  height: 4000rpx;
+  background: #ffca32;
+}
+.no-homework-canvas{
+  width: 100%;
+  height: 4500rpx;
+  background: #ffca32;
+}
 .bottom-btn{
   width: 533rpx;
   height: 128rpx;

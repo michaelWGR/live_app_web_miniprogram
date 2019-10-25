@@ -82,5 +82,7 @@
   </view>
 </view>
 <block wx:if="{{isShowCanvas}}">
-  <canvas canvas-id="canvas-summary" class="share-canvas"></canvas>
+  <canvas canvas-id="canvas-summary" 
+    class="{{isBindingAcoount ? (canvasData.homeworkList.length > 0 ?  'share-canvas' : 'no-homework-canvas') : 'no-account-canvas'}}">
+  </canvas>
 </block>
