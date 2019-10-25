@@ -2,6 +2,7 @@
   background: #ffca32;
   overflow-x: hidden;
   position: relative;
+  padding-bottom: 115rpx;
 }
 .bottom-text{
   width: 100%;
@@ -9,7 +10,7 @@
   font-size: 30rpx;
   text-align: center;
   padding-top: 69rpx;
-  padding-bottom: 81rpx;
+  padding-bottom: 50rpx;
 }
 .bottom-text > view:nth-child(1){
   padding-bottom: 20rpx;

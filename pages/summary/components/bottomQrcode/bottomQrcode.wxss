@@ -1,7 +1,7 @@
 /* pages/summary/components/bottomQrcode/bottomQrcode.wxss */
 .boottom-qrcode-root{
   width: 750rpx;
-  height: 520rpx;
+  height: 424rpx;
   position: relative;
 }
 .bottom-qrcode{
