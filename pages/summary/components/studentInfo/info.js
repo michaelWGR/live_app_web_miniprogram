@@ -70,9 +70,10 @@ Component({
             _this.setData({
               commitClassTime: res.data.data
             })
+            
             const detail = {
-              homeworkTotal: res.data.data.homeworkTotal,
-              stageHomeworkTotal: res.data.data.stageHomeworkTotal
+              homeworkTotal: res.data.data ? res.data.data.homeworkTotal : 0,
+              stageHomeworkTotal: res.data.data ? res.data.data.stageHomeworkTotal : 0
             }
             this.triggerEvent('postData', detail)
           } else {

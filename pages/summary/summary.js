@@ -34,7 +34,8 @@ Page({
     teacherAvatar: '',
     reportId: 0,
     canvasData: {},
-    isShowCanvas: false
+    isShowCanvas: false,
+    isBindingAcoount: true
   },
 
   /**
@@ -126,6 +127,7 @@ Page({
       console.log('token: ' + app.globalData.access_token)
       _this.getUserInfo(userId, app.globalData.access_token)
       _this.getReportIdAndTeacherAvatar(params, app.globalData.access_token)
+      _this.setIsBindingAccount(app.globalData.access_token)
       _this.setData({
         hasGetToken: true
       })
@@ -139,6 +141,7 @@ Page({
               summaryApi.postClickData(reportId, TYPE_ENTER_SUMMARY, app.globalData.access_token)
             }
           })
+          _this.setIsBindingAccount(token)
           _this.setData({
             hasGetToken: true
           })
@@ -270,7 +273,7 @@ Page({
       summaryApi.postClickData(reportId, TYPE_SHARE_SUMMARY, app.globalData.access_token)
     }
   },
-  drawImage1(img) {
+  drawImage(img) {
     let self = this;
     this.drawImage1 = new Wxml2Canvas({
       obj: self,
@@ -282,10 +285,10 @@ Page({
         console.log(percent)
       },
       finish(url) {
-        wx.hideLoading()
         wx.saveImageToPhotosAlbum({
           filePath: url,
           success: function() {
+            wx.hideLoading()
             wx.showToast({
               title: '保存成功'
             })
@@ -305,11 +308,32 @@ Page({
       }
     });
 
-    let data = {
-      list: generateCanvasData(this.canvasData)
-    }
-
-    this.drawImage1.draw(data);
+    self.drawQrcode(self.canvasData.qrCode).then(qrCodePath => {
+      console.log(qrCodePath)
+      let data = {
+        list: generateCanvasData(self.canvasData, qrCodePath)
+      }
+      this.drawImage1.draw(data);
+    })
+  },
+  drawQrcode(base64Data) {
+    return new Promise((resolve, reject) => {
+      const filePath = `${wx.env.USER_DATA_PATH}/temp_image.png`;
+      /// 将base64转为二进制数据
+      const buffer = wx.base64ToArrayBuffer(base64Data);
+      /// 绘制成图片
+      wx.getFileSystemManager().writeFile({
+        filePath,
+        data: buffer,
+        encoding: 'binary',
+        success() {
+          resolve(filePath)
+        },
+        fail() {
+        }
+      });
+    })
+    
   },
   receiveData(e) {
     this.mergeCanvasData(e.detail)
@@ -327,7 +351,16 @@ Page({
     this.setData({
       isShowCanvas: true
     },() => {
-      this.drawImage1()
+      this.drawImage()
+    })
+  },
+  setIsBindingAccount(token) {
+    summaryApi.getBindingAccount({}, token).then(res => {
+      if (res.data.code === 200) {
+        this.setData({
+          isBindingAcoount: res.data.data === 1 ? true : false
+        })
+      }
     })
   }
 })

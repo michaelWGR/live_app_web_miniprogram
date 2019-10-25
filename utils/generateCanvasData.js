@@ -93,11 +93,10 @@ function getPaintingData(data, paintingList) {
   return res
 }
 
-function generateCanvasData(data) {
-  const abilityData = getAbilityData(abilityList)
-  const paintingData = getPaintingData(data, mockHomeworkList)
-  // const abilityData = []
-  // const paintingData = []
+function generateCanvasData(data, qrCodePath) {
+  const abilityData = data.ability ? getAbilityData(data.ability) : []
+  let homeworkList = data.homeworkList ? data.homeworkList : []
+  const paintingData = getPaintingData(data, homeworkList)
   return [
     {
       // 报告头部图片
@@ -389,7 +388,7 @@ function generateCanvasData(data) {
       type: 'image',
       x: 98,
       y: mockHomeworkList.length > 1 ? 2610 : 2310,
-      url: `${util.img_baseUrl}/painting.png`,
+      url: qrCodePath,
       style: {
         width: 175,
         height: 175

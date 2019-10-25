@@ -82,10 +82,12 @@ Component({
         })
     },
     initAnalysis(assessList) {
+      if(!assessList) return ''
       const needPromoted = assessList.some(item => item.nowStageTime <= 3.5)
       return needPromoted ? '还有提升空间' : '各项能力均衡发展，继续保持'
     },
     initAssessList(assessList) {
+      if(!assessList) return ''
       var needPromotedAssess = ''
       for (var i = 0; i < assessList.length; i++) {
         if (assessList[i].nowStageTime <= 3.5) {

@@ -77,6 +77,11 @@ const postClickData = (reportId, type, token) => {
   return request.post('/v1/report/postClickData' + params, {}, token);
 }
 
+/** 判断是否拥有画啦啦账号*/
+const getBindingAccount = (params, token) => {
+  return request.get('/v1/report/getBindingAccount', params, token);
+}
+
 module.exports = {
   getUserInfo,
   getLevelStage,
@@ -91,5 +96,6 @@ module.exports = {
   getSynthesisAbility,
   postScaleData,
   postClickData,
+  getBindingAccount,
   test123
 }

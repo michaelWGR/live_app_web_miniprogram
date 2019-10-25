@@ -30,10 +30,10 @@
 .share-btn{
   width: 50%;
   height: 100%;
-  background: url('https://appdev.61draw.com/dev_test/miniprogram/right-btn.png') 0 0 no-repeat;
+  background: url('https://appdev.61draw.com/dev_test/miniprogram/left-btn.png') 0 0 no-repeat;
   background-size: 100%;
   position: absolute;
-  left: 0;
+  left: 30rpx;
   top: 0;
 }
 button::after{
@@ -44,13 +44,13 @@ button::after{
   height: 39rpx;
   position: absolute;
   left: 84rpx;
-  top: 33rpx;
+  top: 35rpx;
 }
 .share-text{
   font-size: 24rpx;
   color: #fff;
   position: absolute;
-  left: 167rpx;
+  left: 158rpx;
   top: 25rpx;
 }
 .save-btn{
@@ -59,7 +59,7 @@ button::after{
   background: url('https://appdev.61draw.com/dev_test/miniprogram/right-btn.png') 0 0 no-repeat;
   background-size: 100%;
   position: absolute;
-  right: 0;
+  right: 16rpx;
   top: 0;
 }
 .save-icon{

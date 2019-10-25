@@ -1,5 +1,5 @@
 <view class="summary" id="summary">
-  <block wx:if="{{userId}}">
+  <block wx:if="{{userId && !isBindingAcoount}}">
     <advertisement userId="{{userId}}"></advertisement>
   </block>
   
@@ -57,6 +57,11 @@
     <view>让每个孩子都有一双发现美的眼睛</view>
     <view>Let each child have the ability to feel beauty</view>
   </view>
+
+  <block wx:if="{{userId && hasGetToken}}">
+    <bottomQrcode user-id="{{userId}}" bind:postData="receiveData"></bottomQrcode>
+  </block>
+
   <view class="bottom-btn">
     <button class="share-btn" open-type="share">
       <image class="weixin-icon" src="{{imageUrl.weixin}}"></image>

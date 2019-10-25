@@ -9,7 +9,8 @@
     "certificate": "./components/certificate/certificate",
     "shine": "./components/shine/shine",
     "studentPaintings": "./components/studentPaintings/studentPaintings",
-    "submitHomework": "./components/submitHomework/submitHomework"
+    "submitHomework": "./components/submitHomework/submitHomework",
+    "bottomQrcode": "./components/bottomQrcode/bottomQrcode"
   },
   "navigationBarTitleText": "阶段学习报告" 
 }
