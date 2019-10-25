@@ -299,9 +299,9 @@ Page({
             })
           }
         })
-        // self.setData({
-        //   isShowCanvas: false
-        // })
+        self.setData({
+          isShowCanvas: false
+        })
       },
       error(res) {
         console.error(res)
