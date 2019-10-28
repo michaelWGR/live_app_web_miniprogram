@@ -35,7 +35,8 @@ Page({
     reportId: 0,
     canvasData: {},
     isShowCanvas: false,
-    isBindingAcoount: true
+    isBindingAcoount: true,
+    progress: '',//报告保存进度
   },
 
   /**
@@ -283,6 +284,9 @@ Page({
       background: '#ffca32',
       progress(percent) {
         console.log(percent)
+        this.setData({
+          progress: percent + '%'
+        })
       },
       finish(url) {
         wx.saveImageToPhotosAlbum({
@@ -352,8 +356,9 @@ Page({
     this.canvasData = tmp
   },
   setReportToImg() {
+    console.log(this.data.progress)
     wx.showLoading({
-      title: '保存中...',
+      title: `保存中(${this.data.progress})`,
       mask: true
     })
     this.setData({
