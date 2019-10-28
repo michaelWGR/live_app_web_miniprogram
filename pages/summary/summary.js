@@ -284,9 +284,6 @@ Page({
       background: '#ffca32',
       progress(percent) {
         console.log(percent)
-        this.setData({
-          progress: percent + '%'
-        })
       },
       finish(url) {
         wx.saveImageToPhotosAlbum({
