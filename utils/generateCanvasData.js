@@ -82,7 +82,7 @@ function getPaintingData(data, paintingList) {
       type: 'image',
       x: 80,
       y: 1530 + idx * 300,
-      url: `${util.img_baseUrl}/painting.png`,
+      url: item.paintingUrl,
       style: {
         width: 197,
         height: 197

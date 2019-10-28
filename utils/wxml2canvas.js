@@ -1,5 +1,5 @@
 import Util from './lib-util';
-const SAVE_DELAY = 1000;//延迟调用canvasToTempFilePath,否则保存的图片不完整
+const SAVE_DELAY = 2000;//延迟调用canvasToTempFilePath,否则保存的图片不完整
 const imageMode = ['scaleToFill', 'aspectFit', 'aspectFill', 'widthFix', 'top', 'bottom', 'center', 'left', 'right', 'top left', 'top right', 'bottom left', 'bottom right']
 
 class Wxml2Canvas {

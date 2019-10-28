@@ -36,7 +36,8 @@ Page({
     canvasData: {},
     isShowCanvas: false,
     isBindingAcoount: true,
-    progress: '',//报告保存进度
+    isShowSaving: false,
+    progress: '0%',//报告保存进度
   },
 
   /**
@@ -283,18 +284,25 @@ Page({
       element: 'canvas-summary',
       background: '#ffca32',
       progress(percent) {
-        console.log(percent)
+        self.setData({
+          progress: Math.floor(percent) - 5 + '%' 
+        })
       },
       finish(url) {
         wx.saveImageToPhotosAlbum({
           filePath: url,
           success: function() {
-            wx.hideLoading()
+            self.setData({
+              isShowSaving: false
+            })
             wx.showToast({
               title: '保存成功'
             })
           },
           fail: function() {
+            self.setData({
+              isShowSaving: false
+            })
             wx.showToast({
               title: '保存失败'
             })
@@ -306,6 +314,12 @@ Page({
       },
       error(res) {
         console.error(res)
+        self.setData({
+          isShowSaving: false
+        })
+        wx.showToast({
+          title: '保存失败'
+        })
       }
     });
 
@@ -353,11 +367,8 @@ Page({
     this.canvasData = tmp
   },
   setReportToImg() {
-    wx.showLoading({
-      title: `保存中...`,
-      mask: true
-    })
     this.setData({
+      isShowSaving: true,
       isShowCanvas: true
     },() => {
       this.drawImage()

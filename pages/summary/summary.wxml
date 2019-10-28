@@ -74,6 +74,15 @@
       </view>
     </view>
   </block>
+
+  <block wx:if="{{isShowSaving}}">
+    <view class="loading-wrapper">
+      <view class="weui-loading__wrp">
+        <view class="weui-loading"></view>
+        <view class="saving-report">保存中({{progress}})</view>
+      </view>
+    </view>
+  </block>
   
 
   <view class="welcome-pop-wrap" wx:if="{{isShowWelcome}}" catchtouchmove='true'>

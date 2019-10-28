@@ -58,7 +58,7 @@ Component({
             })
             this.triggerEvent('postData', {
               ability: res.data.data,
-              analysis: this.initAssessList(res.data.data) + this.initAnalysis(res.data.data)
+              analysis: this.initAssessList(res.data.data) + res.data.data.length > 0 ? this.initAnalysis(res.data.data) : ''
             })
           } else {
             wx.showToast({
