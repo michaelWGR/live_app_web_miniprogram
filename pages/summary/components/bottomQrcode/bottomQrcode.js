@@ -40,7 +40,7 @@ Component({
       const params = {
         userId: this.properties.userId
       }
-      return request.get('/v1/report/experienceCourseQrCode', params, app.globalData.access_token)
+      return request.get('/v1/report/experienceCourseQrCode', params, '')
     }
   }
 })

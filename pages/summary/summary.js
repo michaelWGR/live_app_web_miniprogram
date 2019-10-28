@@ -42,7 +42,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    const userId = 60197
+    const userId = 58661
     const levelStage = {
       level: 1,
       stage: 1

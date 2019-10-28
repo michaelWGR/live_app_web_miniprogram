@@ -1,4 +1,7 @@
 // pages/pay-h5/pay-h5.js
+const TRANSFER_CHANNEL = 2
+const ENTRANCE_ID_KEY = 'source';//入口id的key
+const ENTER_FROM_ADVERTISEMENT = 3
 Page({
 
   /**
@@ -14,7 +17,7 @@ Page({
   onLoad: function (options) {
     console.log(options)
     this.setData({
-      pageUrl: `https://pay.61info.cn/experience/index.html?originUserId=${options.userId}&channel=STUDENT_CHANNEL`
+      pageUrl: `https://pay.61info.cn/experience/index.html?originUserId=${options.userId}&channel=STUDENT_CHANNEL&transferChannel=${TRANSFER_CHANNEL}&${ENTRANCE_ID_KEY}=${ENTER_FROM_ADVERTISEMENT}`
     })
   },
 

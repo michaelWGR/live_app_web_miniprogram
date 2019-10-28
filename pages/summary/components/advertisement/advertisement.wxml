@@ -4,9 +4,10 @@
     <view class="ad-text-top">在家学画画，就选<text style="color: #FFF045;">画啦啦</text></view>
     <view class="ad-text-bottom">
       现在报名只需
-      <text style="color: #FFF045;">0.1元</text>
+      <text style="color: #FFF045;font-size: 35rpx;">0.1</text>
+      <text>元</text>
       <text class="prev-price">原价</text>
-      <text class="prev-price line-through">120元</text>  
+      <text class="prev-price line-through">120元</text>
     </view>
   </view>
   <view class="buy-btn" bindtap="goBuyCourse">我要报名</view>

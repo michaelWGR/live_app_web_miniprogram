@@ -58,20 +58,23 @@
     <view>Let each child have the ability to feel beauty</view>
   </view>
 
-  <block wx:if="{{userId && hasGetToken && isBindingAcoount}}">
+  <block wx:if="{{userId}}">
     <bottomQrcode user-id="{{userId}}" bind:postData="receiveData"></bottomQrcode>
   </block>
 
-  <view class="bottom-btn">
-    <button class="share-btn" open-type="share">
-      <image class="weixin-icon" src="{{imageUrl.weixin}}"></image>
-      <text class="share-text">分享</text>
-    </button>
-    <view bindtap="setReportToImg" class="save-btn">
-      <image class="save-icon" src="{{imageUrl.save}}"></image>
-      <text class="save-text">保存报告</text>
+  <block wx:if="{{isBindingAcoount}}">
+    <view class="bottom-btn">
+      <button class="share-btn" open-type="share">
+        <image class="weixin-icon" src="{{imageUrl.weixin}}"></image>
+        <text class="share-text">分享</text>
+      </button>
+      <view bindtap="setReportToImg" class="save-btn">
+        <image class="save-icon" src="{{imageUrl.save}}"></image>
+        <text class="save-text">保存报告</text>
+      </view>
     </view>
-  </view>
+  </block>
+  
 
   <view class="welcome-pop-wrap" wx:if="{{isShowWelcome}}" catchtouchmove='true'>
     <view class="welcome-pop">
@@ -83,6 +86,6 @@
 </view>
 <block wx:if="{{isShowCanvas}}">
   <canvas canvas-id="canvas-summary" 
-    class="{{isBindingAcoount ? (canvasData.homeworkList.length > 0 ?  'share-canvas' : 'no-homework-canvas') : 'no-account-canvas'}}">
+    class="{{canvasData.homeworkList.length > 0 ?  'share-canvas' : 'no-homework-canvas'}}">
   </canvas>
 </block>
