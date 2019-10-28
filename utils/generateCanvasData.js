@@ -119,7 +119,7 @@ function getQrcode(data, qrCodePath) {
     }, {
       type: 'text',
       x: 0,
-      y: data.homeworkList.length < 1 ? 2140 : 2140 + data.homeworkList.length * 300,
+      y: data.homeworkList.length < 1 ? 2250 : 2250 + data.homeworkList.length * 300,
       text: '长按二维码 加入画啦啦',
       style: {
         width: 375,
@@ -350,7 +350,7 @@ function generateCanvasData(data, qrCodePath) {
       type: 'text',
       x: 60,
       y: 1090,
-      text: data.comment ? data.comment : '哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈',
+      text: data.comment ? data.comment : '',
       style: {
         width: 280,
         fontSize: '15px',

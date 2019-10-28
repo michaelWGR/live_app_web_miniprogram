@@ -285,7 +285,7 @@ Page({
       background: '#ffca32',
       progress(percent) {
         self.setData({
-          progress: Math.floor(percent) - 5 + '%' 
+          progress: Math.floor(percent) > 5 ? Math.floor(percent) - 5 + '%' : '0%'
         })
       },
       finish(url) {
@@ -368,10 +368,14 @@ Page({
   },
   setReportToImg() {
     this.setData({
-      isShowSaving: true,
-      isShowCanvas: true
-    },() => {
-      this.drawImage()
+      canvasData: this.canvasData
+    }, ()=>{
+      this.setData({
+        isShowSaving: true,
+        isShowCanvas: true
+      }, () => {
+        this.drawImage()
+      })
     })
   },
   setIsBindingAccount(token) {
