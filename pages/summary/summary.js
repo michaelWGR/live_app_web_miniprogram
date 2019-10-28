@@ -356,9 +356,8 @@ Page({
     this.canvasData = tmp
   },
   setReportToImg() {
-    console.log(this.data.progress)
     wx.showLoading({
-      title: `保存中(${this.data.progress})`,
+      title: `保存中...`,
       mask: true
     })
     this.setData({
