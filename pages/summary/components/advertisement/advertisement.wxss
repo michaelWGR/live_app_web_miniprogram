@@ -1,6 +1,6 @@
 /* pages/summary/components/advertisement/advertisement.wxss */
 .advertisement{
-  width: 559rpx;
+  width: 563rpx;
   height: 103rpx;
   background: url('https://appdev.61draw.com/dev_test/miniprogram/advertise.png') 0 0 no-repeat;
   background-size: 100%;

@@ -1,6 +1,8 @@
-<view class="summary" id="summary">
-  <block wx:if="{{userId && !isBindingAcoount}}">
-    <advertisement userId="{{userId}}" bind:goToBuy="goToOtherPage"></advertisement>
+<view class="{{isBindingAcoount ? 'summary' : 'summary with-padding-top'}}" id="summary">
+  <block wx:if="{{userId && !isBindingAcoount && reportId}}">
+    <view class="ad-wrapper">
+      <advertisement userId="{{userId}}" reportId="{{reportId}}"  bind:goToBuy="goToOtherPage"></advertisement>
+    </view>
   </block>
   
   <block wx:if="{{userId && levelStage.level && hasGetToken}}">
@@ -58,10 +60,14 @@
     <view>Let each child have the ability to feel beauty</view>
   </view>
 
-  <block wx:if="{{userId}}">
-    <bottomQrcode user-id="{{userId}}" bind:postData="receiveData"></bottomQrcode>
+  <block wx:if="{{userId && reportId}}">
+    <bottomQrcode 
+      user-id="{{userId}}"
+      report-id="{{reportId}}" 
+      bind:postData="receiveData">
+    </bottomQrcode>
   </block>
-  <!--  -->
+  <!-- -->
   <block wx:if="{{isBindingAcoount}}">
     <view class="bottom-btn">
       <button class="share-btn" open-type="share">

@@ -4,6 +4,9 @@
   position: relative;
   padding-bottom: 115rpx;
 }
+.with-padding-top{
+  padding-top: 103rpx;
+}
 .bottom-text{
   width: 100%;
   color: #9e5600;
@@ -129,6 +132,13 @@ button::after{
 }
 .weui-loading__wrp:last-child{
   background-color:rgba(0,0,0,.7);
+}
+
+.ad-wrapper{
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
 }
 
 .welcome-pop-wrap .welcome-pop {

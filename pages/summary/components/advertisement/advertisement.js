@@ -8,6 +8,10 @@ Component({
       type: String,
       value: ''
     },
+    reportId: {
+      type: Number,
+      value: 0
+    }
   },
 
   /**
@@ -24,7 +28,7 @@ Component({
     goBuyCourse() {
       this.triggerEvent('goToBuy')
       wx.navigateTo({
-        url: `../../pages/pay-h5/pay-h5?userId=${this.properties.userId}`,
+        url: `../../pages/pay-h5/pay-h5?userId=${this.properties.userId}&reportId=${this.properties.reportId}`,
       })
     }
   }

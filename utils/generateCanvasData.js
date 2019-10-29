@@ -24,7 +24,7 @@ function getAbilityData(data) {
   const abilityData = list.map((item, idx) => {
     return {
       text: item.question,
-      length: Math.floor((item.score / 5) * MAX_ABILITY_LENGTH),
+      length: Math.floor(item.score / 5 * MAX_ABILITY_LENGTH),
       score: item.score.toFixed(1),
       idx: idx
     }

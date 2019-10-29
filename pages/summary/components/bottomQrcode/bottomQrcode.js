@@ -10,6 +10,10 @@ Component({
       type: String,
       value: ''
     },
+    reportId: {
+      type: Number,
+      value: 0
+    }
   },
 
   /**
@@ -38,7 +42,8 @@ Component({
   methods: {
     getQrcode() {
       const params = {
-        userId: this.properties.userId
+        userId: this.properties.userId,
+        reportId: this.properties.reportId
       }
       return request.get('/v1/report/experienceCourseQrCode', params, '')
     }
