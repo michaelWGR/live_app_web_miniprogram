@@ -315,7 +315,8 @@ Page({
       error(res) {
         console.error(res)
         self.setData({
-          isShowSaving: false
+          isShowSaving: false,
+          isShowCanvas: false
         })
         wx.showToast({
           title: '保存失败'
