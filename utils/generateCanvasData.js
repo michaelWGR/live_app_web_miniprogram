@@ -358,7 +358,7 @@ function generateCanvasData(data, qrCodePath) {
       type: 'text',
       x: 0,
       y: 1065,
-      text: data.teacherName ? data.teacherName + '老师' : '椰果老师',
+      text: data.teacherName ? data.teacherName + '老师' : '',
       style: {
         width: 375,
         fontWeight: 'bold',
