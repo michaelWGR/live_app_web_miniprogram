@@ -15,6 +15,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log('h5地址', `https://pay.61info.cn/experience/index.html?originUserId=${options.userId}&channel=STUDENT_CHANNEL&${ENTRANCE_ID_KEY}=${ENTER_FROM_ADVERTISEMENT}&stageStudyId=${options.reportId}`)
     this.setData({
       pageUrl: `https://pay.61info.cn/experience/index.html?originUserId=${options.userId}&channel=STUDENT_CHANNEL&${ENTRANCE_ID_KEY}=${ENTER_FROM_ADVERTISEMENT}&stageStudyId=${options.reportId}`
     })
