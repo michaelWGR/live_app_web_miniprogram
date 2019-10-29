@@ -1,7 +1,7 @@
 // pages/pay-h5/pay-h5.js
 const TRANSFER_CHANNEL = 2
 const ENTRANCE_ID_KEY = 'adPosition';//入口id的key
-const ENTER_FROM_ADVERTISEMENT = 3
+const ENTER_FROM_ADVERTISEMENT = 2
 Page({
 
   /**
