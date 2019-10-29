@@ -356,9 +356,9 @@ function generateCanvasData(data, qrCodePath) {
     },{
       // 老师昵称
       type: 'text',
-      x: 158,
+      x: 0,
       y: 1065,
-      text: data.teacherName ? data.teacherName : '椰果老师',
+      text: data.teacherName ? data.teacherName + '老师' : '椰果老师',
       style: {
         width: 375,
         fontWeight: 'bold',
