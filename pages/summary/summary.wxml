@@ -61,7 +61,7 @@
   <block wx:if="{{userId}}">
     <bottomQrcode user-id="{{userId}}" bind:postData="receiveData"></bottomQrcode>
   </block>
-
+  <!--  -->
   <block wx:if="{{isBindingAcoount}}">
     <view class="bottom-btn">
       <button class="share-btn" open-type="share">
