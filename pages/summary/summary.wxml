@@ -1,6 +1,6 @@
 <view class="summary" id="summary">
   <block wx:if="{{userId && !isBindingAcoount}}">
-    <advertisement userId="{{userId}}"></advertisement>
+    <advertisement userId="{{userId}}" bind:goToBuy="goToOtherPage"></advertisement>
   </block>
   
   <block wx:if="{{userId && levelStage.level && hasGetToken}}">

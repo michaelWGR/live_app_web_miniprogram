@@ -22,6 +22,7 @@ Component({
    */
   methods: {
     goBuyCourse() {
+      this.triggerEvent('goToBuy')
       wx.navigateTo({
         url: `../../pages/pay-h5/pay-h5?userId=${this.properties.userId}`,
       })
