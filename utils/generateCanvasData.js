@@ -363,7 +363,8 @@ function generateCanvasData(data, qrCodePath) {
         width: 375,
         fontWeight: 'bold',
         color: '#B27832',
-        fontSize: '17px'
+        fontSize: '17px',
+        textAlign: 'center'
       }
     },{
       // 老师评语
