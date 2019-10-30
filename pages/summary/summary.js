@@ -32,7 +32,7 @@ Page({
     pageHeight: 0,
     hasGetToken: false,
     teacherAvatar: '',
-    reportId: 0,
+    reportId: -1,
     canvasData: {},
     isShowCanvas: false,
     isBindingAcoount: true,
