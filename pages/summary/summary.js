@@ -36,6 +36,7 @@ Page({
     canvasData: {},
     isShowCanvas: false,
     isBindingAcoount: true,
+    withAccountState: false,//和isBindingAcoount组合使用，默认广告和按钮都不显示
     isShowSaving: false,
     progress: '0%',//报告保存进度
   },
@@ -383,7 +384,8 @@ Page({
     summaryApi.getBindingAccount({}, token).then(res => {
       if (res.data.code === 200) {
         this.setData({
-          isBindingAcoount: res.data.data === 1 ? true : false
+          isBindingAcoount: res.data.data === 1 ? true : false,
+          withAccountState: true
         })
       }
     })
