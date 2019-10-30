@@ -1,0 +1,96 @@
+<!--pages/summary/components/shine/shine.wxml-->
+<view class="shine-root" wx:if="{{trophyNum || isShowEvents}}">
+  <view class="shine-title"><text class="shine-titlt-text">宝贝本阶段的闪光点</text></view>
+  <gridBox>
+    <view class="shine-content">
+      <block wx:if="{{trophyNum}}">
+        <view class="shine-top">
+          <text class="shine-top-red">{{nickname}}</text>宝贝，课堂上积极表达自己的ideas，共获得<text class="shine-top-red">{{trophyNum}}</text>个奖杯！
+        </view>
+        <view class="shine-middle">
+          <view class="trophy"></view>
+          <view class="shine-middle-text">{{trophyNum}}</view>
+        </view>
+      </block>
+      <view class="shine-swiper" wx:if="{{isShowEvents}}">
+        <swiper previous-margin="30rpx" 
+          next-margin="100rpx" 
+          duration="300"
+          bindchange="onSwiperSlide" 
+          style="width:100%;height:100%;"
+          circular="true">
+
+          <block>
+            <swiper-item wx:if="{{eventData.shortHomeworkCommitTimeDTO}}">
+              <view class="{{currIndex === index ? 'shine-record-paper active-shine-record-paper' : 'shine-record-paper'}}">
+                <view class="shine-record">
+                  <!-- 提交作业耗时最短 -->
+                  <view><text class="red-font">{{eventData.shortHomeworkCommitTimeDTO.time}}</text>是个特殊的日子</view>
+                  <view>宝贝课后用最快的时间,<text class="red-font">{{eventData.shortHomeworkCommitTimeDTO.commitTime}}</text>完成</view>
+                  <view><text class="red-font">《{{eventData.shortHomeworkCommitTimeDTO.courseName}}》</text>的画作</view>
+                  <view>今日事，今日毕</view>
+                </view>
+              </view>
+            </swiper-item>
+
+            <!-- 作业描述语音最长 -->
+            <swiper-item wx:if="{{eventData.homeworkMostLongAudioDTO}}">
+              <view class="{{currIndex === index ? 'shine-record-paper active-shine-record-paper' : 'shine-record-paper'}}">
+                <view class="shine-record">
+                  <view><text class="red-font">{{eventData.homeworkMostLongAudioDTO.time}}</text>是个特殊的日子</view>
+                  <view>宝贝用<text class="red-font"> {{eventData.homeworkMostLongAudioDTO.audioSecond}} 秒</text></view>
+                  <view>描述 <text class="red-font">《{{eventData.homeworkMostLongAudioDTO.title}}》</text> 的画作</view>
+                  <view>天马行空的描述，让画作充满活力</view>
+                </view>
+              </view>
+            </swiper-item>
+
+            <!-- 最早进入直播间 -->
+            <swiper-item wx:if="{{eventData.mostAccessLiveRoomDTO}}">
+              <view class="{{currIndex === index ? 'shine-record-paper active-shine-record-paper' : 'shine-record-paper'}}">
+                <view class="shine-record">
+                  <view><text class="red-font">{{eventData.mostAccessLiveRoomDTO.time}}</text>是个特殊的日子</view>
+                  <view><text class="red-font">《{{eventData.mostAccessLiveRoomDTO.title}}》</text>这节课</view>
+                  <view>宝贝最早到教室，提前了<text class="red-font">{{eventData.mostAccessLiveRoomDTO.minuteTime}}分钟</text></view>
+                  <view>准时，是一种快乐</view>
+                </view>
+              </view>
+            </swiper-item>
+
+            <!-- 获取奖杯最多 -->
+            <swiper-item wx:if="{{eventData.mostTrophyDTO}}">
+              <view class="{{currIndex === index ? 'shine-record-paper active-shine-record-paper' : 'shine-record-paper'}}">
+                <view class="shine-record">
+                  <view><text class="red-font">{{eventData.mostTrophyDTO.time}}</text>是个特殊的日子</view>
+                  <view>宝贝在<text class="red-font">《{{eventData.mostTrophyDTO.courseName}}》</text>的课堂</view>
+                  <view>获得最多奖杯<text class="red-font">（{{eventData.mostTrophyDTO.num}}个）</text></view>
+                  <view>兴趣是最好的老师</view>
+                </view>
+              </view>
+            </swiper-item>
+          </block>
+
+        </swiper>
+      </view>
+      <view class="indicator-dots">
+        <block wx:for="{{eventData.eventNumFlag}}" wx:key="{{index}}">
+          <view class="{{currIndex === index ? 'dots-item active-dots-item' : 'dots-item'}}" ></view>
+        </block>
+      </view>
+      <view class="shine-like-btn" bindtap="onClickLike">给孩子点个赞</view>
+    </view>
+  </gridBox>
+  <view wx:if="{{isShowLikeModal}}" class="like-modal {{isShowCloseAnimation ? 'bounceOut' : ''}}">
+    <!-- <view wx:if="{{isShowLikeModal}}" class="like-image"></view> -->
+    <image src="{{getimg.getimg(praiseImg)}}" class="like-image"></image>
+  </view>
+  <view class="grass-1"></view>
+  <view class="grass-2"></view>
+</view>
+<wxs module="getimg">
+  var getimg = function(baseImgUrl) {
+    var randomNum = Math.random()
+    return baseImgUrl + '?random=' + randomNum
+  }
+  module.exports.getimg = getimg;
+</wxs>

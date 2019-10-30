@@ -1,0 +1,17 @@
+<view class="comment" wx:if="{{comment.comment}}">
+  <view class="title">
+    <image class="background" mode="widthFix" src="{{imageUrl.title}}"></image>
+    <text class="text">老师评语</text>
+  </view>
+  <view class="content">
+    <image class="headImage" src="{{comment.headUrl}}"></image>
+    <view class="name">{{comment.artName}}老师</view>
+    <view class="text-container">
+      <view class="text-wrap">
+        <view class="text">{{comment.comment}}</view>
+      </view>
+      <view class="shadow"></view>
+    </view>
+    <image class="like" mode="widthFix" src="{{imageUrl.like}}" bindtap="thankTeacher"></image>
+  </view>
+</view>

@@ -1,0 +1,5 @@
+<!--pages/pay-h5/pay-h5.wxml-->
+<view wx:if="{{pageUrl}}">
+  <web-view src="{{pageUrl}}"></web-view>
+</view>
+

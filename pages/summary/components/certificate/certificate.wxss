@@ -1,0 +1,106 @@
+/* pages/summary/components/certificate/certificate.wxss */
+.certificate-root{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+.certificate-title{
+  width: 447rpx;
+  height: 100rpx;     
+  background: url('http://appminip.61draw.com/res/images/certificate-title-background.png') 0 0 no-repeat;
+  background-size: 100%;
+  position: relative;
+}
+.certificate-title .certificate-titlt-text{
+  color: #fffa69;
+  font-size: 32rpx;
+  position: absolute;
+  left: 115rpx;
+  top: 18rpx;
+  font-weight: bold;
+}
+.certificate-content{
+  padding: 0 33rpx 33rpx 35rpx;
+}
+.certificate-tip{
+  font-size: 26rpx;
+  color: #333;
+  text-indent: 2em;
+  line-height: 53rpx;
+}
+.certificate-model{
+  width: 630rpx;
+  height: 486rpx;
+  background: url('http://appminip.61draw.com/res/images/certificate-model.png') 0 0 no-repeat;
+  background-size: 100%;
+  font-size: 23rpx;
+  position: relative;
+}
+.student-name{
+  position: absolute;
+  top: 215rpx;
+  left: 83rpx;
+}
+.student-name .student-name-red{
+  color: #ff6c00;
+  font-size: 25rpx;
+  margin-right: 15rpx;
+  position: relative;
+  font-weight: bold;
+}
+.student-name .student-name-red::after{
+  content: '';
+  width: 110%;
+  height: 1rpx;
+  background: #000;
+  position: absolute;
+  top: 37rpx;
+  left: -5%;
+}
+.certificate-declare{
+  position: absolute;
+  top: 266rpx;
+  left: 74rpx;
+  line-height: 38rpx;
+}
+.student-title{
+  width: 100%;
+  color: #ff6c00;
+  font-size: 48rpx;
+  position: absolute;
+  text-align: center;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 352rpx;
+  font-weight: bold;
+}
+.hualala-stamp{
+  width: 164rpx;
+  height: 164rpx;
+  background: url('http://appminip.61draw.com/res/images/hualala-stamp.png') 0 0 no-repeat;
+  background-size: 100%;
+  position: absolute;
+  right: 20rpx;
+  bottom: -15rpx;
+}
+.grass-1{
+  width: 102rpx;
+  height: 75rpx;
+  background: url('http://appminip.61draw.com/res/images/summary-assess-left.png') 0 0 no-repeat;
+  background-size: 100%;
+  position: absolute;
+  bottom: -19rpx;
+  left: 6rpx;
+}
+.grass-2{
+  width: 75rpx;
+  height: 80rpx;
+  background: url('http://appminip.61draw.com/res/images/grass-2.png') 0 0 no-repeat;
+  background-size: 100%;
+  transform: rotateY(180deg);
+  position: absolute;
+  bottom: -11rpx;
+  right:  18rpx;
+}

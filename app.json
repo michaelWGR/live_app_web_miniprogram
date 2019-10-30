@@ -3,8 +3,10 @@
     "pages/index/index",
     "pages/homework/homework",
     "pages/unauth/unauth",
-    "pages/class/class"
-    
+    "pages/class/class",
+    "pages/collections/collections",
+    "pages/summary/summary",
+    "pages/pay-h5/pay-h5"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -13,5 +15,7 @@
     "navigationBarTextStyle": "black"
   },
   "sitemapLocation": "sitemap.json",
-  "requiredBackgroundModes": ["audio"]
+  "requiredBackgroundModes": [
+    "audio"
+  ]
 }

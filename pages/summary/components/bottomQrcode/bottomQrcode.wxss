@@ -1,0 +1,29 @@
+/* pages/summary/components/bottomQrcode/bottomQrcode.wxss */
+.boottom-qrcode-root{
+  width: 750rpx;
+  height: 424rpx;
+  position: relative;
+}
+.bottom-qrcode{
+  width: 263rpx;
+  height: 263rpx;
+  background: #fff;
+  border-radius: 20rpx 20rpx 20rpx 20rpx;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.bottom-qrcode-text{
+  width: 750rpx;
+  position: absolute;
+  top: 300rpx;
+  left: 0;
+  text-align: center;
+  font-size: 30rpx;
+  color: #9E5600;
+  line-height: 47rpx;
+}
+.bottom-qrcode-text>view{
+  width: 100%;
+}

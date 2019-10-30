@@ -1,0 +1,8 @@
+<!--pages/summary/components/grid-box/gridBox.wxml-->
+<view class="grid-box">
+  <view class="box-top"></view>
+  <view class="box-middle">
+    <slot></slot>
+  </view>
+  <view class="box-bottom"></view>
+</view>

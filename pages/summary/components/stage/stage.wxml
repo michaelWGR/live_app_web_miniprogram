@@ -1,0 +1,49 @@
+<view class="stage" wx:if="{{stageReportSchedule.length > 0}}">
+  <view class="title">
+    <image class="background" mode="widthFix" src="{{image.title}}"></image>
+    <text class="text">Level<text class="num">{{levelStage.level}}</text>stage{{levelStage.stage}}</text>
+  </view>
+  <view class="content">
+    <view class="item {{levelStage.stage > index ? 'finish' : ''}}" wx:for="{{stageReportSchedule}}" wx:key bindtap="showCardPop" data-text="{{index}}">
+      <image class="crown  {{levelStage.stage === index + 1 ? 'currentStage' : ''}}" mode="widthFix" src="{{image.crown}}"></image>
+      <view class="num">stage{{index+1}}</view>
+      <view class="text text-{{index}}">{{isShowName ? item.content : ''}}</view>
+    </view>
+    <view class="tips">(点击卡片可知道各阶段学什么)</view>
+  </view>
+  <pop visibility="{{isShowCardPop}}" bind:hidePop="hidePop">
+    <view class="card-pop">
+      <view class="title">{{stageReportSchedule[showCardIndex].content}}</view>
+      <view class="card-content">
+        <!-- <text class="card-item" wx:for="{{wxs.initSkillProfile(stageReportSchedule[showCardIndex].skillProfile)}}" wx:key>{{item}}</text> -->
+        <text class="card-item-text">{{stageReportSchedule[showCardIndex].skillProfile}}</text>
+      </view>
+      <view class="close" bindtap="hidePop">X</view>
+    </view>
+  </pop>
+</view>
+
+<wxs module="wxs">
+  // 获取弹框数组
+  var initSkillProfile = function(option) {
+    var skillProfile = [];
+    var skillProfileIndex = 0
+    if (!option) return
+    for (var i = 0; i < option.length; i++) {
+      if (option[i] === ',' || option[i] === '、' || option[i] === '，' || option[i] === '。') {
+        skillProfileIndex = skillProfileIndex + 1
+      } else {
+        if (skillProfile[skillProfileIndex]) {
+          skillProfile[skillProfileIndex] = skillProfile[skillProfileIndex] + option[i]
+        } else {
+          skillProfile[skillProfileIndex] = option[i]
+        }
+      }
+    }
+      
+    return skillProfile
+  }
+
+  module.exports.initSkillProfile = initSkillProfile;
+</wxs>
+

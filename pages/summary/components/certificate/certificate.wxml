@@ -1,0 +1,21 @@
+<!--pages/summary/components/certificate/certificate.wxml-->
+<view class="certificate-root">
+  <view class="certificate-title"><text class="certificate-titlt-text">宝贝的奖状</text></view>
+  <gridBox>
+    <view class="certificate-content">
+      <view class="certificate-tip"> 每个宝贝都拥有无限的能量，唯有画作能承载这股神奇的能力</view>
+      <view class="certificate-model">
+        <view class="student-name"><text class="student-name-red">{{nickname}}</text>宝贝:</view>
+        <view class="certificate-declare">
+          <view>在《Level {{levelStage.level}} stage {{levelStage.stage}} 》的学习中，画作充满魔力，</view>
+          <view>为你封号：</view>
+        </view>
+        <view class="student-title">{{title}}</view>
+        <view class="hualala-stamp"></view> 
+      </view>
+    </view>
+  </gridBox>
+  <view class="grass-1"></view>
+  <view class="grass-2"></view>
+</view>
+ 

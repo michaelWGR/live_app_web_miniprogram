@@ -1,0 +1,16 @@
+{
+  "usingComponents": {
+    "advertisement": "./components/advertisement/advertisement",
+    "studentInfo": "./components/studentInfo/info",
+    "stage": "./components/stage/stage",
+    "promote": "./components/promote/promote",
+    "assess": "./components/assess/assess",
+    "comment": "./components/comment/comment",
+    "certificate": "./components/certificate/certificate",
+    "shine": "./components/shine/shine",
+    "studentPaintings": "./components/studentPaintings/studentPaintings",
+    "submitHomework": "./components/submitHomework/submitHomework",
+    "bottomQrcode": "./components/bottomQrcode/bottomQrcode"
+  },
+  "navigationBarTitleText": "阶段学习报告" 
+}

@@ -1,0 +1,157 @@
+.assess {
+  position: relative;
+  width: 100%;
+  padding-bottom: 20rpx;
+}
+
+.assess .title {
+  position: relative;
+  margin: 0 auto;
+}
+
+.assess .title .background {
+  display: block;
+  width: 537rpx;
+  margin: 0 auto;
+}
+
+.assess .title .text {
+  position: absolute;
+  top: 18rpx;
+  left: 40%;
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #FFFA69;
+  text-shadow: 0px 3rpx 5rpx rgba(63,164,92,0.52);
+}
+
+.assess .content {
+  position: relative;
+  width: 100%;
+  z-index: 2;
+}
+
+.assess .content .content-backage-top {
+  display: block;
+  width: 100%;
+}
+
+.assess .content .content-backage-bottom {
+  display: block;
+  width: 101%;
+  transform: translateX(-.5%);
+}
+
+
+.assess .content .score {
+  width: 100%;
+  background: url('http://appminip.61draw.com/res/images/summary-assess-bg1.png') 0 0 repeat-y;
+  background-size: 100%;
+}
+
+.assess .content .score .item {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  padding: 0 66rpx 20rpx 58rpx;
+}
+
+.assess .content .score .item .name {
+  display: inline-block;
+  flex: 0 0 170rpx;
+  text-align: left;
+  font-size: 26rpx;
+  color: #333;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+.assess .content .score .item .graph {
+  flex: 1;
+  transform: translateY(-12%);
+}
+
+.assess .content .score .item .graph .left {
+  display: inline-block;
+  width: 33rpx;
+  height: 45rpx;
+  vertical-align: middle;
+}
+
+.assess .content .score .item .graph .middle {
+  display: inline-block;
+  width: 320rpx;
+  height: 45rpx;
+  vertical-align: middle;
+}
+
+.assess .content .score .item .graph .right {
+  display: inline-block;
+  width: 33rpx;
+  height: 45rpx;
+  vertical-align: middle;
+}
+
+.assess .content .score .item .num {
+  flex: 0 0 46rpx;
+  font-size: 26rpx;
+  font-weight: bold;
+  color: #FA552E;
+  text-align: center;
+}
+
+.assess .content .score .tips {
+  font-size: 24rpx;
+  color: #666;
+  text-align: center;
+}
+
+.assess .content .score .analysis {
+  margin: 20rpx 55rpx 0 55rpx;
+  padding: 20rpx 48rpx;
+  background: #FFF0CD;
+  font-size: 26rpx;
+  color: #333;
+  box-shadow: 0rpx 1rpx 15rpx 1rpx rgba(255,202,50,0.2);
+  border-radius: 20rpx;
+}
+
+.assess .content .score .analysis .list {
+  color: #FF4343;
+}
+
+.assess .content .content-background-left {
+  position: absolute;
+  bottom: 15rpx;
+  left: 0;
+  width: 102rpx;
+  height: 75rpx;
+}
+
+.assess .content .content-background-right {
+  position: absolute;
+  bottom: 25rpx;
+  right: 10rpx;
+  width: 75rpx;
+  height: 80rpx;
+}
+
+.assess .content-cloud-right {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 152rpx;
+  height: 137rpx;
+  z-index: 1;
+}
+
+.assess .content-cloud-left {
+  position: absolute;
+  top: 70rpx;
+  left: 0;
+  width: 134rpx;
+  height: 101rpx;
+  z-index: 1;
+}

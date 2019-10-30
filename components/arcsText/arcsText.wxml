@@ -1,0 +1,35 @@
+<!--弧线的文字-->
+<view class="arcsText">
+  <text 
+    wx:for="{{text}}" 
+    wx:key
+    class="text" 
+    style="transform: rotate({{wxs.initRoute(index, text, angle)}}) translateY({{wxs.initTranslateY(index, text, angle, heightPrecent)}}); padding: {{item < 5 ? '0 2px' : '0'}}"
+  >{{item}}</text>
+</view>
+
+<wxs module="wxs">
+  // 获取每个文字的旋转角度
+  var initRoute = function(index, text, angle){
+    // 文字长度
+    var textLength = text.length;
+    // 文字中间数
+    var midNum = Math.floor(textLength/2);
+    // 平均旋转角度
+    var anglePrecent = (angle / midNum);
+    
+    return (index - midNum) * anglePrecent + 'deg';
+  }
+
+  // 获取每个文字的上移百分比
+  var initTranslateY = function(index, text, angle, heightPrecent) {
+    var textLength = text.length;
+    var midNum = Math.floor(textLength/2);
+    var anglePrecent = angle / midNum;
+      
+    return Math.abs((index - midNum) * anglePrecent * heightPrecent) + '%';
+  }
+
+  module.exports.initRoute = initRoute;
+  module.exports.initTranslateY = initTranslateY;
+</wxs>

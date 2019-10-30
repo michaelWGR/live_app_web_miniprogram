@@ -1,0 +1,65 @@
+.pop-wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  animation: wrapIn .5s ease-in-out;
+  z-index: 997;
+}
+
+.pop-wrap-out {
+  background: rgba(0, 0, 0, 0);
+  animation: wrapOut .5s ease-in-out;
+}
+
+@keyframes wrapIn {
+  from {
+    background: rgba(0, 0, 0, 0);
+  }
+  to {
+    background: rgba(0, 0, 0, 0.8);
+  }
+}
+
+@keyframes wrapOut {
+  from {
+    background: rgba(0, 0, 0, 0.8);
+  }
+  to {
+    background: rgba(0, 0, 0, 0);
+  }
+}
+
+.pop {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: popIn .4s ease-in-out;
+  z-index: 998;
+}
+
+@keyframes popIn {
+  from {
+    transform: translate(-50%, 1000rpx) scale(0.1);
+  }
+  to {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+.pop-out {
+  transform: translate(-50%, 1000rpx) scale(0.1);
+  animation: popOut .4s ease-in-out;
+}
+
+@keyframes popOut {
+  from {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  to {
+    transform: translate(-50%, 1000rpx) scale(0.1);
+  }
+}

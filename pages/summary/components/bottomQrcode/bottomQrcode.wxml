@@ -1,0 +1,8 @@
+<!--pages/summary/components/bottomQrcode/bottomQrcode.wxml-->
+<view class="boottom-qrcode-root">
+  <image src="{{qrCode}}" class="bottom-qrcode"></image>
+  <view class="bottom-qrcode-text">
+    <view>与我一起画画吧</view>
+    <view>截图扫描二维码 加入画啦啦</view>
+  </view>
+</view>

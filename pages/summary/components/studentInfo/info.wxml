@@ -1,0 +1,34 @@
+<view class="info draw-canvas-info">
+  <image class="banner" mode="widthFix" src="{{imageUrl.banner}}"></image>
+  <view class="title">
+    <arcsText text="Level{{levelStage.level}}stage{{levelStage.stage}}" angle="8" heightPrecent="2.5"></arcsText>
+  </view>
+  <view class="content">
+    <image class="headImage" mode="widthFix" src="{{userInfo.headurl ? userInfo.headurl : imageUrl.headImage}}"></image>
+    <view class="name">{{userInfo.nickname}}宝贝</view>
+    <view class="wrap">
+      <view class="works">
+        <view class="work-num">
+          <text class="total">{{commitClassTime.homeworkTotal}}</text>
+          <view class="add">
+            新增<text class="num">{{commitClassTime.stageHomeworkTotal}}</text>幅
+            <image class="arrow" src="{{imageUrl.arrow}}"></image>
+          </view>
+        </view>
+        <view class="works-title">创作作品数目</view>
+      </view>
+      <view class="time">
+        <view class="time-num">
+          <text class="total">{{accumulativeTime.totalTime}}</text>
+          <view class="add">
+            新增<text class="num">{{accumulativeTime.nowStageTime}}</text>分钟
+            <image class="arrow" src="{{imageUrl.arrow}}"></image>
+          </view>
+        </view>
+        <view class="time-title">听课累计时间(分钟)</view>
+      </view>
+    </view>
+  </view>
+  <!-- <image src="{{erweima}}"></image> -->
+</view>
+

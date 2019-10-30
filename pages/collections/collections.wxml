@@ -1,0 +1,16 @@
+<!--pages/collections/collections.wxml-->
+<view class="collection-root" id="collections">
+  <view class="page-title">作品集</view>
+  <view class="paintings-wrapper" id="test">
+    <block wx:for="{{homeworkList}}" wx:key="{{index}}">
+      <view class="{{index < homeworkList.length-1 ? 'paiting-wrapper paiting-wrapper-not-last' : 'paiting-wrapper paiting-wrapper-not-first'}}">
+        <painting homeworkData="{{item}}"/>
+      </view>
+    </block>
+  </view>
+  <view class="bottom-view"></view>
+    
+  <view class="left-bottom-grass"></view>
+  <view class="right-bottom-grass"></view>
+  <button open-type="share" class="share-btn"><text class="share-text">分享</text></button>
+</view>
