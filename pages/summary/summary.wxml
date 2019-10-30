@@ -1,5 +1,5 @@
 <view class="{{isBindingAcoount ? 'summary' : 'summary with-padding-top'}}" id="summary">
-  <block wx:if="{{userId && !isBindingAcoount}}">
+  <block wx:if="{{userId && !isBindingAcoount && withAccountState}}">
     <view class="ad-wrapper">
       <advertisement userId="{{userId}}" reportId="{{reportId}}"  bind:goToBuy="goToOtherPage"></advertisement>
     </view>
@@ -68,7 +68,7 @@
     </bottomQrcode>
   </block>
   <!-- -->
-  <block wx:if="{{isBindingAcoount}}">
+  <block wx:if="{{isBindingAcoount && withAccountState}}">
     <view class="bottom-btn">
       <button class="share-btn" open-type="share">
         <image class="weixin-icon" src="{{imageUrl.weixin}}"></image>
