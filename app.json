@@ -1,10 +1,10 @@
 {
   "pages": [
-    "pages/summary/summary",
     "pages/index/index",
     "pages/homework/homework",
     "pages/unauth/unauth",
     "pages/class/class",
+    "pages/summary/summary",
     "pages/collections/collections",
     "pages/pay-h5/pay-h5"
   ],
