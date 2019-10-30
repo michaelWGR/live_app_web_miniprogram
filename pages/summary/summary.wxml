@@ -1,5 +1,5 @@
 <view class="{{isBindingAcoount ? 'summary' : 'summary with-padding-top'}}" id="summary">
-  <block wx:if="{{userId && !isBindingAcoount && reportId}}">
+  <block wx:if="{{userId && !isBindingAcoount}}">
     <view class="ad-wrapper">
       <advertisement userId="{{userId}}" reportId="{{reportId}}"  bind:goToBuy="goToOtherPage"></advertisement>
     </view>
@@ -60,7 +60,7 @@
     <view>Let each child have the ability to feel beauty</view>
   </view>
 
-  <block wx:if="{{userId && reportId}}">
+  <block wx:if="{{userId}}">
     <bottomQrcode 
       user-id="{{userId}}"
       report-id="{{reportId}}" 
