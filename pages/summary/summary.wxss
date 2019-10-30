@@ -40,7 +40,7 @@
 .share-btn{
   width: 50%;
   height: 100%;
-  background: url('https://appdev.61draw.com/dev_test/miniprogram/left-btn.png') 0 0 no-repeat;
+  background: url('http://appminip.61draw.com/res/images/left-btn.png') 0 0 no-repeat;
   background-size: 100%;
   position: absolute;
   left: 30rpx;
@@ -66,7 +66,7 @@ button::after{
 .save-btn{
   width: 50%;
   height: 100%;
-  background: url('https://appdev.61draw.com/dev_test/miniprogram/right-btn.png') 0 0 no-repeat;
+  background: url('http://appminip.61draw.com/res/images/right-btn.png') 0 0 no-repeat;
   background-size: 100%;
   position: absolute;
   right: 16rpx;

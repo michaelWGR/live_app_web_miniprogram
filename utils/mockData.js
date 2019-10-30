@@ -29,12 +29,12 @@ const abilityList = [
 const mockHomeworkList = [
   {
     courseName: '神奇的线条',
-    paintingUrl: 'https://appdev.61draw.com/dev_test/miniprogram/painting.png',
+    paintingUrl: 'http://appminip.61draw.com/res/images/painting.png',
     courseOrder: '一'
   },
   {
     courseName: '阿拉丁神灯',
-    paintingUrl: 'https://appdev.61draw.com/dev_test/miniprogram/painting.png',
+    paintingUrl: 'http://appminip.61draw.com/res/images/painting.png',
     courseOrder: '二'
   }
 ]

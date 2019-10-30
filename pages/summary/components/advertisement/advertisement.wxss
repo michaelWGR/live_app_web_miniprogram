@@ -2,7 +2,7 @@
 .advertisement{
   width: 563rpx;
   height: 103rpx;
-  background: url('https://appdev.61draw.com/dev_test/miniprogram/advertise.png') 0 0 no-repeat;
+  background: url('http://appminip.61draw.com/res/images/advertise.png') 0 0 no-repeat;
   background-size: 100%;
   padding: 17rpx 21rpx 0 170rpx;
   line-height: 48rpx;
@@ -29,7 +29,7 @@
 .buy-btn{
   width: 200rpx;
   height: 85rpx;
-  background: url('https://appdev.61draw.com/dev_test/miniprogram/buy-btn.png') 0 0 no-repeat;
+  background: url('http://appminip.61draw.com/res/images/buy-btn.png') 0 0 no-repeat;
   background-size: 100%;
   position: absolute;
   right: 10rpx;
