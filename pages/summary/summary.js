@@ -102,6 +102,9 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function (from) {
+    td_event_summary({
+      label: 'C011701'
+    })
     if(from === 'button') {
       td_event_summary({
         label: 'C0117'

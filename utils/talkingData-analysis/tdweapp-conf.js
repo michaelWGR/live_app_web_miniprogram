@@ -1,5 +1,5 @@
 exports.config = {
-  appkey: '您在TalkingData创建的小程序App ID',
+  appkey: '326E130E8F1945FAB90DED59CE04D76F',
   appName: 'stageReport',
   versionName: 'talking-data',
   versionCode: '1.0.0',

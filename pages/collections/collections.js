@@ -181,6 +181,9 @@ Page({
   },
   //分享埋点
   postShare(from) {
+    td_event_summary({
+      label: 'C01120401'
+    })
     if(from === 'button') {
       td_event_summary({
         label: 'C011204'
