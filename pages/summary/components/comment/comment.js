@@ -70,7 +70,7 @@ Component({
             }
             if(res.data.data.comment){
               td_event_summary({
-                label: 'C0107',
+                label: 'C0108',
                 card_status: 'show'
               })
             }

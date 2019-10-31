@@ -81,7 +81,7 @@ App({
     fromShare: false,
     userInfo: null,
     access_token: '',
-    openId: 'abc',
-    userId: '123'
+    openId: '',
+    userId: ''
   }
 })

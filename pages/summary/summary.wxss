@@ -4,9 +4,9 @@
   position: relative;
   padding-bottom: 115rpx;
 }
-.with-padding-top{
+/* .with-padding-top{
   padding-top: 103rpx;
-}
+} */
 .bottom-text{
   width: 100%;
   color: #9e5600;

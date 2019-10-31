@@ -1,9 +1,9 @@
 <view class="{{isBindingAcoount ? 'summary' : 'summary with-padding-top'}}" id="summary">
-  <block wx:if="{{userId && !isBindingAcoount && reportId}}">
+  <!-- <block wx:if="{{userId && !isBindingAcoount && reportId}}">
     <view class="ad-wrapper">
       <advertisement userId="{{userId}}" reportId="{{reportId}}"  bind:goToBuy="goToOtherPage"></advertisement>
     </view>
-  </block>
+  </block> -->
   
   <block wx:if="{{userId && levelStage.level && hasGetToken}}">
     <studentInfo levelStage="{{levelStage}}" userId="{{userId}}" userInfo="{{userInfo}}" bind:postData="receiveData"></studentInfo>

@@ -6,12 +6,10 @@
  * params (Object) 事件参数
  */
 const app = getApp();
-const userId = app.globalData.userId
-const openId = app.globalData.openId
 const td_event = function({id, label, params}) {
     const tdParams = {
-        userId,
-        openId,
+        userId: app.globalData.userId,
+        openId: app.globalData.openId,
         ...params
     }
     console.log('发送埋点', {
