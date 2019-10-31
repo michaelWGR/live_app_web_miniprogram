@@ -34,6 +34,16 @@ App({
               var access_token = res.data.data.accessToken;
               this.globalData.access_token = res.data.data.accessToken;
               this.globalData.openId = res.data.data.openId
+              api.getUserId(access_token).then(res => {
+                if(res.data.code === 200) {
+                  this.globalData.userId = res.data.data
+                  if(this.userIdCallback){
+                    this.userIdCallback(res.data.data)
+                  }
+                }else if(this.userIdCallback){
+                  this.userIdCallback(-1)
+                }
+              })
               if(this.tokenCallback){
                 this.tokenCallback(res.data.data.accessToken);
               }

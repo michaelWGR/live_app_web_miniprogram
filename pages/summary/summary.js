@@ -80,7 +80,7 @@ Page({
 
   onShow: function () {
     _enterTimestamp = new Date().getTime()
-    this.postScanPage()
+    this.postScanPage(app.globalData.userId)
     if (isGoOtherPage) {
       isGoOtherPage = false
     } else if (this.data.userInfo && this.data.userInfo.nickname) {
@@ -149,13 +149,15 @@ Page({
           console.log('token: ' + token)
           _this.getUserInfo(userId, token)
           _this.getReportIdAndTeacherAvatar(params, token)
-          if(_shouldPostScanPage){
-            _this.postScanPage()
-          }
           _this.setIsBindingAccount(token)
           _this.setData({
             hasGetToken: true
           })
+        }
+      }
+      app.userIdCallback = (userId) => {
+        if(_shouldPostScanPage){
+          _this.postScanPage(userId)
         }
       }
     }
@@ -270,8 +272,8 @@ Page({
   },
 
   //进入报告埋点
-  postScanPage() {
-    if(app.globalData.access_token && app.globalData.access_token != '') {
+  postScanPage(userId) {
+    if(app.globalData.access_token && app.globalData.access_token != '' && userId !== '') {
       td_event_summary({
         label: 'C0101',
         level: this.data.levelStage.level,
