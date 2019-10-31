@@ -14,6 +14,7 @@ const td_event = function({id, label, params}) {
         openId,
         ...params
     }
+    console.log('发送埋点', label)
     app.td_app_sdk.event({
         id,
         label,

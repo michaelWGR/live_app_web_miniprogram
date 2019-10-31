@@ -1,8 +1,10 @@
 // pages/summary/components/shine/shine.js
+import { td_event_summary } from '../../../../utils/talkingData-analysis/statistics.js'
 const util = require('../../../../utils/util.js');
 const app = getApp();
 const request = require('../../../../utils/request')
 const summaryApi = require('../../../../api/summary')
+const hasPostStatics = false;//是否发送过页面展示埋点数据
 Component({
   /**
    * 组件的属性列表
@@ -115,6 +117,13 @@ Component({
           this.setData({
             trophyNum: res.data.data
           })
+          if(res.data.data && !hasPostStatics) {
+            td_event_summary({
+              label: 'C0114',
+              card_status: 'show'
+            })
+            hasPostStatics = true
+          }
         }
       })
     },
@@ -129,6 +138,7 @@ Component({
   },
 
   attached: function() {
+    hasPostStatics = false
     this.getEventData().then(res => {
       if(res.data.code === 200) {
         const eventData = this.getDeriveEventData(res.data.data)
@@ -137,6 +147,13 @@ Component({
           eventData,
           isShowEvents
         })
+        if(!hasPostStatics) {
+          td_event_summary({
+            label: 'C0114',
+            card_status: 'show'
+          })
+          hasPostStatics = true
+        }
       }
     })
     this.getTrophyNum()

@@ -1,4 +1,5 @@
 // pages/summary/components/submitHomework/submitHomework.js
+import { td_event_summary } from '../../../../utils/talkingData-analysis/statistics.js'
 const util = require('../../../../utils/util.js')
 const app = getApp();
 const request = require('../../../../utils/request')
@@ -57,6 +58,12 @@ Component({
             homeworkList: homework.homeworkStatusDTOs,
             rate: homework.homeworkCommitNum / allHomeworkNum
           })
+          if(allHomeworkNum > 0) {
+            td_event_summary({
+              label: 'C0110',
+              card_status: 'show'
+            })
+          }
         }
       })
     }

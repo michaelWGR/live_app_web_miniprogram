@@ -1,4 +1,5 @@
 // pages/summary/components/stage/stage.js
+import { td_event_summary } from '../../../../utils/talkingData-analysis/statistics.js'
 const app = getApp();
 const util = require('./../../../../utils/util.js');
 const summaryApi = require('../../../../api/summary.js');
@@ -48,6 +49,9 @@ Component({
           isShowCardPop: true
         })
       }
+      td_event_summary({
+        label: 'C0105'
+      })
     },
 
     hidePop() {
@@ -76,6 +80,12 @@ Component({
               stageReportSchedule: stageReportSchedule,
               isShowName: isShowName
             })
+            if(stageReportSchedule.length > 0) {
+              td_event_summary({
+                label: 'C0104',
+                card_status: 'show'
+              })
+            }
           } else {
             wx.showToast({
               title: '服务器错误',

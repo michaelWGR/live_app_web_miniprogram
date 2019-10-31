@@ -10,8 +10,6 @@ let isGoOtherPage = false // 是否跳到其他页面了，如果是ture下次on
 let _enterTimestamp
 let _shouldPostScanPage = false;//onShow的时候拿不到openId,等拿到openId再发送埋点
 let _shouldPostScaleData = false;
-const TYPE_ENTER_SUMMARY = 1
-const TYPE_SHARE_SUMMARY = 4
 Page({
 
   /**
@@ -104,9 +102,17 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function (from) {
+    if(from === 'button') {
+      td_event_summary({
+        label: 'C0117'
+      })
+    }else{
+      td_event_summary({
+        label: 'C0121'
+      })
+    }
     this.goToOtherPage()
-    this.postShare()
     return {
       title: this.data.userInfo.nickname + '《Level ' + this.data.levelStage.level + ' stage ' + this.data.levelStage.stage + '》的画啦啦艺术成长报告'
     }
@@ -283,13 +289,7 @@ Page({
       _shouldPostScanPage = true
     }
   },
-  //分享埋点
-  postShare() {
-    if(app.globalData.access_token && app.globalData.access_token != '' && this.data.reportId) {
-      const reportId = this.data.reportId
-      summaryApi.postClickData(reportId, TYPE_SHARE_SUMMARY, app.globalData.access_token)
-    }
-  },
+
   drawImage(img) {
     let self = this;
     this.drawImage1 = new Wxml2Canvas({
@@ -382,6 +382,9 @@ Page({
     this.canvasData = tmp
   },
   setReportToImg() {
+    td_event_summary({
+      label: 'C0118'
+    })
     this.setData({
       canvasData: this.canvasData
     }, ()=>{
@@ -399,6 +402,12 @@ Page({
         this.setData({
           isBindingAcoount: res.data.data === 1 ? true : false
         })
+        if(res.data.data === 1){
+          td_event_summary({
+            label: 'C0116',
+            card_status: 'show'
+          })
+        }
       }
     })
   }
