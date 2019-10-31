@@ -9,7 +9,6 @@ let scrollRatio = 0
 let isGoOtherPage = false // 是否跳到其他页面了，如果是ture下次onShow不展示彩礼
 let _enterTimestamp
 let _shouldPostScanPage = false;//onShow的时候拿不到openId,等拿到openId再发送埋点
-let _shouldPostScaleData = false;
 Page({
 
   /**
@@ -150,9 +149,6 @@ Page({
           if(_shouldPostScanPage){
             _this.postScanPage()
           }
-          if(_shouldPostScaleData){
-            _this.postScaleData()
-          }
           _this.setIsBindingAccount(token)
           _this.setData({
             hasGetToken: true
@@ -257,23 +253,17 @@ Page({
 
   //浏览时长和滑动比例埋点
   postScaleData() {
-    if(app.globalData.access_token && app.globalData.access_token != '') {
-      const leaveTimestamp = new Date().getTime()
-      const time = parseInt((leaveTimestamp - _enterTimestamp)/1000)
-      const scale = scrollRatio > 100 ? 100 : (scrollRatio < 0 ? 0 : scrollRatio)
-      td_event_summary({
-        label: 'C0102',
-        standing_time: time
-      })
-      td_event_summary({
-        label: 'C0103',
-        page_scale: scale + '%'
-      })
-      _shouldPostScaleData = false
-    }else{
-      _shouldPostScaleData = true
-    }
-    
+    const leaveTimestamp = new Date().getTime()
+    const time = parseInt((leaveTimestamp - _enterTimestamp)/1000)
+    const scale = scrollRatio > 100 ? 100 : (scrollRatio < 0 ? 0 : scrollRatio)
+    td_event_summary({
+      label: 'C0102',
+      standing_time: time
+    })
+    td_event_summary({
+      label: 'C0103',
+      page_scale: scale + '%'
+    })
   },
 
   //进入报告埋点

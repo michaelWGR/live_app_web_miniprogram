@@ -4,7 +4,7 @@ const util = require('../../../../utils/util.js');
 const app = getApp();
 const request = require('../../../../utils/request')
 const summaryApi = require('../../../../api/summary')
-const hasPostStatics = false;//是否发送过页面展示埋点数据
+let hasPostStatics = false;//是否发送过页面展示埋点数据
 Component({
   /**
    * 组件的属性列表
