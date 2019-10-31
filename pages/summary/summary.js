@@ -1,13 +1,15 @@
 // pages/summary/summary.js
 import Wxml2Canvas from './../../utils/wxml2canvas.js'
 import generateCanvasData from '../../utils/generateCanvasData.js'
+import { td_event_summary } from '../../utils/talkingData-analysis/statistics.js'
 const app = getApp();
 const util = require('./../../utils/util.js');
 const summaryApi = require('../../api/summary.js');
 let scrollRatio = 0
 let isGoOtherPage = false // 是否跳到其他页面了，如果是ture下次onShow不展示彩礼
 let _enterTimestamp
-let _shouldPostScanPage = false;//onShow的时候拿不到token和reportId,等拿到token再发送埋点
+let _shouldPostScanPage = false;//onShow的时候拿不到openId,等拿到openId再发送埋点
+let _shouldPostScaleData = false;
 const TYPE_ENTER_SUMMARY = 1
 const TYPE_SHARE_SUMMARY = 4
 Page({
@@ -138,11 +140,13 @@ Page({
         if (token && token != '') {
           console.log('token: ' + token)
           _this.getUserInfo(userId, token)
-          _this.getReportIdAndTeacherAvatar(params, token).then(reportId => {
-            if(_shouldPostScanPage){
-              summaryApi.postClickData(reportId, TYPE_ENTER_SUMMARY, app.globalData.access_token)
-            }
-          })
+          _this.getReportIdAndTeacherAvatar(params, token)
+          if(_shouldPostScanPage){
+            _this.postScanPage()
+          }
+          if(_shouldPostScaleData){
+            _this.postScaleData()
+          }
           _this.setIsBindingAccount(token)
           _this.setData({
             hasGetToken: true
@@ -247,23 +251,34 @@ Page({
 
   //浏览时长和滑动比例埋点
   postScaleData() {
-    const leaveTimestamp = new Date().getTime()
-    const time = leaveTimestamp - _enterTimestamp
-    const scale = scrollRatio > 100 ? 100 : (scrollRatio < 0 ? 0 : scrollRatio)
-    const data = {
-      reportId: this.data.reportId,
-      time: time,
-      scale: scale,
-      type: 1
+    if(app.globalData.access_token && app.globalData.access_token != '') {
+      const leaveTimestamp = new Date().getTime()
+      const time = parseInt((leaveTimestamp - _enterTimestamp)/1000)
+      const scale = scrollRatio > 100 ? 100 : (scrollRatio < 0 ? 0 : scrollRatio)
+      td_event_summary({
+        label: 'C0102',
+        standing_time: time
+      })
+      td_event_summary({
+        label: 'C0103',
+        page_scale: scale + '%'
+      })
+      _shouldPostScaleData = false
+    }else{
+      _shouldPostScaleData = true
     }
-    summaryApi.postScaleData(data, app.globalData.access_token)
+    
   },
 
   //进入报告埋点
   postScanPage() {
-    if(app.globalData.access_token && app.globalData.access_token != '' && this.data.reportId) {
-      const reportId = this.data.reportId
-      summaryApi.postClickData(reportId, TYPE_ENTER_SUMMARY, app.globalData.access_token)
+    if(app.globalData.access_token && app.globalData.access_token != '') {
+      td_event_summary({
+        label: 'C0101',
+        level: this.data.levelStage.level,
+        stage: this.data.levelStage.stage
+      })
+      _shouldPostScanPage = false
     }else{
       _shouldPostScanPage = true
     }
@@ -361,7 +376,6 @@ Page({
   },
   receiveData(e) {
     this.mergeCanvasData(e.detail)
-    console.log(this.canvasData)
   },
   mergeCanvasData(obj) {
     const tmp = {...this.canvasData, ...obj}

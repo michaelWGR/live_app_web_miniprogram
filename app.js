@@ -1,12 +1,5 @@
 //app.js
 const api = require('/api/api.js')
-/**
- * talkingData埋点：tdweapp.td_app_sdk.event(Object)
- * Object参数说明:
- * id (String) 事件id,
- * label (String) 事件描述,
- * params (Object) 事件参数
- */
 const tdweapp = require('./utils/talkingData-analysis/tdweapp.js');
 
 App({
@@ -88,6 +81,7 @@ App({
     fromShare: false,
     userInfo: null,
     access_token: '',
-    openId: ''
+    openId: 'abc',
+    userId: '123'
   }
 })
