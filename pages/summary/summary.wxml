@@ -1,5 +1,5 @@
 <view class="{{isBindingAcoount ? 'summary' : 'summary with-padding-top'}}" id="summary">
-  <!-- <block wx:if="{{userId && !isBindingAcoount && withAccountState}}">
+  <!-- <block wx:if="{{userId && !isBindingAcoount && reportId}}">
     <view class="ad-wrapper">
       <advertisement userId="{{userId}}" reportId="{{reportId}}"  bind:goToBuy="goToOtherPage"></advertisement>
     </view>

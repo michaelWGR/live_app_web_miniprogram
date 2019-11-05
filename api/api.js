@@ -47,6 +47,9 @@ const getClassHomeworkByCourse = (params, token) => {
   return request.get('/v1/applets/getHomeworks', params, token)
 }
 
+const getUserId = (token) => {
+  return request.get('/v1/report/getNowUserId', {}, token)
+}
 
 
 module.exports = {
@@ -57,5 +60,6 @@ module.exports = {
   getClassHomework,
   getCourseSchedule,
   getCourseBySchedule,
-  getClassHomeworkByCourse
+  getClassHomeworkByCourse,
+  getUserId
 }

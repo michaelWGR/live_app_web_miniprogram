@@ -1,9 +1,8 @@
 // pages/summary/components/studentPaintings/studentPaintings.js
+import { td_event_summary } from '../../../../utils/talkingData-analysis/statistics.js'
 const util = require('../../../../utils/util.js')
 const app = getApp();
 const request = require('../../../../utils/request')
-const summaryApi = require('../../../../api/summary.js')
-const TYPE_CLICK_GO_COLLECTIONS = 2
 Component({
   /**
    * 组件的属性列表
@@ -57,6 +56,12 @@ Component({
             courseOrder: item.courseOrder
           }))
         })
+        if(data.length > 0) {
+          td_event_summary({
+            label: 'C0111',
+            card_status: 'show'
+          })
+        }
       }else{
         this.triggerEvent('postData', {
           homeworkList: []
@@ -70,7 +75,9 @@ Component({
    */
   methods: {
     goToCollections: function() {
-      this.postClick()
+      td_event_summary({
+        label: 'C0112'
+      })
       this.setData({
         navigationFlag: true
       })
@@ -104,6 +111,9 @@ Component({
       }
       const params = util.qs(data)
       request.post('/v1/report/reportPraise' + params, {}, token)
+      td_event_summary({
+        label: 'C0113'
+      })
     },
 
     getHomeworkList: function() {
@@ -134,11 +144,5 @@ Component({
       })
       return homeworkList
     },
-
-    //埋点
-    postClick() {
-      const token = app.globalData.access_token
-      summaryApi.postClickData(this.properties.reportId, TYPE_CLICK_GO_COLLECTIONS, token)
-    }
   }
 })

@@ -1,15 +1,14 @@
 // pages/summary/summary.js
 import Wxml2Canvas from './../../utils/wxml2canvas.js'
 import generateCanvasData from '../../utils/generateCanvasData.js'
+import { td_event_summary } from '../../utils/talkingData-analysis/statistics.js'
 const app = getApp();
 const util = require('./../../utils/util.js');
 const summaryApi = require('../../api/summary.js');
 let scrollRatio = 0
 let isGoOtherPage = false // 是否跳到其他页面了，如果是ture下次onShow不展示彩礼
 let _enterTimestamp
-let _shouldPostScanPage = false;//onShow的时候拿不到token和reportId,等拿到token再发送埋点
-const TYPE_ENTER_SUMMARY = 1
-const TYPE_SHARE_SUMMARY = 4
+let _shouldPostScanPage = false;//onShow的时候拿不到openId,等拿到openId再发送埋点
 Page({
 
   /**
@@ -82,7 +81,7 @@ Page({
 
   onShow: function () {
     _enterTimestamp = new Date().getTime()
-    this.postScanPage()
+    this.postScanPage(app.globalData.userId)
     if (isGoOtherPage) {
       isGoOtherPage = false
     } else if (this.data.userInfo && this.data.userInfo.nickname) {
@@ -103,9 +102,20 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function (from) {
+    td_event_summary({
+      label: 'C011701'
+    })
+    if(from === 'button') {
+      td_event_summary({
+        label: 'C0117'
+      })
+    }else{
+      td_event_summary({
+        label: 'C0121'
+      })
+    }
     this.goToOtherPage()
-    this.postShare()
     return {
       title: this.data.userInfo.nickname + '《Level ' + this.data.levelStage.level + ' stage ' + this.data.levelStage.stage + '》的画啦啦艺术成长报告'
     }
@@ -139,15 +149,16 @@ Page({
         if (token && token != '') {
           console.log('token: ' + token)
           _this.getUserInfo(userId, token)
-          _this.getReportIdAndTeacherAvatar(params, token).then(reportId => {
-            if(_shouldPostScanPage){
-              summaryApi.postClickData(reportId, TYPE_ENTER_SUMMARY, app.globalData.access_token)
-            }
-          })
+          _this.getReportIdAndTeacherAvatar(params, token)
           _this.setIsBindingAccount(token)
           _this.setData({
             hasGetToken: true
           })
+        }
+      }
+      app.userIdCallback = (userId) => {
+        if(_shouldPostScanPage){
+          _this.postScanPage(userId)
         }
       }
     }
@@ -249,33 +260,32 @@ Page({
   //浏览时长和滑动比例埋点
   postScaleData() {
     const leaveTimestamp = new Date().getTime()
-    const time = leaveTimestamp - _enterTimestamp
+    const time = parseInt((leaveTimestamp - _enterTimestamp)/1000)
     const scale = scrollRatio > 100 ? 100 : (scrollRatio < 0 ? 0 : scrollRatio)
-    const data = {
-      reportId: this.data.reportId,
-      time: time,
-      scale: scale,
-      type: 1
-    }
-    summaryApi.postScaleData(data, app.globalData.access_token)
+    td_event_summary({
+      label: 'C0102',
+      standing_time: time
+    })
+    td_event_summary({
+      label: 'C0103',
+      page_scale: scale + '%'
+    })
   },
 
   //进入报告埋点
-  postScanPage() {
-    if(app.globalData.access_token && app.globalData.access_token != '' && this.data.reportId) {
-      const reportId = this.data.reportId
-      summaryApi.postClickData(reportId, TYPE_ENTER_SUMMARY, app.globalData.access_token)
+  postScanPage(userId) {
+    if(app.globalData.access_token && app.globalData.access_token != '' && userId !== '') {
+      td_event_summary({
+        label: 'C0101',
+        level: this.data.levelStage.level,
+        stage: this.data.levelStage.stage
+      })
+      _shouldPostScanPage = false
     }else{
       _shouldPostScanPage = true
     }
   },
-  //分享埋点
-  postShare() {
-    if(app.globalData.access_token && app.globalData.access_token != '' && this.data.reportId) {
-      const reportId = this.data.reportId
-      summaryApi.postClickData(reportId, TYPE_SHARE_SUMMARY, app.globalData.access_token)
-    }
-  },
+
   drawImage(img) {
     let self = this;
     this.drawImage1 = new Wxml2Canvas({
@@ -362,13 +372,16 @@ Page({
   },
   receiveData(e) {
     this.mergeCanvasData(e.detail)
-    console.log(this.canvasData)
   },
   mergeCanvasData(obj) {
     const tmp = {...this.canvasData, ...obj}
     this.canvasData = tmp
   },
   setReportToImg() {
+    td_event_summary({
+      label: 'C0118',
+      download_local: true
+    })
     this.setData({
       canvasData: this.canvasData
     }, ()=>{
@@ -387,6 +400,12 @@ Page({
           isBindingAcoount: res.data.data === 1 ? true : false,
           withAccountState: true
         })
+        if(res.data.data === 1){
+          td_event_summary({
+            label: 'C0116',
+            card_status: 'show'
+          })
+        }
       }
     })
   }

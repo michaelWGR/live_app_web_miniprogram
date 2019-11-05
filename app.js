@@ -1,5 +1,6 @@
 //app.js
 const api = require('/api/api.js')
+const tdweapp = require('./utils/talkingData-analysis/tdweapp.js');
 
 App({
   onLaunch: function (res) {
@@ -26,12 +27,23 @@ App({
     // 登录
     wx.login({
       success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        // 发送 res.code 到后台换取 openId, sessionKey
         if(res.code){
           api.authorize({"code": res.code}).then(res=>{
             if(res.data.code == 0){
               var access_token = res.data.data.accessToken;
               this.globalData.access_token = res.data.data.accessToken;
+              this.globalData.openId = res.data.data.openId
+              api.getUserId(access_token).then(res => {
+                if(res.data.code === 200) {
+                  this.globalData.userId = res.data.data
+                  if(this.userIdCallback){
+                    this.userIdCallback(res.data.data)
+                  }
+                }else if(this.userIdCallback){
+                  this.userIdCallback(-1)
+                }
+              })
               if(this.tokenCallback){
                 this.tokenCallback(res.data.data.accessToken);
               }
@@ -78,6 +90,8 @@ App({
   globalData: {
     fromShare: false,
     userInfo: null,
-    access_token: ''
+    access_token: '',
+    openId: '',
+    userId: ''
   }
 })

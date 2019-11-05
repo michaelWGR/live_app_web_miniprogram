@@ -1,14 +1,11 @@
 // pages/collections/collections.js
+import { td_event_collections } from '../../utils/talkingData-analysis/statistics.js'
 const request = require('../../utils/request.js');
 const util = require('./../../utils/util');
 const app = getApp();
-const summaryApi = require('../../api/summary.js');
 let collectionScrollRatio = 0
 let enterTimestamp
-let shouldPostScanPage = false;//onShow的时候拿不到token和reportId,等拿到token再发送埋点
-const TYPE_ENTER_COLLECTIONS = 3
-const TYPE_SHARE_COLLECTIONS_MENU = 5;// 点击右上角分享
-const TYPE_SHARE_COLLECTIONS_BUTTON = 6;// 点击按钮分享
+let shouldPostScanPage = false;//onShow的时候拿不到openId,等拿到openId再发送埋点
 Page({
 
   /**
@@ -58,7 +55,7 @@ Page({
     collectionScrollRatio = Math.ceil((e.scrollTop / this.data.pageHeight)*100)
   },
 
-  onShow: function() {
+  onShow: function(opt) {
     enterTimestamp = new Date().getTime()
     this.postScanPage()
   },
@@ -102,8 +99,7 @@ Page({
         if (token && token != '') {
           _this.getHomeworkList(userId, level, stage, token)
           if(shouldPostScanPage) {
-            summaryApi.postClickData(reportId, TYPE_ENTER_COLLECTIONS, token)
-            shouldPostScanPage = false
+            _this.postScanPage()
           }
         }
       }
@@ -160,30 +156,42 @@ Page({
     const leaveTimestamp = new Date().getTime()
     const time = leaveTimestamp - enterTimestamp
     const scale = collectionScrollRatio > 100 ? 100 : (collectionScrollRatio < 0 ? 0 : collectionScrollRatio)
-    const data = {
-      reportId: this.data.reportId,
-      time: time,
-      scale: scale,
-      type: 2
-    }
-    summaryApi.postScaleData(data, app.globalData.access_token)
+    td_event_collections({
+      label: 'C011202',
+      standing_time: time
+    })
+    td_event_collections({
+      label: 'C011203',
+      page_scale: scale + '%'
+    })
   },
 
   //进入页面埋点
   postScanPage() {
-    if(app.globalData.access_token && app.globalData.access_token != '' && this.data.reportId) {
-      const reportId = this.data.reportId
-      summaryApi.postClickData(reportId, TYPE_ENTER_COLLECTIONS, app.globalData.access_token)
+    if(app.globalData.access_token && app.globalData.access_token != '') {
+      td_event_collections({
+        label: 'C011201',
+        level: this.data.level,
+        stage: this.data.stage,
+      })
+      shouldPostScanPage = false
     }else{
       shouldPostScanPage = true
     }
   },
   //分享埋点
   postShare(from) {
-    if(app.globalData.access_token && app.globalData.access_token != '' && this.data.reportId) {
-      const reportId = this.data.reportId
-      const type = from === 'button' ? TYPE_SHARE_COLLECTIONS_BUTTON : TYPE_SHARE_COLLECTIONS_MENU
-      summaryApi.postClickData(reportId, type, app.globalData.access_token)
+    td_event_summary({
+      label: 'C01120401'
+    })
+    if(from === 'button') {
+      td_event_summary({
+        label: 'C011204'
+      })
+    }else{
+      td_event_summary({
+        label: 'C011205'
+      })
     }
   }
 })

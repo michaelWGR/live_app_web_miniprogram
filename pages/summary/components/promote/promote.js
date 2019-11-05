@@ -1,4 +1,5 @@
 // pages/summary/components/promote/promote.js
+import { td_event_summary } from '../../../../utils/talkingData-analysis/statistics.js'
 const app = getApp();
 const util = require('./../../../../utils/util.js');
 const summaryApi = require('../../../../api/summary.js');
@@ -63,6 +64,12 @@ Component({
               stageAlreadyAbilityNum: res.data.data.stageAlreadyAbilityNum,
               levelStageSkillDTO: res.data.data.levelStageSkillDTO
             })
+            if(res.data.data.levelStageSkillDTO.levelStageSkillDetailList.length > 0){
+              td_event_summary({
+                label: 'C0106',
+                card_status: 'show'
+              })
+            }
           } else {
             wx.showToast({
               title: '服务器错误',

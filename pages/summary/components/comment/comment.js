@@ -1,4 +1,5 @@
 // pages/summary/components/comment/comment.js
+import { td_event_summary } from '../../../../utils/talkingData-analysis/statistics.js'
 const app = getApp();
 const util = require('./../../../../utils/util.js');
 const summaryApi = require('../../../../api/summary.js');
@@ -67,6 +68,12 @@ Component({
                 imageUrl: imageUrl
               })
             }
+            if(res.data.data.comment){
+              td_event_summary({
+                label: 'C0108',
+                card_status: 'show'
+              })
+            }
           } else {
             wx.showToast({
               title: '服务器错误',
@@ -105,6 +112,9 @@ Component({
         // })
         this.teacherCancelPraise()
       }
+      td_event_summary({
+        label: 'C0109'
+      })
     },
 
     // 点赞老师评语

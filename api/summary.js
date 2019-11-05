@@ -62,21 +62,6 @@ const getSynthesisAbility = (params, token) => {
   return request.get('/v1/report/getSynthesisAbility', params, token);
 }
 
-/** 埋点*/
-const postScaleData = (data, token) => {
-  const params = util.qs(data)
-  return request.post('/v1/report/postScaleData' + params, {}, token);
-}
-
-/** 点击事件埋点*/
-const postClickData = (reportId, type, token) => {
-  const params = util.qs({
-    reportId,
-    type
-  })
-  return request.post('/v1/report/postClickData' + params, {}, token);
-}
-
 /** 判断是否拥有画啦啦账号*/
 const getBindingAccount = (params, token) => {
   return request.get('/v1/report/getBindingAccount', params, token);
@@ -94,8 +79,6 @@ module.exports = {
   teacherCancelPraise,
   getTrophyNum,
   getSynthesisAbility,
-  postScaleData,
-  postClickData,
   getBindingAccount,
   test123
 }

@@ -1,4 +1,5 @@
 // pages/summary/components/assess/assess.js
+import { td_event_summary } from '../../../../utils/talkingData-analysis/statistics.js'
 const app = getApp();
 const util = require('./../../../../utils/util.js');
 const summaryApi = require('../../../../api/summary.js');
@@ -60,6 +61,12 @@ Component({
               ability: res.data.data,
               analysis: this.initAssessList(res.data.data) + (res.data.data.length > 0 ? this.initAnalysis(res.data.data) : '')
             })
+            if(res.data.data && res.data.data.length > 0) {
+              td_event_summary({
+                label: 'C0107',
+                card_status: 'show'
+              })
+            }
           } else {
             wx.showToast({
               title: '服务器错误',

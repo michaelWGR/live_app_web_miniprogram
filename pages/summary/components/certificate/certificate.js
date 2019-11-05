@@ -1,4 +1,5 @@
 // pages/summary/components/certificate/certificate.js
+import { td_event_summary } from '../../../../utils/talkingData-analysis/statistics.js'
 const util = require('../../../../utils/util.js');
 const app = getApp();
 const request = require('../../../../utils/request')
@@ -53,6 +54,10 @@ Component({
   },
 
   attached: function() {
+    td_event_summary({
+      label: 'C0115',
+      card_status: 'show'
+    })
     this.getTitle()
   }
 })
