@@ -102,11 +102,11 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function (from) {
+  onShareAppMessage: function (opt) {
     td_event_summary({
       label: 'C011701'
     })
-    if(from === 'button') {
+    if (opt.from === 'button') {
       td_event_summary({
         label: 'C0117'
       })

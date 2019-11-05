@@ -181,15 +181,15 @@ Page({
   },
   //分享埋点
   postShare(from) {
-    td_event_summary({
+    td_event_collections({
       label: 'C01120401'
     })
     if(from === 'button') {
-      td_event_summary({
+      td_event_collections({
         label: 'C011204'
       })
     }else{
-      td_event_summary({
+      td_event_collections({
         label: 'C011205'
       })
     }

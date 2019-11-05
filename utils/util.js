@@ -5,6 +5,7 @@ const BASE_URL = "https://appminip.61draw.com"         //正式环境地址
 // const IMG_BASEURL = "http://10.10.117.177:3000/images/"; //本地图片地址
 //const IMG_BASEURL = "https://appdev.61draw.com/dev_test/miniprogram/"  //测试环境图片地址
 const IMG_BASEURL = "http://appminip.61draw.com/res/images/"; //正式环境图片地址
+const ENV = 'PROD';//环境变量；生产环境：'PROD'
 
 
 /**
@@ -111,6 +112,7 @@ module.exports = {
   formatTime: formatTime,
   secondToMin: secondToMin,
   qs: qs,
-  getPageHeight: getPageHeight
+  getPageHeight: getPageHeight,
+  env: ENV
 }
 
