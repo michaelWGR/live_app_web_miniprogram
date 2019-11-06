@@ -119,7 +119,7 @@ Component({
           })
           if(res.data.data && !hasPostStatics) {
             td_event_summary({
-              label: 'C0114',
+              label: 'C0114-显示宝贝闪光点',
               card_status: 'show'
             })
             hasPostStatics = true

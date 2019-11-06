@@ -55,7 +55,7 @@ Component({
 
   attached: function() {
     td_event_summary({
-      label: 'C0115',
+      label: 'C0115-显示奖状',
       card_status: 'show'
     })
     this.getTitle()

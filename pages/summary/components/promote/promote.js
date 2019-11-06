@@ -66,7 +66,7 @@ Component({
             })
             if(res.data.data.levelStageSkillDTO.levelStageSkillDetailList.length > 0){
               td_event_summary({
-                label: 'C0106',
+                label: 'C0106-显示能力提升',
                 card_status: 'show'
               })
             }

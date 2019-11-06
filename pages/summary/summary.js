@@ -1,7 +1,7 @@
 // pages/summary/summary.js
 import Wxml2Canvas from './../../utils/wxml2canvas.js'
 import generateCanvasData from '../../utils/generateCanvasData.js'
-import { td_event_summary } from '../../utils/talkingData-analysis/statistics.js'
+import { td_event_summary, td_event } from '../../utils/talkingData-analysis/statistics.js'
 const app = getApp();
 const util = require('./../../utils/util.js');
 const summaryApi = require('../../api/summary.js');
@@ -103,16 +103,17 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function (opt) {
-    td_event_summary({
-      label: 'C011701'
+    td_event({
+      id: 'C0117-首页微信分享',
+      label: 'C011701-显示分享类型'
     })
     if (opt.from === 'button') {
       td_event_summary({
-        label: 'C0117'
+        label: 'C0117-点击微信分享'
       })
     }else{
       td_event_summary({
-        label: 'C0121'
+        label: 'C0121-点击右上角分享'
       })
     }
     this.goToOtherPage()
@@ -263,11 +264,11 @@ Page({
     const time = parseInt((leaveTimestamp - _enterTimestamp)/1000)
     const scale = scrollRatio > 100 ? 100 : (scrollRatio < 0 ? 0 : scrollRatio)
     td_event_summary({
-      label: 'C0102',
+      label: 'C0102-页面停留时间',
       standing_time: time
     })
     td_event_summary({
-      label: 'C0103',
+      label: 'C0103-页面滑动占比',
       page_scale: scale + '%'
     })
   },
@@ -276,7 +277,7 @@ Page({
   postScanPage(userId) {
     if(app.globalData.access_token && app.globalData.access_token != '' && userId !== '') {
       td_event_summary({
-        label: 'C0101',
+        label: 'C0101-显示阶段学习报告',
         level: this.data.levelStage.level,
         stage: this.data.levelStage.stage
       })
@@ -379,7 +380,7 @@ Page({
   },
   setReportToImg() {
     td_event_summary({
-      label: 'C0118',
+      label: 'C0118-点击保存报告',
       download_local: true
     })
     this.setData({
@@ -402,7 +403,7 @@ Page({
         })
         if(res.data.data === 1){
           td_event_summary({
-            label: 'C0116',
+            label: 'C0116-显示微信/保存按钮',
             card_status: 'show'
           })
         }

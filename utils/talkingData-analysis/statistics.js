@@ -29,7 +29,7 @@ const td_event_summary = function(data) {
     if(!label) throw new Error('label is required')
     delete data.label
     td_event({
-      id: 'C01',
+      id: 'C01-阶段学习报告',
       label: label,
       params: data
     })
@@ -40,7 +40,7 @@ const td_event_collections = function(data) {
     if(!label) throw new Error('label is required')
     delete data.label
     td_event({
-      id: 'C0111',
+      id: 'C0112-画作集',
       label: label,
       params: data
     })

@@ -63,7 +63,7 @@ Component({
             })
             if(res.data.data && res.data.data.length > 0) {
               td_event_summary({
-                label: 'C0107',
+                label: 'C0107-显示综合能力评估',
                 card_status: 'show'
               })
             }
