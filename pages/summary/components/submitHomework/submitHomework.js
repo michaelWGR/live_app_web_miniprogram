@@ -60,7 +60,7 @@ Component({
           })
           if(allHomeworkNum > 0) {
             td_event_summary({
-              label: 'C0110',
+              label: 'C0110-显示画作提交',
               card_status: 'show'
             })
           }

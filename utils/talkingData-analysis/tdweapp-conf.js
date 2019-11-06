@@ -1,5 +1,5 @@
 const env = require('./../util.js').env
-const appKey = env === 'TEST' ? '326E130E8F1945FAB90DED59CE04D76F' : 'F54706FA53104CAE8881B576D72329D6'
+const appKey = env === 'TEST' ? 'E1B521AB0F2845A2B7FF9513017F1ECC' : 'F54706FA53104CAE8881B576D72329D6'
 exports.config = {
   appkey: appKey,
   appName: 'stageReport',

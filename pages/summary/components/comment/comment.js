@@ -70,7 +70,7 @@ Component({
             }
             if(res.data.data.comment){
               td_event_summary({
-                label: 'C0108',
+                label: 'C0108-显示老师评语',
                 card_status: 'show'
               })
             }
@@ -113,7 +113,7 @@ Component({
         this.teacherCancelPraise()
       }
       td_event_summary({
-        label: 'C0109'
+        label: 'C0109-点击感谢老师'
       })
     },
 

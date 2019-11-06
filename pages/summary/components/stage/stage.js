@@ -50,7 +50,7 @@ Component({
         })
       }
       td_event_summary({
-        label: 'C0105'
+        label: 'C0105-点击阶段进度卡片'
       })
     },
 
@@ -82,7 +82,7 @@ Component({
             })
             if(stageReportSchedule.length > 0) {
               td_event_summary({
-                label: 'C0104',
+                label: 'C0104-显示阶段进度卡片',
                 card_status: 'show'
               })
             }

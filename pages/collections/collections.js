@@ -1,5 +1,5 @@
 // pages/collections/collections.js
-import { td_event_collections } from '../../utils/talkingData-analysis/statistics.js'
+import { td_event_collections, td_event } from '../../utils/talkingData-analysis/statistics.js'
 const request = require('../../utils/request.js');
 const util = require('./../../utils/util');
 const app = getApp();
@@ -157,11 +157,11 @@ Page({
     const time = leaveTimestamp - enterTimestamp
     const scale = collectionScrollRatio > 100 ? 100 : (collectionScrollRatio < 0 ? 0 : collectionScrollRatio)
     td_event_collections({
-      label: 'C011202',
+      label: 'C011202-页面停留时间',
       standing_time: time
     })
     td_event_collections({
-      label: 'C011203',
+      label: 'C011203-页面滑动占比',
       page_scale: scale + '%'
     })
   },
@@ -170,7 +170,7 @@ Page({
   postScanPage() {
     if(app.globalData.access_token && app.globalData.access_token != '') {
       td_event_collections({
-        label: 'C011201',
+        label: 'C011201-显示画作集',
         level: this.data.level,
         stage: this.data.stage,
       })
@@ -181,16 +181,17 @@ Page({
   },
   //分享埋点
   postShare(from) {
-    td_event_collections({
-      label: 'C01120401'
+    td_event({
+      id: 'C011204-画作集微信分享',
+      label: 'C01120401-显示分享类型'
     })
     if(from === 'button') {
       td_event_collections({
-        label: 'C011204'
+        label: 'C011204-点击微信分享'
       })
     }else{
       td_event_collections({
-        label: 'C011205'
+        label: 'C011205-点击右上角分享'
       })
     }
   }

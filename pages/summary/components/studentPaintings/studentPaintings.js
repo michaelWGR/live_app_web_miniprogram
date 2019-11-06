@@ -58,7 +58,7 @@ Component({
         })
         if(data.length > 0) {
           td_event_summary({
-            label: 'C0111',
+            label: 'C0111-显示画作展示',
             card_status: 'show'
           })
         }
@@ -76,7 +76,7 @@ Component({
   methods: {
     goToCollections: function() {
       td_event_summary({
-        label: 'C0112'
+        label: 'C0112-点击查看宝贝更多画作'
       })
       this.setData({
         navigationFlag: true
@@ -112,7 +112,7 @@ Component({
       const params = util.qs(data)
       request.post('/v1/report/reportPraise' + params, {}, token)
       td_event_summary({
-        label: 'C0113'
+        label: 'C0113-给孩子点个赞'
       })
     },
 
